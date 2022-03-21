@@ -1,5 +1,4 @@
 package models;
-//le push marche il ?
 
 public class ForbiddenIsland {
 
