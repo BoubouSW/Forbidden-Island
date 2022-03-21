@@ -1,4 +1,5 @@
 package models;
+import java.awt.Color;
 
 class Validation extends IG.ZoneCliquable {
 
@@ -11,7 +12,11 @@ class Validation extends IG.ZoneCliquable {
         this.plateau = p;
     }
 
-    public void clicGauche() {}
+    public void clicGauche() {
+        this.setBackground(Color.GREEN);
+    }
 
-    public void clicDroit() {}
+    public void clicDroit() {
+        this.setBackground(Color.RED);
+    }
 }

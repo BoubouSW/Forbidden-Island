@@ -9,7 +9,7 @@ class Case extends IG.ZoneCliquable {
     // Constructeur
     public Case(Plateau p) {
         // Initialisation d'une case cliquable, de dimensions 40*40 pixels.
-        super(40, 40);
+        super(100, 100);
         // Initialisation des attributs
         this.occupee = false;
         this.plateau = p;
