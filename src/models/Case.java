@@ -12,12 +12,10 @@ class Case {
     public Case(Plateau p) {
         this.plateau = p;
         double n = Math.random();
-        if (n < 0.33)
+        if (n < 0.80)
             etat = Etat.NORMALE;
-        else if (n > 0.66)
+        else if (n > 0.80)
             etat = Etat.SUBMERGEE;
-        else
-            etat = Etat.INONDEE;
     }
 
     public Etat getEtat() { return this.etat;}

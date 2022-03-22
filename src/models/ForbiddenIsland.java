@@ -6,7 +6,7 @@ import models.Views;
 public class ForbiddenIsland {
 
     public static void main(String[] args) {
-        int nb = 10;
+        int nb = 6;
 
         Plateau plateau = new Plateau(nb);
         //Validation validation = new Validation(plateau);
