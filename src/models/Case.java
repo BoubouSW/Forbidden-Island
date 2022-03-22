@@ -1,32 +1,34 @@
 package models;
 
-class Case extends IG.ZoneCliquable {
+class Case {
+
+    public enum Etat {NORMALE,INONDEE,SUBMERGEE}
 
     // Attributs
-    private boolean occupee;
     private Plateau plateau;
+    private Etat etat;
 
     // Constructeur
     public Case(Plateau p) {
-        // Initialisation d'une case cliquable, de dimensions 40*40 pixels.
-        super(100, 100);
-        // Initialisation des attributs
-        this.occupee = false;
         this.plateau = p;
+        double n = Math.random();
+        if (n < 0.80)
+            etat = Etat.NORMALE;
+        else if (n > 0.80)
+            etat = Etat.SUBMERGEE;
     }
 
-    // Pour permettre à un objet [Plateau] de consulter l'état d'une case.
-    public boolean estOccupee() {return this.occupee;}
+    public Etat getEtat() { return this.etat;}
 
-    // Méthodes pour occuper ou libérer une case.
-    public void occupe() { this.occupee = true; }
-    public void libere() { this.occupee = false; }
+    public void set_normale() {
+        etat = Etat.NORMALE;
+    }
 
-    // Action à effectuer lors d'un clic gauche.
-    // Ceci utilise [IG.ZoneCliquable].
-    public void clicGauche() { }
+    public void set_inondee() {
+        etat = Etat.INONDEE;
+    }
 
-    // Action à effectuer lors d'un clic droit.
-    // Ceci utilise [IG.ZoneCliquable].
-    public void clicDroit() { }
+    public void set_submergee() {
+        etat = Etat.SUBMERGEE;
+    }
 }

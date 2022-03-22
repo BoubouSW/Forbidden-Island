@@ -2,6 +2,7 @@ package IG;
 
 import javax.swing.JLabel;
 import javax.swing.JComponent;
+import java.awt.*;
 
 
 /**
@@ -28,5 +29,4 @@ public class Texte extends JLabel {
 	this.setText(texte);
 	this.repaint();
     }
-
 }
