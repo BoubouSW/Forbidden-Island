@@ -1,16 +1,17 @@
 package models;
+//package views;
+
+import models.Views;
 
 public class ForbiddenIsland {
 
     public static void main(String[] args) {
-        int nb = 10;//Integer.parseInt(args[0]);
-        // Création d'une fenêtre graphique, d'un échiquiers
-        // et de deux boutons.
-        IG.Fenetre fenetre = new IG.Fenetre("test");
+        int nb = 10;
+
         Plateau plateau = new Plateau(nb);
-        Validation validation = new Validation(plateau);
-        fenetre.ajouteElement(plateau);
-        fenetre.ajouteElement(validation);
-        fenetre.dessineFenetre();
+        //Validation validation = new Validation(plateau);
+        Views views = new Views(plateau);
+        views.display();
+
     }
 }
