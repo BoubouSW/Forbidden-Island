@@ -11,11 +11,7 @@ class Case {
     // Constructeur
     public Case(Plateau p) {
         this.plateau = p;
-        double n = Math.random();
-        if (n < 0.80)
-            etat = Etat.NORMALE;
-        else if (n > 0.80)
-            etat = Etat.SUBMERGEE;
+        this.etat = Etat.NORMALE;
     }
 
     public Etat getEtat() { return this.etat;}
