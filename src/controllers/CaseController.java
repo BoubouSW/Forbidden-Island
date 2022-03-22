@@ -5,7 +5,7 @@ public class CaseController extends IG.ZoneCliquable {
     Case cas;
 
     CaseController(Case c) {
-        super(40,40);
+        super(100,100);
         this.cas = c;
     }
 
