@@ -16,8 +16,11 @@ class Plateau {
         for(int i=0; i<taille; i++) {
             for(int j=0; j<taille; j++) {
                 Case cas = new Case(this);
-                if ((i == 0 || i == 5) && (j == 0 || j == 1 || j == 4 || j == 5)
-                    || (i == 1 || i == 4) && (j == 0 || j == 5))
+                if ((i == 0) || (i==7) || (j == 0) || (j == 7)
+                        || ((i == 1) && ((j == 1) || (j == 2) || (j == 5) || (j == 6)))
+                        || ((i == 6) && ((j == 1) || (j == 2) || (j == 5) || (j == 6)))
+                        || ((j == 1) && ((i == 2) || (i == 5)))
+                        || ((j == 6) && ((i == 2) || (i == 5))))
                     cas.set_submergee();
                 plateau[i][j] = cas;
             }

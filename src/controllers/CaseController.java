@@ -1,5 +1,7 @@
 package models;
 
+import java.awt.*;
+
 public class CaseController extends IG.ZoneCliquable {
 
     Case cas;
