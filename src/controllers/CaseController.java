@@ -10,6 +10,10 @@ public class CaseController extends IG.ZoneCliquable {
         super(100,100);
         this.cas = c;
     }
+    CaseController(Case c, String name) {
+        super(name,100,100);
+        this.cas = c;
+    }
 
     // Action à effectuer lors d'un clic gauche.
     // Ceci utilise [IG.ZoneCliquable].

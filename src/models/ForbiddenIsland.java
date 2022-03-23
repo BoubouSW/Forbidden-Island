@@ -6,12 +6,6 @@ import models.Views;
 public class ForbiddenIsland {
 
     public static void main(String[] args) {
-        int nb = 8;
-
-        Plateau plateau = new Plateau(nb);
-        //Validation validation = new Validation(plateau);
-        Views views = new Views(plateau);
-        views.display();
-
+        Start start = new Start();
     }
 }

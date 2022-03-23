@@ -32,6 +32,8 @@ class Case {
         int[] res = {this.getX(), this.getY()};
         return res;
     }
+    public Set<Player> getPlayers() { return this.players;}
+    public boolean hasPlayer() { return ! this.players.isEmpty();}
 
     // setters
     public void set_normale() {
@@ -65,6 +67,7 @@ class Case {
     public void addPlayer(Player p){
         this.players.add(p);
     }
+
 };
 
 enum Dir {HAUT, BAS, GAUCHE, DROITE};

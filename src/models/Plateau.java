@@ -31,8 +31,26 @@ class Plateau {
                 plateau[i][j] = cas;
             }
         }
-        Player p1 = new Player(this, 0, "Clement", taille/2, taille/2);
+    }
+
+    public void addPlayerPlateau(int id,String name, int x, int y) {
+        Player p1 = new Player(this,id,name,x,y);
         this.players.add(p1);
         p1.getCase().addPlayer(p1);
+    }
+
+    public void randomIndonde() {
+        int x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
+        int y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
+        /*
+        while (this.getCase(x,y).getEtat() == Case.Etat.INONDEE) {
+            x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
+            y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
+        }
+        */
+        this.getCase(x,y).set_inondee();
+        System.out.println(this.getCase(x,y).getEtat());
+        System.out.println(x);
+        System.out.println(y);
     }
 }
