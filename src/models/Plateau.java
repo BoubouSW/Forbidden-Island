@@ -19,8 +19,6 @@ class Plateau {
         this.taille = taille;
         this.plateau = new Case[taille][taille];
         this.players = new HashSet<Player>();
-        Player p1 = new Player(this, 0, "Clement", taille/2, taille/2);
-        this.players.add(p1);
         for(int i=0; i<taille; i++) {
             for(int j=0; j<taille; j++) {
                 Case cas = new Case(this, i, j);
@@ -33,5 +31,8 @@ class Plateau {
                 plateau[i][j] = cas;
             }
         }
+        Player p1 = new Player(this, 0, "Clement", taille/2, taille/2);
+        this.players.add(p1);
+        p1.getCase().addPlayer(p1);
     }
 }

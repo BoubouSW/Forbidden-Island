@@ -1,4 +1,8 @@
 package models;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 class Case {
 
@@ -8,6 +12,7 @@ class Case {
     private Plateau plateau;
     private Etat etat;
     private int x, y;
+    private Set<Player> players;
 
     // Constructeur
     public Case(Plateau p, int x, int y) {
@@ -15,6 +20,7 @@ class Case {
         this.etat = Etat.NORMALE;
         this.x = x;
         this.y = y;
+        this.players = new HashSet<Player>();
     }
 
     // getters
@@ -54,6 +60,10 @@ class Case {
                 return this.plateau.getCase(x + 1, y);
         }
         return null;
+    }
+
+    public void addPlayer(Player p){
+        this.players.add(p);
     }
 };
 
