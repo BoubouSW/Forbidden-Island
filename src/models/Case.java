@@ -14,6 +14,7 @@ class Case {
     private Etat etat;
     private int x, y;
     private Set<Player> players;
+    private models.CaseController controller;
 
     // Constructeur
     public Case(Plateau p, int x, int y) {
@@ -26,6 +27,7 @@ class Case {
 
     // getters
     public Etat getEtat() { return this.etat;}
+    public models.CaseController getController(){return this.controller;}
 
     public int getX() {return this.x;}
     public int getY() {return this.y;}
@@ -48,6 +50,8 @@ class Case {
     public void set_submergee() {
         etat = Etat.SUBMERGEE;
     }
+
+    public void set_controller(models.CaseController c) {this.controller = c;}
 
     public Case adjacente(Dir d){
         int x = this.getX();

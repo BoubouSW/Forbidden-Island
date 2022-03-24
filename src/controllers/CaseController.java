@@ -7,21 +7,23 @@ public class CaseController extends IG.ZoneCliquable {
     Case cas;
 
     CaseController(Case c) {
-        super("",100,100);
+        //super("",100,100);
+        super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
+        c.set_controller(this);
         if (this.cas.hasPlayer()) {
             String name = "";
             for (Player player : this.cas.getPlayers()) {
                 name = name + " " + player.getName();
             }
             super.changeTexte(name);
-            this.setBackground(new Color(177,21,38));
-        }else if (this.cas.getEtat() == Case.Etat.INONDEE)
-            this.setBackground(new Color(95,158,160));
-        else if (this.cas.getEtat() == Case.Etat.SUBMERGEE)
-            this.setBackground(new Color(30,144,255));
-        else
-            this.setBackground(new Color(74,160,44));
+            //this.setBackground(new Color(177,21,38));
+        }
+        switch(this.cas.getEtat()) {
+            case INONDEE -> this.setBackground(new Color(95, 158, 160));
+            case SUBMERGEE -> this.setBackground(new Color(30, 144, 255));
+            case NORMALE -> this.setBackground(new Color(74, 160, 44));
+        }
 
     }
     CaseController(Case c, String name) {

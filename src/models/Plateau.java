@@ -39,18 +39,29 @@ class Plateau {
         p1.getCase().addPlayer(p1);
     }
 
-    public void randomIndonde() {
+    int[] randomIndondeSubmerge() {
+        // renvoi les coordonnees de la case inonde
+        int x, y;
+        do {
+            x = 1 + (int) (Math.random() * (this.getTaille() - 2));
+            y = 1 + (int) (Math.random() * (this.getTaille() - 2));
+        }while(this.getCase(x,y).getEtat() == Case.Etat.SUBMERGEE);
+        // attention si plus aucune case non SUBMERGEE boucle infini,
+        //on ne sera pas confronte a ce pb car on aura perdu avant
+        /*
         int x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
         int y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-        /*
         while (this.getCase(x,y).getEtat() == Case.Etat.INONDEE) {
             x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
             y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
         }
         */
-        this.getCase(x,y).set_inondee();
-        System.out.println(this.getCase(x,y).getEtat());
-        System.out.println(x);
-        System.out.println(y);
+        Case current = this.getCase(x, y);
+        if(current.getEtat() == Case.Etat.NORMALE)
+            current.set_inondee();
+        else if(current.getEtat() == Case.Etat.INONDEE)
+            current.set_submergee();
+        int[] res = {x, y};
+        return res;
     }
 }
