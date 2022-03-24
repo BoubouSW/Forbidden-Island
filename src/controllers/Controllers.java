@@ -1,7 +1,12 @@
 package models;
+import models.Playercontroller;
+
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Scanner;
+
 
 public class Controllers {
     private Plateau plateau;
@@ -22,11 +27,11 @@ public class Controllers {
         return null;
     }
 
-    /*
     public void play() {
-        do {
-
-        } while()
+        Player p = this.getPlayerByIdController(0);
+        Frame f = new Frame("Demo");
+        Playercontroller pc = new Playercontroller(p);
+        f.addKeyListener(pc);
     }
-     */
+
 }
