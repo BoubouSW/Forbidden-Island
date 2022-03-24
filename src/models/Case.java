@@ -66,13 +66,13 @@ class Case {
         int x = this.getX();
         int y = this.getY();
         switch(d) {
-            case HAUT:
-                return this.plateau.getCase(x, y - 1);
-            case BAS:
-                return this.plateau.getCase(x, y + 1);
             case GAUCHE:
-                return this.plateau.getCase(x - 1, y);
+                return this.plateau.getCase(x, y - 1);
             case DROITE:
+                return this.plateau.getCase(x, y + 1);
+            case HAUT:
+                return this.plateau.getCase(x - 1, y);
+            case BAS:
                 return this.plateau.getCase(x + 1, y);
         }
         return null;
