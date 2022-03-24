@@ -7,10 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Scanner;
 
-public class Playercontroller extends IG.Touche{
+public class PlayerController extends IG.Touche{
     private Player player;
 
-    public Playercontroller(Player p, IG.Fenetre fenetre){
+    public PlayerController(Player p, IG.Fenetre fenetre){
         fenetre.addKeyListener(this);
         this.player = p;
     }

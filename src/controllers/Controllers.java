@@ -1,5 +1,5 @@
 package models;
-import models.Playercontroller;
+import models.PlayerController;
 
 import java.awt.*;
 import java.util.HashSet;
@@ -32,7 +32,7 @@ public class Controllers {
     public void play() {
         Player p = this.getPlayerByIdController(0);
         //Player p2 = this.getPlayerByIdController(1);
-        Playercontroller pc = new Playercontroller(p,this.window);
+        PlayerController pc = new PlayerController(p,this.window);
         //Playercontroller pc1 = new Playercontroller(p2,this.window);
     }
 
