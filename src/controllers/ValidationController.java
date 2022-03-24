@@ -14,13 +14,15 @@ class ValidationController extends IG.ZoneCliquable {
     }
 
     public void clicGauche() {
-        this.setBackground(Color.GREEN);
-        int[] inond = this.plateau.randomIndondeSubmerge();
-        Case current = this.plateau.getCase(inond[0], inond[1]);
-        if(current.getEtat() == Case.Etat.INONDEE)
-            current.getController().setBackground(new Color(95, 158, 160));
-        else if(current.getEtat() == Case.Etat.SUBMERGEE)
-            current.getController().setBackground(new Color(30, 144, 255));
+        //this.setBackground(Color.GREEN);
+        for (int i = 0; i < 3; i++) {
+            int[] inond = this.plateau.randomIndondeSubmerge();
+            Case current = this.plateau.getCase(inond[0], inond[1]);
+            if (current.getEtat() == Case.Etat.INONDEE)
+                current.getController().setBackground(new Color(95, 158, 160));
+            else if (current.getEtat() == Case.Etat.SUBMERGEE)
+                current.getController().setBackground(new Color(30, 144, 255));
+        }
     }
 
     public void clicDroit() {}
