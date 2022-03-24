@@ -27,7 +27,7 @@ class Plateau {
                         || ((i == 6) && ((j == 1) || (j == 2) || (j == 5) || (j == 6)))
                         || ((j == 1) && ((i == 2) || (i == 5)))
                         || ((j == 6) && ((i == 2) || (i == 5))))
-                    cas.set_submergee();
+                        cas.set_submergee();
                 plateau[i][j] = cas;
             }
         }
