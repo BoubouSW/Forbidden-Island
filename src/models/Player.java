@@ -43,5 +43,4 @@ public class Player {
     public String getName(){return this.name;}
     public Set<Objet> getInventory(){return this.objets;}
     public Case getCase(){return this.position;}
-
 }

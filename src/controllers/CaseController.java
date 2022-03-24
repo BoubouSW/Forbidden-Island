@@ -17,7 +17,7 @@ public class CaseController extends IG.ZoneCliquable {
             super.changeTexte(name);
             this.setBackground(new Color(177,21,38));
         }else if (this.cas.getEtat() == Case.Etat.INONDEE)
-            this.setBackground(new Color(95,158,160));
+            this.setBackground(new Color(95,158,255));
         else if (this.cas.getEtat() == Case.Etat.SUBMERGEE)
             this.setBackground(new Color(30,144,255));
         else

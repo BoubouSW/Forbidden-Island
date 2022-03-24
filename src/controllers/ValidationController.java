@@ -15,7 +15,9 @@ class ValidationController extends IG.ZoneCliquable {
 
     public void clicGauche() {
         this.setBackground(Color.GREEN);
-        this.plateau.randomIndonde();
+        int[] coordInonde = this.plateau.randomIndonde();
+        System.out.println(coordInonde[0]);
+        System.out.println(coordInonde[1]);
     }
 
     public void clicDroit() {}

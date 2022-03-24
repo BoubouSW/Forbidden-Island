@@ -27,7 +27,7 @@ class Plateau {
                         || ((i == 6) && ((j == 1) || (j == 2) || (j == 5) || (j == 6)))
                         || ((j == 1) && ((i == 2) || (i == 5)))
                         || ((j == 6) && ((i == 2) || (i == 5))))
-                    cas.set_submergee();
+                        cas.set_submergee();
                 plateau[i][j] = cas;
             }
         }
@@ -39,18 +39,15 @@ class Plateau {
         p1.getCase().addPlayer(p1);
     }
 
-    public void randomIndonde() {
-        int x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-        int y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-        /*
-        while (this.getCase(x,y).getEtat() == Case.Etat.INONDEE) {
-            x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-            y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
+    public int[] randomIndonde() {
+        int x = 1 + (int)(Math.random() * ((this.getTaille() - 1)));
+        int y = 1 + (int)(Math.random() * ((this.getTaille() - 1)));
+        while (this.getCase(x,y).getEtat() == Case.Etat.SUBMERGEE) {
+            x = 1 + (int)(Math.random() * ((this.getTaille() - 1)));
+            y = 1 + (int)(Math.random() * ((this.getTaille() - 1)));
         }
-        */
         this.getCase(x,y).set_inondee();
-        System.out.println(this.getCase(x,y).getEtat());
-        System.out.println(x);
-        System.out.println(y);
+        int[] coord = {x,y};
+        return coord;
     }
 }
