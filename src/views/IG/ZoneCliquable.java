@@ -63,8 +63,8 @@ public abstract class ZoneCliquable extends JPanel implements MouseListener {
 	}
     }
 
-    public void mouseEntered(MouseEvent e) {}
-    public void mouseExited(MouseEvent e) {}
+    public abstract void mouseEntered(MouseEvent e);// {}
+    public abstract void mouseExited(MouseEvent e); // {}
     public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
 }

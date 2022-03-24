@@ -1,6 +1,7 @@
 package models;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 class ValidationController extends IG.ZoneCliquable {
 
@@ -26,4 +27,10 @@ class ValidationController extends IG.ZoneCliquable {
     }
 
     public void clicDroit() {}
+    public void mouseEntered(MouseEvent e) {
+        this.setBackground(new Color(0,128,255,75));
+    }
+    public void mouseExited(MouseEvent e) {
+        this.setBackground(Color.WHITE);
+    }
 }

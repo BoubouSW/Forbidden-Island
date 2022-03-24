@@ -1,6 +1,7 @@
 package models;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class CaseController extends IG.ZoneCliquable {
 
@@ -41,4 +42,19 @@ public class CaseController extends IG.ZoneCliquable {
     // Action à effectuer lors d'un clic droit.
     // Ceci utilise [IG.ZoneCliquable].
     public void clicDroit() {}
+
+    public void mouseEntered(MouseEvent e) {
+        if (this.cas.getEtat() != Case.Etat.SUBMERGEE)
+            this.setBackground(new Color(this.getBackground().getRed(),this.getBackground().getRed(),this.getBackground().getRed(),30));
+    }
+    public void mouseExited(MouseEvent e) {
+        switch(this.cas.getEtat()) {
+            case INONDEE:
+                this.setBackground(new Color(95, 158, 160)); break;
+            case SUBMERGEE:
+                this.setBackground(new Color(30, 144, 255)); break;
+            case NORMALE:
+                this.setBackground(new Color(74, 160, 44)); break;
+        }
+    }
 }
