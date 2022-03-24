@@ -7,6 +7,7 @@ import java.util.Set;
 class Case {
 
     public enum Etat {NORMALE,INONDEE,SUBMERGEE}
+    public enum Dir {HAUT, BAS, GAUCHE, DROITE};
 
     // Attributs
     private Plateau plateau;
@@ -69,5 +70,3 @@ class Case {
     }
 
 };
-
-enum Dir {HAUT, BAS, GAUCHE, DROITE};

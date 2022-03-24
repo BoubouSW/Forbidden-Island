@@ -10,8 +10,4 @@ class Validation {
         //super("Valider", 80, 25); -> controller
         this.plateau = p;
     }
-
-    public void clicGauche() {}
-
-    public void clicDroit() {}
 }
