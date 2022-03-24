@@ -3,6 +3,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.lang.RuntimeException;
 
 class Case {
 
@@ -42,6 +43,8 @@ class Case {
             if (p.getIdentifier() == id)
                 return p;
         }
+        if(true)
+            throw new RuntimeException("Identifiant non valide");
         return null; //faire exception
     }
 
@@ -75,7 +78,9 @@ class Case {
             case BAS:
                 return this.plateau.getCase(x + 1, y);
         }
-        return null;
+        if(true)
+            throw new RuntimeException("On ne devrait pas arriver ici");
+        return null; // impossible d'arriver ici
     }
 
     public void addPlayer(Player p){

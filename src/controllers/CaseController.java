@@ -7,8 +7,8 @@ public class CaseController extends IG.ZoneCliquable {
     Case cas;
 
     CaseController(Case c) {
-        //super("",100,100);
-        super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
+        super("",100,100);
+        //super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
         c.set_controller(this);
         if (this.cas.hasPlayer()) {
