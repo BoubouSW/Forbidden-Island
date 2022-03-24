@@ -14,7 +14,7 @@ public class Start {
         //models.ValidationController validation = new models.ValidationController(plateau);
         models.Views views = new models.Views(plateau);
         views.display();
-        Controllers cont = new models.Controllers(plateau);
+        models.Controllers cont = new models.Controllers(plateau,views.fenetre);
         cont.play();
 
     }

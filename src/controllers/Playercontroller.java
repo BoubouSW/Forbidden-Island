@@ -10,35 +10,36 @@ import java.util.Scanner;
 public class Playercontroller extends IG.Touche{
     private Player player;
 
-    public Playercontroller(Player p){
+    public Playercontroller(Player p, IG.Fenetre fenetre){
+        fenetre.addKeyListener(this);
         this.player = p;
     }
 
     public void keyPressed(KeyEvent e){
-        System.out.println("pp");
     };
     public void keyReleased(KeyEvent e){
-        System.out.println("pp");
     };
 
     public void keyTyped(KeyEvent e){
         Player moi = this.player;
-        moi.getCase().getController().changeTexte("");
-        System.out.println("pp");
-        System.out.println(e.getKeyChar());
-        /*
+        String name = "";
+        for (Player player : moi.getCase().getPlayers()) {
+            if (player.getIdentifier() != moi.getIdentifier())
+                name = name + " " + player.getName();
+        }
+        moi.getCase().getController().changeTexte(name);
+
         switch (e.getKeyChar()) {
             case 'd':
                 moi.moveDir(Case.Dir.DROITE); break;
-            case "q":
+            case 'q':
                 moi.moveDir(Case.Dir.GAUCHE); break;
-            case "z":
+            case 'z':
                 moi.moveDir(Case.Dir.HAUT); break;
-            case "s":
+            case 's':
                 moi.moveDir(Case.Dir.BAS); break;
         }
-         */
-        String name = "";
+        name = "";
         for (Player player : moi.getCase().getPlayers()) {
             name = name + " " + player.getName();
         }
