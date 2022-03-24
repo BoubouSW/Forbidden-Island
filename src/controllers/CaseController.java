@@ -7,7 +7,7 @@ public class CaseController extends IG.ZoneCliquable {
     Case cas;
 
     CaseController(Case c) {
-        super("",100,100);
+        super("",150,150,24);
         //super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
         c.set_controller(this);
@@ -30,7 +30,7 @@ public class CaseController extends IG.ZoneCliquable {
 
     }
     CaseController(Case c, String name) {
-        super(name,100,100);
+        super(name,100,100,24);
         this.cas = c;
     }
 

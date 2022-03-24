@@ -9,7 +9,7 @@ class ValidationController extends IG.ZoneCliquable {
     public ValidationController(Plateau p) {
         // Création d'une zone cliquable de dimensions 80*25 pixels,
         // et contenant le texte "Valider".
-        super("Fin de tour", 100, 25);
+        super("Fin de tour", 100, 25,15);
         this.plateau = p;
     }
 

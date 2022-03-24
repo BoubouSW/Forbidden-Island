@@ -22,10 +22,11 @@ public abstract class ZoneCliquable extends JPanel implements MouseListener {
      * @param x Première dimension de la case
      * @param y Deuxième dimention de la case
      */
-    public ZoneCliquable(String texte, int x, int y) {
+    public ZoneCliquable(String texte, int x, int y, int texteSize) {
 	this(x, y);
-	this.texte = new Texte(texte);
+	this.texte = new Texte(texte,texteSize);
 	this.add(this.texte);
+
     }
 
     public ZoneCliquable(int x, int y) {

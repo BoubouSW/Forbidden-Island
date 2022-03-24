@@ -16,8 +16,11 @@ public class Texte extends JLabel {
      *
      * @param texte Texte initial
      */
-    public Texte(String texte) {
-	super(texte);
+    public Texte(String texte, int texteSize) {
+
+        super(texte);
+        super.setFont(new Font("Roboto", Font.PLAIN, texteSize));
+        //super.setForeground(Color.RED);
     }
 
     /**
