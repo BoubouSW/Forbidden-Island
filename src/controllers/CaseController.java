@@ -20,9 +20,12 @@ public class CaseController extends IG.ZoneCliquable {
             //this.setBackground(new Color(177,21,38));
         }
         switch(this.cas.getEtat()) {
-            case INONDEE -> this.setBackground(new Color(95, 158, 160));
-            case SUBMERGEE -> this.setBackground(new Color(30, 144, 255));
-            case NORMALE -> this.setBackground(new Color(74, 160, 44));
+            case INONDEE:
+                this.setBackground(new Color(95, 158, 160)); break;
+            case SUBMERGEE:
+                this.setBackground(new Color(30, 144, 255)); break;
+            case NORMALE:
+                this.setBackground(new Color(74, 160, 44)); break;
         }
 
     }
