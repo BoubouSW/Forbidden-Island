@@ -3,6 +3,7 @@ import junit.framework.TestCase;
 
 public class PlayerTest extends TestCase {
 
+    @Test
     public void testCalculer() throws Exception {
         Plateau plateau = new Plateau(8);
         Player player1 = new Player(plateau,0,"player1",3,3);
