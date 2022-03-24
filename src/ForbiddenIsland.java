@@ -1,7 +1,5 @@
 package models;
-//package views;
-
-import models.Views;
+import models.Start;
 
 public class ForbiddenIsland {
 
