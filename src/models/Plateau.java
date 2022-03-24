@@ -48,14 +48,6 @@ class Plateau {
         }while(this.getCase(x,y).getEtat() == Case.Etat.SUBMERGEE);
         // attention si plus aucune case non SUBMERGEE boucle infini,
         //on ne sera pas confronte a ce pb car on aura perdu avant
-        /*
-        int x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-        int y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-        while (this.getCase(x,y).getEtat() == Case.Etat.INONDEE) {
-            x = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-            y = 1 + (int)(Math.random() * ((this.getTaille() - 1) + 1));
-        }
-        */
         Case current = this.getCase(x, y);
         if(current.getEtat() == Case.Etat.NORMALE)
             current.set_inondee();

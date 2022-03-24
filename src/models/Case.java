@@ -36,6 +36,15 @@ class Case {
         return res;
     }
     public Set<Player> getPlayers() { return this.players;}
+
+    public Player getPlayerById(int id) {
+        for (Player p : this.players) {
+            if (p.getIdentifier() == id)
+                return p;
+        }
+        return null; //faire exception
+    }
+
     public boolean hasPlayer() { return ! this.players.isEmpty();}
 
     // setters
@@ -72,5 +81,7 @@ class Case {
     public void addPlayer(Player p){
         this.players.add(p);
     }
+
+    public void removePlayer(Player p) { this.players.remove(p); }
 
 };

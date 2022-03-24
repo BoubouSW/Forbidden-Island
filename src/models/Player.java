@@ -43,4 +43,16 @@ public class Player {
     public String getName(){return this.name;}
     public Set<Objet> getInventory(){return this.objets;}
     public Case getCase(){return this.position;}
+
+    public void moveCase(Case cas) {
+        this.getCase().removePlayer(this);
+        cas.addPlayer(this);
+        this.position = cas;
+    }
+
+    public void moveDir(models.Case.Dir direction) {
+        Case cas = this.getCase().adjacente(direction);
+        if (cas.getEtat() != Case.Etat.SUBMERGEE)
+            this.moveCase(cas);
+    }
 }
