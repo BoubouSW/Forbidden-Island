@@ -11,3 +11,14 @@ This project is a collaboration between Clément Gilli and [Louis-Alexis Penelou
 <br>
 
 <img alt="Forbidden_Island.png" src="./resources/images/Forbidden_Island.png"/>
+
+<br>
+
+## <br> **Commands**
+<br>
+
+- `Z` - UP
+- `Q` - RIGHT
+- `S` - DOWN
+- `D` - LEFT
+- `A` - DRY

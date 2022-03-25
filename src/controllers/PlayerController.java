@@ -38,6 +38,8 @@ public class PlayerController extends IG.Touche{
                 moi.moveDir(Case.Dir.HAUT); break;
             case 's':
                 moi.moveDir(Case.Dir.BAS); break;
+            case 'a':
+                moi.assecheCase(); break;
         }
         name = "";
         for (Player player : moi.getCase().getPlayers()) {

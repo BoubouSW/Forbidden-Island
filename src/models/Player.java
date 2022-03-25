@@ -1,4 +1,5 @@
 package models;
+import java.awt.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -54,5 +55,11 @@ public class Player {
         Case cas = this.getCase().adjacente(direction);
         if (cas.getEtat() != Case.Etat.SUBMERGEE)
             this.moveCase(cas);
+    }
+
+    public void assecheCase() {
+        Case cas = this.getCase();
+        cas.set_normale();
+        cas.getController().setBackground(new Color(74, 160, 44));
     }
 }
