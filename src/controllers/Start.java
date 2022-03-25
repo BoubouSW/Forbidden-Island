@@ -6,8 +6,8 @@ public class Start {
     Start() {
         int nb = 8;
         Plateau plateau = new Plateau(nb);
-        plateau.addPlayerPlateau(0,"Clément",4,3);
-        plateau.addPlayerPlateau(1,"LA",4,2);
+        plateau.addPlayerPlateau(0,"Boubou",4,3);
+        plateau.addPlayerPlateau(1,"ATP",4,2);
 
 
 

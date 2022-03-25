@@ -44,10 +44,17 @@ public class CaseController extends IG.ZoneCliquable {
     public void clicDroit() {}
 
     public void mouseEntered(MouseEvent e) {
-        if (this.cas.getEtat() != Case.Etat.SUBMERGEE)
-            this.setBackground(new Color(this.getBackground().getRed(),this.getBackground().getRed(),this.getBackground().getRed(),30));
+        if (this.cas.getEtat() != Case.Etat.SUBMERGEE) {
+            this.setBackground(new Color(this.getBackground().getRed(), this.getBackground().getRed(), this.getBackground().getRed(), 30));
+            this.changeTexte(Integer.toString(this.cas.getX()) + " " + Integer.toString(this.cas.getY()));
+        }
     }
     public void mouseExited(MouseEvent e) {
+        String name = "";
+        for (Player player : this.cas.getPlayers()) {
+            name = name + " " + player.getName();
+        }
+        this.changeTexte(name);
         switch(this.cas.getEtat()) {
             case INONDEE:
                 this.setBackground(new Color(95, 158, 160)); break;
