@@ -51,15 +51,22 @@ public class Player {
         this.position = cas;
     }
 
-    public void moveDir(models.Case.Dir direction) {
+    public boolean moveDir(models.Case.Dir direction) {
         Case cas = this.getCase().adjacente(direction);
-        if (cas.getEtat() != Case.Etat.SUBMERGEE)
+        if (cas.getEtat() != Case.Etat.SUBMERGEE) {
             this.moveCase(cas);
+            return true;
+        }
+        return false;
     }
 
-    public void assecheCase() {
+    public boolean assecheCase() {
         Case cas = this.getCase();
-        cas.set_normale();
-        cas.getController().setBackground(new Color(74, 160, 44));
+        if(cas.getEtat() == Case.Etat.INONDEE) {
+            cas.set_normale();
+            cas.getController().setBackground(new Color(74, 160, 44));
+            return true;
+        }
+        return false;
     }
 }

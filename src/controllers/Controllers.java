@@ -29,11 +29,24 @@ public class Controllers {
         return null;
     }
 
-    public void play() {
-        Player p = this.getPlayerByIdController(0);
-        //Player p2 = this.getPlayerByIdController(1);
-        PlayerController pc = new PlayerController(p,this.window);
-        //Playercontroller pc1 = new Playercontroller(p2,this.window);
+    public void play(PlayerController[] pcBanque) {
+        int n = this.getPlayersController().size();
+        int c;
+        int whoShouldPlay = 0;
+        boolean gameOver = false;
+        PlayerController pc;
+        while(! gameOver) {
+            c = 3;
+            pc = pcBanque[whoShouldPlay];
+            pc.StartReply();
+            while(c != 0){
+                c = pc.getCount();
+                //System.out.println(c);
+            }
+            pc.StopReply();
+            whoShouldPlay = (whoShouldPlay + 1) % n;
+        }
+
     }
 
 }

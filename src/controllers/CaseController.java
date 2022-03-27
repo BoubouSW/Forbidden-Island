@@ -8,7 +8,7 @@ public class CaseController extends IG.ZoneCliquable {
     Case cas;
 
     CaseController(Case c) {
-        super("",150,150,24);
+        super("",100,100,24);
         //super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
         c.set_controller(this);
