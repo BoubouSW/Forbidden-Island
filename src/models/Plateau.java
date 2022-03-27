@@ -23,12 +23,8 @@ class Plateau {
         for(int i=0; i<taille; i++) {
             for(int j=0; j<taille; j++) {
                 Case cas = new Case(this, i, j);
-                if ((i == 0) || (i==7) || (j == 0) || (j == 7)
-                        || ((i == 1) && ((j == 1) || (j == 2) || (j == 5) || (j == 6)))
-                        || ((i == 6) && ((j == 1) || (j == 2) || (j == 5) || (j == 6)))
-                        || ((j == 1) && ((i == 2) || (i == 5)))
-                        || ((j == 6) && ((i == 2) || (i == 5))))
-                        cas.set_submergee();
+                if (Math.abs(i - (taille - 1) / 2.) + Math.abs(j - (taille - 1) / 2.) >= taille / 2.)
+                    cas.set_submergee();
                 plateau[i][j] = cas;
             }
         }
