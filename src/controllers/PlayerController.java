@@ -76,6 +76,7 @@ public class PlayerController extends IG.Touche{
                 this.count++;
 
             name = "";
+            moi.getCase().getController().add(new IG.Texte("",24));
             for (Player player : moi.getCase().getPlayers()) {
                 name = name + " " + player.getName();
             }

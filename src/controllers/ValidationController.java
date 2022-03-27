@@ -6,16 +6,22 @@ import java.awt.event.MouseEvent;
 class ValidationController extends IG.ZoneCliquable {
 
     private Plateau plateau;
+    private boolean end;
+
+    public boolean getEnd() {return this.end;}
+    public void setEndFalse() {this.end = false;}
 
     public ValidationController(Plateau p) {
         // Création d'une zone cliquable de dimensions 80*25 pixels,
         // et contenant le texte "Valider".
         super("Fin de tour", 100, 25,15);
         this.plateau = p;
+        this.end = false;
     }
 
     public void clicGauche() {
         //this.setBackground(Color.GREEN);
+        this.end = true;
         for (int i = 0; i < 3; i++) {
             int[] inond = this.plateau.randomIndondeSubmerge();
             Case current = this.plateau.getCase(inond[0], inond[1]);

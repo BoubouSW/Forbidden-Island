@@ -12,11 +12,13 @@ public class Controllers {
     private Plateau plateau;
     private IG.Fenetre window;
     private models.Views view;
+    private models.ValidationController validationController;
 
     Controllers(Plateau plat, IG.Fenetre fenetre, models.Views view) {
         this.plateau = plat;
         this.window = fenetre;
         this.view = view;
+        this.validationController = this.view.validationController;
     }
 
     public Set<Player> getPlayersController() { return this.plateau.getPlayersPlateau(); }
@@ -39,15 +41,18 @@ public class Controllers {
         PlayerController pc;
         while(! gameOver) {
             c = 3;
+            this.validationController.setEndFalse();
             pc = pcBanque[whoShouldPlay];
             pc.StartReply();
-            while(c != 0){
+            while(c != 0 && !this.validationController.getEnd()){
                 c = pc.getCount();
-                System.out.println("");
                 this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
                 this.view.encadreTour.setNbrCoup(c);
             }
             pc.StopReply();
+            while (!this.validationController.getEnd()) {
+                System.out.println(""); // trouver comment attendre ?!
+            }
             whoShouldPlay = (whoShouldPlay + 1) % n;
         }
     }
