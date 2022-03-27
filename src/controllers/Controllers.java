@@ -11,10 +11,12 @@ import java.util.Scanner;
 public class Controllers {
     private Plateau plateau;
     private IG.Fenetre window;
+    private models.Views view;
 
-    Controllers(Plateau plat, IG.Fenetre fenetre) {
+    Controllers(Plateau plat, IG.Fenetre fenetre, models.Views view) {
         this.plateau = plat;
         this.window = fenetre;
+        this.view = view;
     }
 
     public Set<Player> getPlayersController() { return this.plateau.getPlayersPlateau(); }
@@ -42,6 +44,8 @@ public class Controllers {
             while(c != 0){
                 c = pc.getCount();
                 System.out.println("");
+                this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
+                this.view.encadreTour.setNbrCoup(c);
             }
             pc.StopReply();
             whoShouldPlay = (whoShouldPlay + 1) % n;

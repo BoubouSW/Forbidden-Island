@@ -6,7 +6,9 @@ import java.awt.Color;
 
 class PlateauView extends IG.Grille {
 
-    Plateau p;
+    private Plateau p;
+
+    public Plateau getPlateau() {return this.p;}
 
     public PlateauView(Plateau plat) {
         super(plat.getTaille(), plat.getTaille());

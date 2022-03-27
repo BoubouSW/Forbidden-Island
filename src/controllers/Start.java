@@ -42,7 +42,7 @@ public class Start {
         }
 
         //initialisation controller
-        models.Controllers cont = new models.Controllers(plateau,views.fenetre);
+        models.Controllers cont = new models.Controllers(plateau,views.fenetre, views);
 
         //affichage plateau
         views.display();

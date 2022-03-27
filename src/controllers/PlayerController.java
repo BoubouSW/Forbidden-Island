@@ -27,6 +27,8 @@ public class PlayerController extends IG.Touche{
         return this.count;
     }
 
+    public Player getPlayer(){return this.player;}
+
     //setters
     public void StartReply(){
         this.shouldReply = true;
