@@ -41,12 +41,10 @@ public class Controllers {
             pc.StartReply();
             while(c != 0){
                 c = pc.getCount();
-                //System.out.println(c);
+                System.out.println("");
             }
             pc.StopReply();
             whoShouldPlay = (whoShouldPlay + 1) % n;
         }
-
     }
-
 }

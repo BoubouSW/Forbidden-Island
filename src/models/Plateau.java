@@ -57,4 +57,14 @@ class Plateau {
         int[] res = {x, y};
         return res;
     }
+
+    public int[] randomSpawn() {
+        int x, y;
+        do {
+            x = 1 + (int) (Math.random() * (this.getTaille() - 2));
+            y = 1 + (int) (Math.random() * (this.getTaille() - 2));
+        }while(this.getCase(x,y).getEtat() == Case.Etat.SUBMERGEE);
+        int[] res = {x, y};
+        return res;
+    }
 }
