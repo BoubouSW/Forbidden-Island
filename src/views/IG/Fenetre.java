@@ -1,7 +1,5 @@
 package IG;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.GridLayout;
 
 /**
@@ -23,9 +21,9 @@ public class Fenetre extends JFrame {
      * @param nom Nom de la fenetre.
      */
     public Fenetre(String nom) {
-	super(nom);
-	this.elements = new JPanel();
-	this.add(elements);
+	    super(nom);
+	    this.elements = new JPanel();
+	    this.add(elements);
     }
 
     /**
@@ -41,10 +39,10 @@ public class Fenetre extends JFrame {
      * Afficher la fenetre.
      */
     public void dessineFenetre() {
-	this.pack();
-    //this.setSize(1000,1000);
-	this.setVisible(true);
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.pack();
+        //this.setSize(1000,1000);
+	    this.setVisible(true);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }

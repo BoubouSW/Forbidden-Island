@@ -12,6 +12,7 @@ public class Start {
         Plateau plateau = new Plateau(nb);
 
         //ajout des joueurs
+        /*  POUR LE MOMENT ON LAISSE COMMENTER CAR SINON HORRIBLE POUR TESTER
         Scanner sc = new Scanner(System.in);
         int playersnumber = 0;
         boolean error = true;
@@ -24,6 +25,11 @@ public class Start {
             }
         }while (error);
         this.addPlayerGame(playersnumber,plateau);
+
+         */
+
+        plateau.addPlayerPlateau(0,"Boubou",4,5);
+        plateau.addPlayerPlateau(1,"ATP",2,3);
 
         //initialisation affichage du plateau
         models.Views views = new models.Views(plateau);
