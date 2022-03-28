@@ -4,6 +4,6 @@ import models.Start;
 public class ForbiddenIsland {
 
     public static void main(String[] args) {
-        Start start = new Start();
+        models.InitStart start = new models.InitStart();
     }
 }

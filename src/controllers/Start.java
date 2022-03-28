@@ -1,16 +1,20 @@
 package models;
+import models.InitStart;
 import models.PlayerController;
 import models.Views;
 import java.lang.RuntimeException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Start {
-    Start() {
+
+    Start(ArrayList<String> nomsJoueurs) {
 
         //création plateau taille 8x8
         int nb = 8;
         Plateau plateau = new Plateau(nb);
-
+        //InitStart initStart = new InitStart();
         //ajout des joueurs
         /*  POUR LE MOMENT ON LAISSE COMMENTER CAR SINON HORRIBLE POUR TESTER
         Scanner sc = new Scanner(System.in);
@@ -27,9 +31,13 @@ public class Start {
         this.addPlayerGame(playersnumber,plateau);
 
          */
+        for (int i = 0; i < nomsJoueurs.size(); i++) {
+            int[] spawn = plateau.randomSpawn();
+            plateau.addPlayerPlateau(i, nomsJoueurs.get(i), spawn[0], spawn[1]);
+        }
 
-        plateau.addPlayerPlateau(0,"Boubou",4,5);
-        plateau.addPlayerPlateau(1,"ATP",2,3);
+        //plateau.addPlayerPlateau(0,"Boubou",4,5);
+        //plateau.addPlayerPlateau(1,"ATP",2,3);
 
         //initialisation affichage du plateau
         models.Views views = new models.Views(plateau);
@@ -78,6 +86,7 @@ public class Start {
         cont.play(pc);
     }
 
+    /*
     public int getNumberPlayer() {
         int playersnumber = 0;
         Scanner sc = new Scanner(System.in);
@@ -101,5 +110,6 @@ public class Start {
             plateau.addPlayerPlateau(i,name,spawn[0],spawn[1]);
         }
     }
+     */
 
 }

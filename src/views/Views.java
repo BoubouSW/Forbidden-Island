@@ -1,6 +1,7 @@
 package models;
 
 import views.EncadreView;
+import views.InitView;
 
 import javax.swing.*;
 import java.awt.*;
