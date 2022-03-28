@@ -50,9 +50,18 @@ public class Controllers {
                 this.view.encadreTour.setNbrCoup(c);
             }
             pc.StopReply();
-            while (!this.validationController.getEnd()) {
-                System.out.println(""); // trouver comment attendre ?!
+            synchronized (this) {
+                while(! this.validationController.getEnd()) {
+                    try {
+                        this.validationController.wait();
+                    }catch (Exception e){
+                        //System.out.println("Exception in wait " + e); // bizarre
+                    }
+                }
             }
+            //while (!this.validationController.getEnd()) {
+                //System.out.println(""); // trouver comment attendre ?!
+            //}
             whoShouldPlay = (whoShouldPlay + 1) % n;
         }
     }
