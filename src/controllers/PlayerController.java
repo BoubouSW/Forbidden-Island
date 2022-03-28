@@ -75,6 +75,8 @@ public class PlayerController extends IG.Touche{
                 case 'a':
                     b = moi.assecheCase();
                     break;
+                case 'r':
+                    b = moi.ramasseArtefact();
             }
             if(! b)
                 this.count++;

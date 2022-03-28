@@ -74,6 +74,11 @@ class Case {
         return null;
     }
 
+    public void removeArtefact() {
+        // suppose qu'il y a un artefact
+        objets.remove(this.getArtefact());
+    }
+
     // setters
     public void set_normale() {
         etat = Etat.NORMALE;

@@ -69,4 +69,14 @@ public class Player {
         }
         return false;
     }
+
+    public boolean ramasseArtefact() {
+        Case cas = this.getCase();
+        if(cas.hasArtefact()) {
+            this.objets.add(cas.getArtefact());
+            cas.removeArtefact();
+            return true;
+        }
+        return false;
+    }
 }
