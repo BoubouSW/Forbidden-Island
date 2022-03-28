@@ -55,14 +55,24 @@ class Case {
 
     public boolean hasPlayer() { return ! this.players.isEmpty();}
 
-    /**
     public boolean hasArtefact() {
         for(Objet o: objets){
-            if(o.getClass() == Artefact)
-
+            if(o.getClass() == Artefact.class)
+                return true;
         }
+        return false;
     }
-     **/
+
+    public Objet getArtefact() {
+        // suppose qu'il y a un artefact
+        for(Objet o: objets){
+            if(o.getClass() == Artefact.class)
+                return o;
+        }
+        if(true)
+            throw new RuntimeException("Pas d'artefact");
+        return null;
+    }
 
     // setters
     public void set_normale() {
@@ -103,6 +113,6 @@ class Case {
 
     public void removePlayer(Player p) { this.players.remove(p); }
 
-    public void addObject(Objet objet){ this.objets.add(objet);}
+    public void addObject(Objet objet){ this.objets.add(objet); }
 
 };

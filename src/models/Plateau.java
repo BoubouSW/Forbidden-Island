@@ -10,8 +10,11 @@ class Plateau {
 
     private Case[][] plateau;
     private Set<Player> players;
+    private models.PlateauView plateauView;
 
-    public Case getCase(int i, int j) { return plateau[i][j]; }
+    public Case getCase(int i, int j) {
+        return plateau[i][j];
+    }
     public int getTaille() { return this.taille; }
     public Set<Player> getPlayersPlateau() { return this.players; }
 

@@ -31,6 +31,9 @@ public class Start {
         plateau.addPlayerPlateau(0,"Boubou",4,5);
         plateau.addPlayerPlateau(1,"ATP",2,3);
 
+        //initialisation affichage du plateau
+        models.Views views = new models.Views(plateau);
+
         Artefact[] aTab = { new Artefact(Objet.Element.FEU, null, null),
                             new Artefact(Objet.Element.EAU, null, null),
                             new Artefact(Objet.Element.TERRE, null, null),
@@ -40,7 +43,9 @@ public class Start {
             Case c;
             do{
                 c = plateau.randomSecheOuInonde();
-            }while(c.possedeArtefact());
+            }while(c.hasArtefact());
+            c.addObject(a);
+            c.getController().changeTexte(a.getElement().name());
         }
 
         Clef[] cTab = { new Clef(Objet.Element.FEU, null, null),
@@ -48,8 +53,13 @@ public class Start {
                         new Clef(Objet.Element.TERRE, null, null),
                         new Clef(Objet.Element.VENT, null, null)};
 
-        //initialisation affichage du plateau
-        models.Views views = new models.Views(plateau);
+        for(Clef k: cTab){
+            Case c;
+            do{
+                c = plateau.randomSecheOuInonde();
+            }while(c.hasArtefact());
+            c.addObject(k);
+        }
 
         //initialisation des playerscontroller
         int size = plateau.getPlayersPlateau().size();
