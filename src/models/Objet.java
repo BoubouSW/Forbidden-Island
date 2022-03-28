@@ -19,4 +19,12 @@ public abstract class Objet {
         this.Owner = p;
         this.position = c;
     }
+
+    public void Pose(Case c){
+        this.position = c;
+    }
+
+    public  void estRamassePar(Player p){
+        this.Owner = p;
+    }
 }

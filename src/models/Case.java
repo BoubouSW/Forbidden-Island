@@ -15,6 +15,7 @@ class Case {
     private Etat etat;
     private int x, y;
     private Set<Player> players;
+    private Set<Objet> objets;
     private models.CaseController controller;
 
     // Constructeur
@@ -24,10 +25,13 @@ class Case {
         this.x = x;
         this.y = y;
         this.players = new HashSet<Player>();
+        this.objets = new HashSet<Objet>();
+        // invariant : au plus un artefact par case
     }
 
     // getters
     public Etat getEtat() { return this.etat;}
+    public boolean isSubmergee(){return this.etat == Etat.SUBMERGEE;}
     public models.CaseController getController(){return this.controller;}
 
     public int getX() {return this.x;}
@@ -37,6 +41,7 @@ class Case {
         return res;
     }
     public Set<Player> getPlayers() { return this.players;}
+    public Set<Objet> getObjets() {return this.objets;}
 
     public Player getPlayerById(int id) {
         for (Player p : this.players) {
@@ -49,6 +54,15 @@ class Case {
     }
 
     public boolean hasPlayer() { return ! this.players.isEmpty();}
+
+    /**
+    public boolean hasArtefact() {
+        for(Objet o: objets){
+            if(o.getClass() == Artefact)
+
+        }
+    }
+     **/
 
     // setters
     public void set_normale() {
@@ -88,5 +102,7 @@ class Case {
     }
 
     public void removePlayer(Player p) { this.players.remove(p); }
+
+    public void addObject(Objet objet){ this.objets.add(objet);}
 
 };

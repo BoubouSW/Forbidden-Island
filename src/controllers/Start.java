@@ -31,6 +31,23 @@ public class Start {
         plateau.addPlayerPlateau(0,"Boubou",4,5);
         plateau.addPlayerPlateau(1,"ATP",2,3);
 
+        Artefact[] aTab = { new Artefact(Objet.Element.FEU, null, null),
+                            new Artefact(Objet.Element.EAU, null, null),
+                            new Artefact(Objet.Element.TERRE, null, null),
+                            new Artefact(Objet.Element.VENT, null, null)};
+
+        for(Artefact a: aTab){
+            Case c;
+            do{
+                c = plateau.randomSecheOuInonde();
+            }while(c.possedeArtefact());
+        }
+
+        Clef[] cTab = { new Clef(Objet.Element.FEU, null, null),
+                        new Clef(Objet.Element.EAU, null, null),
+                        new Clef(Objet.Element.TERRE, null, null),
+                        new Clef(Objet.Element.VENT, null, null)};
+
         //initialisation affichage du plateau
         models.Views views = new models.Views(plateau);
 
