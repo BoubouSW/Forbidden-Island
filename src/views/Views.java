@@ -1,5 +1,6 @@
 package models;
 
+import views.EncadreInventaireView;
 import views.EncadreView;
 import views.InitView;
 
@@ -12,6 +13,7 @@ public class Views {
     models.PlateauView plateauView;
     models.ValidationController validationController;
     EncadreView encadreTour;
+    EncadreInventaireView encadreInventaire;
 
     public Views(Plateau p) {
         this.fenetre = new IG.Fenetre("ForbiddenIsland");

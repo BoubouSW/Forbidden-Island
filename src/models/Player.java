@@ -45,6 +45,18 @@ public class Player {
     public String getName(){return this.name;}
     public Set<Clef> getKeyInventory(){return this.listeClef;}
     public Case getCase(){return this.position;}
+    public String inventory(){
+        String str = "Inventaire de " + this.getName() + "\nArtefact (commun a tous) : ";
+        for(Artefact a: Player.artefactRamasse){
+            str += a.StringForInventory() + " ";
+        }
+        str += "\nClef (Propre a chaque joueur) : ";
+        for(Clef k: this.listeClef){
+            str += k.StringForInventory() + " ";
+        }
+        str += "\n";
+        return str;
+    }
     public static Set<Artefact> getArtefact(){return artefactRamasse;}
 
     //Setters
@@ -56,6 +68,7 @@ public class Player {
         this.getCase().removePlayer(this);
         cas.addPlayer(this);
         this.position = cas;
+        boolean b = this.ramasseRandomClef();
     }
 
     public boolean moveDir(models.Case.Dir direction) {
@@ -77,13 +90,38 @@ public class Player {
         return false;
     }
 
+    public boolean hasKeyOfElement(Objet.Element e){
+        for(Clef k: this.listeClef){
+            if(k.getElement() == e)
+                return true;
+        }
+        return false;
+    }
+
     public boolean ramasseArtefact() {
         Case cas = this.getCase();
-        if(cas.hasArtefact()) {
+        if(cas.hasArtefact() && this.hasKeyOfElement(cas.getArtefact().getElement())){
             Player.artefactRamasse.add(cas.getArtefact());
             cas.removeArtefact();
             return true;
         }
         return false;
+    }
+
+    public boolean ramasseRandomClef() {
+        // le player ramasse une clef aleatoire se trouvant sur sa case
+        // renvoi vrai s il a ramasse une clef faux sinon
+        Case cas = this.getCase();
+        if(cas.hasKey()){
+            Clef k = cas.getRandomKey();
+            cas.removeKey(k);
+            this.listeClef.add(k);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean hasAllArtefact(){
+        return Player.artefactRamasse.size() == 4;
     }
 }

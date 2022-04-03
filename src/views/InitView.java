@@ -2,7 +2,11 @@ package views;
 
 import models.InitStart;
 
+import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,16 +31,17 @@ public class InitView extends JFrame {
     private ArrayList<JLabel> labels;
     private ArrayList<JTextField> texts;
     private JPanel namePlayers;
-
+//resources/images/islandSetup.jpg
     public InitView() {
         super("Start");
-        /* SI ON VEUT AJOUTER UN FOND
-        try {
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("resources/images/Forbidden_Island.png")))));
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
+        // SI ON VEUT AJOUTER UN FOND
+        /**
+        JLabel background=new JLabel(new ImageIcon("resources/images/islandSetup.jpg"));
+
+        add(background);
+        **/
+        //background.setLayout(new FlowLayout());
+
         this.pack();
     }
 
@@ -115,6 +120,12 @@ public class InitView extends JFrame {
             }
         });
         button.add(start);
+        /**
+        try {
+            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("resources/images/IslandSetup.jpg")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }**/
     }
 
     private void drawInName(int nb) {
@@ -135,5 +146,17 @@ public class InitView extends JFrame {
     public void closeWin() {
         setVisible(false);
         dispose();
+    }
+}
+
+class ImagePanel extends JComponent {
+    private Image image;
+    public ImagePanel(Image image) {
+        this.image = image;
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
     }
 }

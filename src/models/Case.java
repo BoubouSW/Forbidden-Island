@@ -75,6 +75,29 @@ class Case {
         objets.remove(this.getArtefact());
     }
 
+    public boolean hasKey(){
+        for(Objet o: objets){
+            if(o.getClass() == Clef.class)
+                return true;
+        }
+        return false;
+    }
+
+    public Clef getRandomKey() {
+        // suppose qu'il y a une clef
+        // renvoi une clef aleatoire de la case
+        for(Objet o: objets){
+            if(o.getClass() == Clef.class)
+                return (Clef) o;
+        }
+        throw new RuntimeException("Pas d'artefact");
+    }
+
+    public void removeKey(Clef clef) {
+        if(this.objets.contains(clef))
+            this.objets.remove(clef);
+    }
+
     // setters
     public void set_normale() {
         etat = Etat.NORMALE;

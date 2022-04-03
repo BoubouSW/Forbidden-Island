@@ -67,10 +67,15 @@ public class Start {
                         new Clef(Objet.Element.VENT, null, null)};
 
         for(Clef k: cTab){
-            Case c = plateau.randomSecheOuInonde();
+            Case c;
+            do {
+                c = plateau.randomSecheOuInonde();
+            }while(c.hasPlayer());
             c.addObject(k);
-            c.getController().changeTexte("Cle " + k.getElement().name());
+            //c.getController().changeTexte("Cle " + k.getElement().name());
         }
+
+
 
         //initialisation des playerscontroller
         int size = plateau.getPlayersPlateau().size();

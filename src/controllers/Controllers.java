@@ -50,6 +50,7 @@ public class Controllers {
                 this.view.encadreTour.setNbrCoup(c);
             }
             pc.StopReply();
+            System.out.println(pc.getPlayer().inventory());
             synchronized (this) {
                 while(! this.validationController.getEnd()) {
                     try {
@@ -59,10 +60,14 @@ public class Controllers {
                     }
                 }
             }
-            //while (!this.validationController.getEnd()) {
-                //System.out.println(""); // trouver comment attendre ?!
+            // while(!this.validationController.getEnd()) {
+            // System.out.println(""); // trouver comment attendre ?!
             //}
             whoShouldPlay = (whoShouldPlay + 1) % n;
+            if(Player.hasAllArtefact()){
+                System.out.println("Gagne !");
+                gameOver = true;
+            }
         }
     }
 }
