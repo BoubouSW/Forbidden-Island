@@ -48,9 +48,7 @@ class Case {
             if (p.getIdentifier() == id)
                 return p;
         }
-        if(true)
-            throw new RuntimeException("Identifiant non valide");
-        return null; //faire exception
+        throw new RuntimeException("Identifiant non valide");
     }
 
     public boolean hasPlayer() { return ! this.players.isEmpty();}
@@ -63,15 +61,13 @@ class Case {
         return false;
     }
 
-    public Objet getArtefact() {
+    public Artefact getArtefact() {
         // suppose qu'il y a un artefact
         for(Objet o: objets){
             if(o.getClass() == Artefact.class)
-                return o;
+                return (Artefact) o;
         }
-        if(true)
-            throw new RuntimeException("Pas d'artefact");
-        return null;
+        throw new RuntimeException("Pas d'artefact");
     }
 
     public void removeArtefact() {
@@ -107,9 +103,7 @@ class Case {
             case BAS:
                 return this.plateau.getCase(x + 1, y);
         }
-        if(true)
-            throw new RuntimeException("On ne devrait pas arriver ici");
-        return null; // impossible d'arriver ici
+        throw new RuntimeException("On ne devrait pas arriver ici");
     }
 
     public void addPlayer(Player p){

@@ -5,6 +5,7 @@ import models.Views;
 import java.lang.RuntimeException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Start {
@@ -35,7 +36,7 @@ public class Start {
             int[] spawn = plateau.randomSpawn();
             plateau.addPlayerPlateau(i, nomsJoueurs.get(i), spawn[0], spawn[1]);
         }
-
+        Player.setEmptyArtefactList();
         //plateau.addPlayerPlateau(0,"Boubou",4,5);
         //plateau.addPlayerPlateau(1,"ATP",2,3);
 
@@ -59,14 +60,16 @@ public class Start {
         Clef[] cTab = { new Clef(Objet.Element.FEU, null, null),
                         new Clef(Objet.Element.EAU, null, null),
                         new Clef(Objet.Element.TERRE, null, null),
+                        new Clef(Objet.Element.VENT, null, null),
+                        new Clef(Objet.Element.FEU, null, null),
+                        new Clef(Objet.Element.EAU, null, null),
+                        new Clef(Objet.Element.TERRE, null, null),
                         new Clef(Objet.Element.VENT, null, null)};
 
         for(Clef k: cTab){
-            Case c;
-            do{
-                c = plateau.randomSecheOuInonde();
-            }while(c.hasArtefact());
+            Case c = plateau.randomSecheOuInonde();
             c.addObject(k);
+            c.getController().changeTexte("Cle " + k.getElement().name());
         }
 
         //initialisation des playerscontroller

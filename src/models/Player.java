@@ -10,7 +10,8 @@ public class Player {
     private int identifier;
     private String name;
     private Case position;
-    private Set<Objet> objets;
+    private Set<Clef> listeClef;
+    protected static Set<Artefact> artefactRamasse;
     // skin ??
 
     // Constructeur
@@ -19,7 +20,7 @@ public class Player {
         this.identifier = identifier;
         this.name = name;
         this.position = spawn;
-        this.objets = new HashSet<Objet>();
+        this.listeClef = new HashSet<Clef>();
     }
 
     public Player(Plateau p, int identifier, String name, int[] coord){
@@ -27,7 +28,7 @@ public class Player {
         this.identifier = identifier;
         this.name = name;
         this.position = this.plateau.getCase(coord[0], coord[1]);
-        this.objets = new HashSet<Objet>();
+        this.listeClef = new HashSet<Clef>();
     }
 
     public Player(Plateau p, int identifier, String name, int x, int y){
@@ -35,15 +36,21 @@ public class Player {
         this.identifier = identifier;
         this.name = name;
         this.position = this.plateau.getCase(x, y);
-        this.objets = new HashSet<Objet>();
+        this.listeClef = new HashSet<Clef>();
     }
 
 
     // Getters
     public int getIdentifier(){return this.identifier;}
     public String getName(){return this.name;}
-    public Set<Objet> getInventory(){return this.objets;}
+    public Set<Clef> getKeyInventory(){return this.listeClef;}
     public Case getCase(){return this.position;}
+    public static Set<Artefact> getArtefact(){return artefactRamasse;}
+
+    //Setters
+    public static void setEmptyArtefactList(){artefactRamasse = new HashSet<Artefact>();}
+
+    // methodes
 
     public void moveCase(Case cas) {
         this.getCase().removePlayer(this);
@@ -73,7 +80,7 @@ public class Player {
     public boolean ramasseArtefact() {
         Case cas = this.getCase();
         if(cas.hasArtefact()) {
-            this.objets.add(cas.getArtefact());
+            Player.artefactRamasse.add(cas.getArtefact());
             cas.removeArtefact();
             return true;
         }
