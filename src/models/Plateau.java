@@ -17,6 +17,13 @@ public class Plateau {
     }
     public int getTaille() { return this.taille; }
     public Set<Player> getPlayersPlateau() { return this.players; }
+    public Player getPlayerById(int i){
+        for(Player p: this.players){
+            if(p.getIdentifier() == i)
+                return p;
+        }
+        throw new RuntimeException("Identifiant non valide");
+    }
 
     // Constructeur
     public Plateau(int taille) {

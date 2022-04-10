@@ -28,9 +28,7 @@ public class Controllers {
             if (p.getIdentifier() == id)
                 return p;
         }
-        if(true)
-            throw new RuntimeException("Identifiant non valide");
-        return null;
+        throw new RuntimeException("Identifiant non valide");
     }
 
     public void play(PlayerController[] pcBanque) {
@@ -49,6 +47,8 @@ public class Controllers {
                 this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
                 this.view.encadreTour.setNbrCoup(c);
             }
+            this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
+            this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getKeyInventory());
             pc.StopReply();
             System.out.println(pc.getPlayer().inventory());
             synchronized (this) {
