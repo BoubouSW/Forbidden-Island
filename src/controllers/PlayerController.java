@@ -53,10 +53,12 @@ public class PlayerController extends IG.Touche{
                 if (player.getIdentifier() != moi.getIdentifier())
                     name = name + " " + player.getName();
             }
+            /*
             if(moi.getCase().hasArtefact()){
                 Objet a = moi.getCase().getArtefact();
                 name = name + " " + a.getElement().name();
             }
+             */
             moi.getCase().getController().changeTexte(name);
             boolean b = false;
             switch (e.getKeyChar()) {
@@ -89,10 +91,12 @@ public class PlayerController extends IG.Touche{
             for (Player player : moi.getCase().getPlayers()) {
                 name = name + " " + player.getName();
             }
+            /*
             if(moi.getCase().hasArtefact()){
                 Objet a = moi.getCase().getArtefact();
                 name = name + " " + a.getElement().name();
             }
+             */
             moi.getCase().getController().changeTexte(name);
             moi.getCase().getController().repaint();
             this.count--;

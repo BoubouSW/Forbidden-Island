@@ -15,7 +15,7 @@ public class Grille extends JPanel {
      * @param largeur Nombre de colonnes de la grille.
      */
     public Grille (int hauteur, int largeur) {
-	setLayout(new GridLayout(hauteur, largeur, 0, 0));
+	setLayout(new GridLayout(hauteur, largeur, 5, 5));
     }
 
     /**

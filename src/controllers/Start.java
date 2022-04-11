@@ -54,7 +54,7 @@ public class Start {
                 c = plateau.randomSecheOuInonde();
             }while(c.hasArtefact());
             c.addObject(a);
-            c.getController().changeTexte(a.getElement().name());
+            //c.getController().changeTexte(a.getElement().name());
         }
 
         Clef[] cTab = { new Clef(Objet.Element.FEU, null, null),

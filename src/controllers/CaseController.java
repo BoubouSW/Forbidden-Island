@@ -2,6 +2,7 @@ package models;
 
 import IG.Texte;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -77,12 +78,31 @@ public class CaseController extends IG.ZoneCliquable {
                     break;
             }
         if(this.cas.hasPlayer()) {
-            g.setColor(Color.RED);
-            g.fillOval(getWidth() / 4, getWidth() / 4, getWidth() / 4, getWidth() / 4);
+            //g.setColor(new Color(220,20,60));
+            Image img = new ImageIcon("resources/images/joueur2.png").getImage();
+            //int x = (this.getWidth() - img.getWidth(null)) / 2;
+            //int y = (this.getHeight() - img.getHeight(null)) / 2;
+            g.drawImage(img,0,0,null);
+            //g.fillOval(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
         }
+        Image img;
+        img = new ImageIcon("resources/images/feu2.png").getImage();
         if(this.cas.hasArtefact()) {
-            g.setColor(Color.BLACK);
-            g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
+            switch (this.cas.getArtefact().getElement()) {
+                case FEU:
+                    img = new ImageIcon("resources/images/feu2.png").getImage();break;
+                case EAU:
+                    img = new ImageIcon("resources/images/eau2.png").getImage();break;
+                case VENT:
+                    img = new ImageIcon("resources/images/vent2.png").getImage();break;
+                case TERRE:
+                    img = new ImageIcon("resources/images/terre2.png").getImage();break;
+            }
+            //g.setColor(Color.BLACK);
+            int x = (this.getWidth() - img.getWidth(null)) / 2;
+            int y = (this.getHeight() - img.getHeight(null)) / 2;
+            g.drawImage(img,x,y,null);
+            //g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
         }
     }
 
