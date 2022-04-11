@@ -66,6 +66,12 @@ public class Controllers {
             // System.out.println(""); // trouver comment attendre ?!
             //}
             whoShouldPlay = (whoShouldPlay + 1) % n;
+            int taille = this.plateau.getTaille();
+            for (int i = 0; i < taille; i++) {
+                for (int j = 0; j < taille; j++) {
+                    this.plateau.getCase(i,j).getController().repaint();
+                }
+            }
             if(Player.hasAllArtefact()){
                 System.out.println("Gagne !");
                 gameOver = true;

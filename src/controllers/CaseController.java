@@ -48,16 +48,44 @@ public class CaseController extends IG.ZoneCliquable {
     public void mouseEntered(MouseEvent e) {
         if (this.cas.getEtat() != Case.Etat.SUBMERGEE) {
             this.setBackground(new Color(this.getBackground().getRed(), this.getBackground().getRed(), this.getBackground().getRed(), 30));
+            this.repaint();
             //this.changeTexte(Integer.toString(this.cas.getX()) + " " + Integer.toString(this.cas.getY()));
         }
     }
 
-    /*
-    public void paintComponent(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(0,0,0,0);
+    @Override
+    public void repaint() {
+        super.repaint();
     }
-     */
+
+    public void paintComponent(Graphics g) {
+            switch (this.cas.getEtat()) {
+                case INONDEE:
+                    //this.setBackground(new Color(95, 158, 160));
+                    g.setColor(new Color(95, 158, 160));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                    break;
+                case SUBMERGEE:
+                    //this.setBackground(new Color(30, 144, 255));
+                    g.setColor(new Color(30, 144, 255));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                    break;
+                case NORMALE:
+                    //this.setBackground(new Color(74, 160, 44));
+                    g.setColor(new Color(74, 160, 44));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                    break;
+            }
+        if(this.cas.hasPlayer()) {
+            g.setColor(Color.RED);
+            g.fillOval(getWidth() / 4, getWidth() / 4, getWidth() / 4, getWidth() / 4);
+        }
+        if(this.cas.hasArtefact()) {
+            g.setColor(Color.BLACK);
+            g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
+        }
+    }
+
 
 
     public void mouseExited(MouseEvent e) {
