@@ -94,6 +94,6 @@ public class Controllers {
                 gameOver = true;
             }
         }
-        this.window.setVisible(false);
+        //this.window.setVisible(false);
     }
 }

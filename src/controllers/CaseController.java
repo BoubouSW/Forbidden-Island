@@ -107,13 +107,13 @@ public class CaseController extends IG.ZoneCliquable {
         if(this.cas.hasArtefact()) {
             switch (this.cas.getArtefact().getElement()) {
                 case FEU:
-                    img = new ImageIcon("resources/images/feu2.png").getImage();break;
+                    img = new ImageIcon("resources/images/feu3.png").getImage();break;
                 case EAU:
-                    img = new ImageIcon("resources/images/eau2.png").getImage();break;
+                    img = new ImageIcon("resources/images/eau4.png").getImage();break;
                 case VENT:
-                    img = new ImageIcon("resources/images/vent2.png").getImage();break;
+                    img = new ImageIcon("resources/images/vent3.png").getImage();break;
                 case TERRE:
-                    img = new ImageIcon("resources/images/terre2.png").getImage();break;
+                    img = new ImageIcon("resources/images/terre3.png").getImage();break;
             }
             //g.setColor(Color.BLACK);
             int x = (this.getWidth() - img.getWidth(null)) / 2;
