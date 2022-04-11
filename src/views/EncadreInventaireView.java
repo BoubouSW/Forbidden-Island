@@ -16,7 +16,7 @@ public class EncadreInventaireView extends JPanel  {
     public void setTexteArtefact(Set<Artefact> A){
         String str = "Artefact :  ";
         for(Artefact a: A){
-            str += a.StringForInventory() + " ";
+            str += a.getElement().name() + " ";
         }
         this.textesArtefact.setText(str);
     }
