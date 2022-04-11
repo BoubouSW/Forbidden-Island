@@ -2,6 +2,8 @@ package models;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.HashSet;
+import java.util.Set;
 
 class ValidationController extends IG.ZoneCliquable {
 
@@ -22,13 +24,17 @@ class ValidationController extends IG.ZoneCliquable {
     public void clicGauche() {
         //this.setBackground(Color.GREEN);
         this.end = true;
+        Set<Case> forFonc = new HashSet<Case>();
         for (int i = 0; i < 3; i++) {
-            int[] inond = this.plateau.randomIndondeSubmerge();
-            Case current = this.plateau.getCase(inond[0], inond[1]);
-            if (current.getEtat() == Case.Etat.INONDEE)
+            Case current;
+            do {
+                current = this.plateau.randomSecheOuInonde();
+            }while(forFonc.contains(current));
+            if (current.getEtat() == Case.Etat.NORMALE)
                 current.getController().setBackground(new Color(95, 158, 160));
-            else if (current.getEtat() == Case.Etat.SUBMERGEE)
+            else if (current.getEtat() == Case.Etat.INONDEE)
                 current.getController().setBackground(new Color(30, 144, 255));
+            this.plateau.InondeOuSubmerge(current);
         }
     }
 

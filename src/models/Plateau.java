@@ -72,6 +72,13 @@ public class Plateau {
         return res;
     }
 
+    void InondeOuSubmerge(Case c) {
+        if(c.getEtat() == Case.Etat.NORMALE)
+            c.set_inondee();
+        else if(c.getEtat() == Case.Etat.INONDEE)
+            c.set_submergee();
+    }
+
     public int[] randomSpawn() {
         Case c = randomSecheOuInonde();
         return c.getCoord();
