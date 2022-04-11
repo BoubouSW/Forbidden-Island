@@ -47,7 +47,9 @@ public class Controllers {
                 this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
                 this.view.encadreTour.setNbrCoup(c);
             }
-            this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
+            for(int p = 0; p < n; p++){
+                this.view.encadreInventaire[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
+            }
             this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getKeyInventory());
             pc.StopReply();
             System.out.println(pc.getPlayer().inventory());
