@@ -47,6 +47,7 @@ public class PlayerController extends IG.Touche{
     public void keyTyped(KeyEvent e) {
         if (this.shouldReply) {
             Player moi = this.player;
+            moi.getCase().getController().repaint();
             String name = "";
             for (Player player : moi.getCase().getPlayers()) {
                 if (player.getIdentifier() != moi.getIdentifier())
@@ -93,6 +94,7 @@ public class PlayerController extends IG.Touche{
                 name = name + " " + a.getElement().name();
             }
             moi.getCase().getController().changeTexte(name);
+            moi.getCase().getController().repaint();
             this.count--;
         }
     }
