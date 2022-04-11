@@ -51,6 +51,15 @@ public class CaseController extends IG.ZoneCliquable {
             //this.changeTexte(Integer.toString(this.cas.getX()) + " " + Integer.toString(this.cas.getY()));
         }
     }
+
+    /*
+    public void paintComponent(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(0,0,0,0);
+    }
+     */
+
+
     public void mouseExited(MouseEvent e) {
         String name = "";
         for (Player player : this.cas.getPlayers()) {
