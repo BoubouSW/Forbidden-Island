@@ -31,6 +31,15 @@ public class Controllers {
         throw new RuntimeException("Identifiant non valide");
     }
 
+    public boolean allDead() {
+        Set<Player> pc = this.getPlayersController();
+        for (Player p : pc)
+            if (p.isAlive()) {
+                return false;
+            }
+        return true;
+    }
+
     public void play(PlayerController[] pcBanque) {
         int n = this.getPlayersController().size();
         int c;
@@ -41,30 +50,34 @@ public class Controllers {
             c = 3;
             this.validationController.setEndFalse();
             pc = pcBanque[whoShouldPlay];
-            pc.StartReply();
-            while(c != 0 && !this.validationController.getEnd()){
-                c = pc.getCount();
-                this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
-                this.view.encadreTour.setNbrCoup(c);
-            }
-            for(int p = 0; p < n; p++){
-                this.view.encadreInventaire[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
-            }
-            this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getKeyInventory());
-            pc.StopReply();
-            System.out.println(pc.getPlayer().inventory());
-            synchronized (this) {
-                while(! this.validationController.getEnd()) {
-                    try {
-                        this.validationController.wait();
-                    }catch (Exception e){
-                        //System.out.println("Exception in wait " + e); // bizarre
+            //for (Player player : this.getPlayersController())
+             //   System.out.println(player.getName() + player.isAlive());
+            if (pc.getPlayer().isAlive()) {
+                pc.StartReply();
+                while (c != 0 && !this.validationController.getEnd()) {
+                    c = pc.getCount();
+                    this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
+                    this.view.encadreTour.setNbrCoup(c);
+                }
+                for (int p = 0; p < n; p++) {
+                    this.view.encadreInventaire[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
+                }
+                this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getKeyInventory());
+                pc.StopReply();
+                //System.out.println(pc.getPlayer().inventory());
+                synchronized (this) {
+                    while (!this.validationController.getEnd()) {
+                        try {
+                            this.validationController.wait();
+                        } catch (Exception e) {
+                            //System.out.println("Exception in wait " + e); // bizarre
+                        }
                     }
                 }
+                // while(!this.validationController.getEnd()) {
+                // System.out.println(""); // trouver comment attendre ?!
+                //}
             }
-            // while(!this.validationController.getEnd()) {
-            // System.out.println(""); // trouver comment attendre ?!
-            //}
             whoShouldPlay = (whoShouldPlay + 1) % n;
             int taille = this.plateau.getTaille();
             for (int i = 0; i < taille; i++) {
@@ -76,6 +89,11 @@ public class Controllers {
                 System.out.println("Gagne !");
                 gameOver = true;
             }
+            if(this.allDead()) {
+                System.out.println("Perdu !");
+                gameOver = true;
+            }
         }
+        this.window.setVisible(false);
     }
 }

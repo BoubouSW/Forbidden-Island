@@ -5,6 +5,7 @@ import IG.Texte;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public class CaseController extends IG.ZoneCliquable {
 
@@ -18,7 +19,8 @@ public class CaseController extends IG.ZoneCliquable {
         if (this.cas.hasPlayer()) {
             String name = "";
             for (Player player : this.cas.getPlayers()) {
-                name = name + " " + player.getName();
+                if (player.isAlive())
+                    name = name + " " + player.getName();
             }
             super.changeTexte(name);
             //this.setBackground(new Color(177,21,38));
@@ -78,12 +80,27 @@ public class CaseController extends IG.ZoneCliquable {
                     break;
             }
         if(this.cas.hasPlayer()) {
-            //g.setColor(new Color(220,20,60));
+
             Image img = new ImageIcon("resources/images/joueur2.png").getImage();
+
+            /* SI ON VEUT CHANGER DE COULEUR LE SPRITE
+            BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D bGr = bimage.createGraphics();
+            bGr.drawImage(img, 0, 0, null);
+            bGr.dispose();
+            final int oldRGB = new Color(0,0,0).getRGB();
+            final int newRGB = new Color(0,255,255).getRGB();
+            for (int x = 0; x < bimage.getWidth(); x++) {
+                for (int y = 0; y < bimage.getHeight(); y++) {
+                    if (bimage.getRGB(x, y) == oldRGB)
+                        bimage.setRGB(x, y, newRGB);
+                    //else bimage.setRGB(x,y,this.getBackground().getRGB());
+                }
+            }
+             */
             //int x = (this.getWidth() - img.getWidth(null)) / 2;
             //int y = (this.getHeight() - img.getHeight(null)) / 2;
-            g.drawImage(img,0,0,null);
-            //g.fillOval(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
+            g.drawImage(img,0,0,null);  //remplacer img par bimage
         }
         Image img;
         img = new ImageIcon("resources/images/feu2.png").getImage();
@@ -111,7 +128,8 @@ public class CaseController extends IG.ZoneCliquable {
     public void mouseExited(MouseEvent e) {
         String name = "";
         for (Player player : this.cas.getPlayers()) {
-            name = name + " " + player.getName();
+            if (player.isAlive())
+                name = name + " " + player.getName();
         }
         this.changeTexte(name);
         switch(this.cas.getEtat()) {

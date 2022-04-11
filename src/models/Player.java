@@ -12,6 +12,7 @@ public class Player {
     private Case position;
     private Set<Clef> listeClef;
     protected static Set<Artefact> artefactRamasse;
+    private boolean alive = true;
     // skin ??
 
     // Constructeur
@@ -58,9 +59,11 @@ public class Player {
         return str;
     }
     public static Set<Artefact> getArtefact(){return artefactRamasse;}
+    public boolean isAlive() {return this.alive;}
 
     //Setters
     public static void setEmptyArtefactList(){artefactRamasse = new HashSet<Artefact>();}
+    public void killPlayer() {this.alive = false;}
 
     // methodes
 

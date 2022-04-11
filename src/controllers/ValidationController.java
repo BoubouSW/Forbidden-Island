@@ -32,8 +32,20 @@ class ValidationController extends IG.ZoneCliquable {
             }while(forFonc.contains(current));
             if (current.getEtat() == Case.Etat.NORMALE)
                 current.getController().setBackground(new Color(95, 158, 160));
-            else if (current.getEtat() == Case.Etat.INONDEE)
+            else if (current.getEtat() == Case.Etat.INONDEE) {
                 current.getController().setBackground(new Color(30, 144, 255));
+                current.getController().changeTexte("");
+                Player[] dead = new Player[4];
+                int nb = 0;
+                for (Player p:current.getPlayers()) { //pas beau mais sinon ca retournait une exception
+                    p.killPlayer();
+                    //current.removePlayer(p);
+                    dead[nb] = p;
+                    nb++;
+                }
+                for (Player p : dead)
+                    current.removePlayer(p);
+            }
             this.plateau.InondeOuSubmerge(current);
         }
     }

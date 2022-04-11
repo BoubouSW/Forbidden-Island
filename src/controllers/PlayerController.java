@@ -50,7 +50,7 @@ public class PlayerController extends IG.Touche{
             moi.getCase().getController().repaint();
             String name = "";
             for (Player player : moi.getCase().getPlayers()) {
-                if (player.getIdentifier() != moi.getIdentifier())
+                if (player.getIdentifier() != moi.getIdentifier() && player.isAlive())
                     name = name + " " + player.getName();
             }
             /*
@@ -89,7 +89,8 @@ public class PlayerController extends IG.Touche{
             name = "";
             moi.getCase().getController().add(new IG.Texte("",24));
             for (Player player : moi.getCase().getPlayers()) {
-                name = name + " " + player.getName();
+                if(player.isAlive())
+                    name = name + " " + player.getName();
             }
             /*
             if(moi.getCase().hasArtefact()){
