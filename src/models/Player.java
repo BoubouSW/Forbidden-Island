@@ -111,14 +111,28 @@ public class Player {
     public boolean ramasseRandomClef() {
         // le player ramasse une clef aleatoire se trouvant sur sa case
         // renvoi vrai s il a ramasse une clef faux sinon
+        if(Math.random() < 0.5){
+            return false;
+        }
+        double a = Math.random();
+        if(a < 0.25){
+            this.listeClef.add(new Clef(Objet.Element.EAU, this, null));
+        }else if(a < 0.5){
+            this.listeClef.add(new Clef(Objet.Element.TERRE, this, null));
+        }else if(a < 0.75){
+            this.listeClef.add(new Clef(Objet.Element.FEU, this, null));
+        }else{
+            this.listeClef.add(new Clef(Objet.Element.VENT, this, null));
+        }
+        /**
         Case cas = this.getCase();
         if(cas.hasKey()){
             Clef k = cas.getRandomKey();
             cas.removeKey(k);
             this.listeClef.add(k);
             return true;
-        }
-        return false;
+        }**/
+        return true;
     }
 
     public static boolean hasAllArtefact(){
