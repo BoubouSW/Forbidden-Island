@@ -21,6 +21,33 @@ class ValidationController extends IG.ZoneCliquable {
         this.end = false;
     }
 
+    public boolean checkAroundSub(Case c) {
+        if (c.getEtat() != Case.Etat.SUBMERGEE)
+            return false;
+        for (Case.Dir d : Case.Dir.values()) {
+            if (c.adjacente(d).getEtat() != Case.Etat.SUBMERGEE)
+                return false;
+        }
+        return true;
+    }
+
+    public void killPlayers() {
+        Player[] dead = new Player[4];
+        int nb = 0;
+        for (Player p:plateau.getPlayersPlateau()) { //pas beau mais sinon ca retournait une exception
+            if (this.checkAroundSub(p.getCase())) {
+                p.killPlayer();
+                p.getCase().getController().changeTexte("");
+                p.getCase().removePlayer(p);
+                //current.removePlayer(p);
+                dead[nb] = p;
+                nb++;
+            }
+        }
+        //for (Player p : dead)
+          //  c.removePlayer(p);
+    }
+
     public void clicGauche() {
         //this.setBackground(Color.GREEN);
         this.end = true;
@@ -35,7 +62,7 @@ class ValidationController extends IG.ZoneCliquable {
                 current.getController().setBackground(new Color(95, 158, 160));
             else if (current.getEtat() == Case.Etat.INONDEE) {
                 current.getController().setBackground(new Color(30, 144, 255));
-                current.getController().changeTexte("");
+                /*current.getController().changeTexte("");
                 Player[] dead = new Player[4];
                 int nb = 0;
                 for (Player p:current.getPlayers()) { //pas beau mais sinon ca retournait une exception
@@ -46,9 +73,12 @@ class ValidationController extends IG.ZoneCliquable {
                 }
                 for (Player p : dead)
                     current.removePlayer(p);
+
+                 */
             }
             this.plateau.InondeOuSubmerge(current);
         }
+        killPlayers();
     }
 
     public void clicDroit() {}
