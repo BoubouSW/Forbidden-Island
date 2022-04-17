@@ -88,9 +88,13 @@ public class CaseController extends IG.ZoneCliquable {
                     g.fillRect(0, 0, getWidth(), getHeight());
                     break;
             }
+        if(this.cas.getClass() == Heliport.class){
+            Image img = new ImageIcon("resources/images/heliport.png").getImage();
+            g.drawImage(img, 10, 10, null);
+        }
         if(this.cas.hasPlayer()) {
-
-            Image img = new ImageIcon("resources/images/joueur2.png").getImage();
+            Image img;
+            img = new ImageIcon("resources/images/joueur2.png").getImage();
 
             /* SI ON VEUT CHANGER DE COULEUR LE SPRITE
             BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -110,10 +114,8 @@ public class CaseController extends IG.ZoneCliquable {
             //int x = (this.getWidth() - img.getWidth(null)) / 2;
             //int y = (this.getHeight() - img.getHeight(null)) / 2;
             //g.drawImage(img,0,0,null);  //remplacer img par bimage
-            int nombreJoueur = 0;
-            for (Player p : this.cas.getPlayers()) {
-                nombreJoueur += 1;
-            }
+
+            int nombreJoueur = this.cas.getPlayers().size();
             switch (nombreJoueur) {
                 case 4:
                     g.drawImage(img,50,50,null);
@@ -143,10 +145,6 @@ public class CaseController extends IG.ZoneCliquable {
             int y = (this.getHeight() - img.getHeight(null)) / 2;
             g.drawImage(img,x,y,null);
             //g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
-        }
-        if(this.cas.getClass() == Heliport.class){
-            img = new ImageIcon("resources/images/heliport.jpg").getImage();
-            g.drawImage(img, 50, 50, null);
         }
     }
 
