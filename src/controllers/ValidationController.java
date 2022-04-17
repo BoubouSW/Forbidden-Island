@@ -49,6 +49,12 @@ class ValidationController extends IG.ZoneCliquable {
         }
     }
 
+    public void killHeliport() {
+        if(this.plateau.getHeliport().isSubmergee()){
+            ((Heliport) this.plateau.getHeliport()).killHeliport();
+        }
+    }
+
     public void clicGauche() {
         //this.setBackground(Color.GREEN);
         this.end = true;

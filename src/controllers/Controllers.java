@@ -40,6 +40,10 @@ public class Controllers {
         return true;
     }
 
+    public boolean heliportDead(){
+        return this.plateau.getHeliport().isSubmergee();
+    }
+
     public void play(PlayerController[] pcBanque) {
         int n = this.getPlayersController().size();
         int c;
@@ -47,6 +51,10 @@ public class Controllers {
         boolean gameOver = false;
         PlayerController pc;
         while(! gameOver) {
+            if(this.allDead() || this.heliportDead()) {
+                System.out.println("Perdu !");
+                gameOver = true;
+            }
             c = 3;
             this.validationController.setEndFalse();
             pc = pcBanque[whoShouldPlay];
@@ -85,12 +93,8 @@ public class Controllers {
                     this.plateau.getCase(i,j).getController().repaint();
                 }
             }
-            if(Player.hasAllArtefact()){
+            if(Player.hasAllArtefact() && this.plateau.allPlayersOnHeliport()){
                 System.out.println("Gagne !");
-                gameOver = true;
-            }
-            if(this.allDead()) {
-                System.out.println("Perdu !");
                 gameOver = true;
             }
         }

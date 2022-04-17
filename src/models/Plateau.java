@@ -5,27 +5,14 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Plateau {
-
+    // attrib
     final private int taille;
 
     private Case[][] plateau;
     private Set<Player> players;
     private models.PlateauView plateauView;
     private int nbCaseNonSubmergee;
-
-    public Case getCase(int i, int j) {
-        return plateau[i][j];
-    }
-    public int getTaille() { return this.taille; }
-    public Set<Player> getPlayersPlateau() { return this.players; }
-    public Player getPlayerById(int i){
-        for(Player p: this.players){
-            if(p.getIdentifier() == i)
-                return p;
-        }
-        throw new RuntimeException("Identifiant non valide");
-    }
-    public int getNbCaseNonSubmergee(){return this.nbCaseNonSubmergee;}
+    private int[] coordHeliport;
 
     // Constructeur
     public Plateau(int taille) {
@@ -43,6 +30,8 @@ public class Plateau {
                 if(xHeli == i && yHeli == j){
                     Heliport hel = new Heliport(this, i, j);
                     plateau[i][j] = hel;
+                    int[] c = {i, j};
+                    this.coordHeliport = c;
                 }else {
                     Case cas = new Case(this, i, j);
                     if (Math.abs(i - (taille - 1) / 2.) + Math.abs(j - (taille - 1) / 2.) >= taille / 2.)
@@ -53,6 +42,31 @@ public class Plateau {
         }
     }
 
+    // getters
+    public Case getCase(int i, int j) {
+        return plateau[i][j];
+    }
+    public int getTaille() { return this.taille; }
+    public Set<Player> getPlayersPlateau() { return this.players; }
+    public Player getPlayerById(int i){
+        for(Player p: this.players){
+            if(p.getIdentifier() == i)
+                return p;
+        }
+        throw new RuntimeException("Identifiant non valide");
+    }
+    public int getNbCaseNonSubmergee(){return this.nbCaseNonSubmergee;}
+    public int getXHeliport(){
+        return this.coordHeliport[0];
+    }
+    public int getYHeliport(){
+        return this.coordHeliport[1];
+    }
+    public Case getHeliport(){
+        return this.getCase(coordHeliport[0], coordHeliport[1]);
+    }
+
+    // methodes
     public void addPlayerPlateau(int id,String name, int x, int y) {
         Player p1 = new Player(this,id,name,x,y);
         this.players.add(p1);
@@ -99,5 +113,9 @@ public class Plateau {
     public int[] randomSpawn() {
         Case c = randomSecheOuInonde();
         return c.getCoord();
+    }
+
+    public boolean allPlayersOnHeliport(){
+        return this.getCase(this.getXHeliport(), this.getYHeliport()).getPlayers().size() == this.getPlayersPlateau().size();
     }
 }

@@ -52,7 +52,7 @@ public class Start {
             Case c;
             do{
                 c = plateau.randomSecheOuInonde();
-            }while(c.hasArtefact());
+            }while(c.hasArtefact() || c.getClass() == Heliport.class);
             c.addObject(a);
             //c.getController().changeTexte(a.getElement().name());
         }
