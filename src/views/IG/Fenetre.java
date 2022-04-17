@@ -41,7 +41,7 @@ public class Fenetre extends JFrame {
     public void dessineFenetre() {
 	    this.pack();
         this.setLocationRelativeTo(null);
-        this.setSize(1000,1000);
+        this.setSize(1000,1030);
 	    this.setVisible(true);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
