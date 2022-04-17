@@ -1,5 +1,6 @@
 package models;
 
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
@@ -63,6 +64,13 @@ class ValidationController extends IG.ZoneCliquable {
             if (current.getEtat() == Case.Etat.NORMALE)
                 current.getController().setBackground(new Color(95, 158, 160));
             else if (current.getEtat() == Case.Etat.INONDEE) {
+                try {
+                    Icon imgIcon = new ImageIcon("resources/images/waves2.gif");
+                    JLabel label = new JLabel(imgIcon);
+                    models.CaseController controller = current.getController();
+                    label.setBounds(0, 0, controller.getWidth(), controller.getHeight());
+                    controller.add(label);
+                }catch (Exception e) {System.out.println("bug");}
                 current.getController().setBackground(new Color(30, 144, 255));
                 this.killArtefact(current);
             }

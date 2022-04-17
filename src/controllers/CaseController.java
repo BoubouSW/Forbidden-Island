@@ -29,7 +29,14 @@ public class CaseController extends IG.ZoneCliquable {
             case INONDEE:
                 this.setBackground(new Color(95, 158, 160)); break;
             case SUBMERGEE:
-                this.setBackground(new Color(30, 144, 255)); break;
+                this.setBackground(new Color(30, 144, 255));
+                try {
+                    Icon imgIcon = new ImageIcon("resources/images/waves2.gif");
+                    JLabel label = new JLabel(imgIcon);
+                    label.setBounds(0, 0,getWidth(),getHeight());
+                    this.add(label);
+                }catch (Exception e) {System.out.println("bug");}
+                break;
             case NORMALE:
                 this.setBackground(new Color(74, 160, 44)); break;
         }
@@ -61,7 +68,9 @@ public class CaseController extends IG.ZoneCliquable {
         super.repaint();
     }
 
+    @Override
     public void paintComponent(Graphics g) {
+            super.paintComponent(g);
             switch (this.cas.getEtat()) {
                 case INONDEE:
                     //this.setBackground(new Color(95, 158, 160));
