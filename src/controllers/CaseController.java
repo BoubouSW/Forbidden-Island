@@ -34,7 +34,8 @@ public class CaseController extends IG.ZoneCliquable {
                     Icon imgIcon = new ImageIcon("resources/images/waves2.gif");
                     JLabel label = new JLabel(imgIcon);
                     label.setBounds(0, 0,getWidth(),getHeight());
-                    this.add(label);
+                    if (this.cas.getX() != 0 || this.cas.getY() != 0)
+                        this.add(label);
                 }catch (Exception e) {System.out.println("bug");}
                 break;
             case NORMALE:
@@ -146,6 +147,13 @@ public class CaseController extends IG.ZoneCliquable {
             g.drawImage(img,x,y,null);
             //g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
         }
+        if(this.cas.getX() == 0 && this.cas.getY() == 0) {
+            Image gru = new ImageIcon("resources/images/gruau.png").getImage();
+            int x = (this.getWidth() - gru.getWidth(null)) / 2;
+            int y = (this.getHeight() - gru.getHeight(null)) / 2;
+            g.drawImage(gru,x,y,null);
+        }
+
     }
 
 
