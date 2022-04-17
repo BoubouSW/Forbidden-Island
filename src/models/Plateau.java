@@ -43,8 +43,6 @@ public class Plateau {
                 if(xHeli == i && yHeli == j){
                     Heliport hel = new Heliport(this, i, j);
                     plateau[i][j] = hel;
-                    System.out.println(i);
-                    System.out.println(j);
                 }else {
                     Case cas = new Case(this, i, j);
                     if (Math.abs(i - (taille - 1) / 2.) + Math.abs(j - (taille - 1) / 2.) >= taille / 2.)

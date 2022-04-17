@@ -135,6 +135,10 @@ public class CaseController extends IG.ZoneCliquable {
             g.drawImage(img,x,y,null);
             //g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
         }
+        if(this.cas.getClass() == Heliport.class){
+            img = new ImageIcon("resources/images/heliport.jpg").getImage();
+            g.drawImage(img, 50, 50, null);
+        }
     }
 
 
