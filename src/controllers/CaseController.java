@@ -100,7 +100,21 @@ public class CaseController extends IG.ZoneCliquable {
              */
             //int x = (this.getWidth() - img.getWidth(null)) / 2;
             //int y = (this.getHeight() - img.getHeight(null)) / 2;
-            g.drawImage(img,0,0,null);  //remplacer img par bimage
+            //g.drawImage(img,0,0,null);  //remplacer img par bimage
+            int nombreJoueur = 0;
+            for (Player p : this.cas.getPlayers()) {
+                nombreJoueur += 1;
+            }
+            switch (nombreJoueur) {
+                case 4:
+                    g.drawImage(img,50,50,null);
+                case 3:
+                    g.drawImage(img,0,50,null);
+                case 2:
+                    g.drawImage(img,50,0,null);
+                case 1:
+                    g.drawImage(img,0,0,null);
+            }
         }
         Image img;
         img = new ImageIcon("resources/images/feu2.png").getImage();

@@ -32,20 +32,20 @@ class ValidationController extends IG.ZoneCliquable {
     }
 
     public void killPlayers() {
-        Player[] dead = new Player[4];
-        int nb = 0;
-        for (Player p:plateau.getPlayersPlateau()) { //pas beau mais sinon ca retournait une exception
+        for (Player p:plateau.getPlayersPlateau()) {
             if (this.checkAroundSub(p.getCase())) {
                 p.killPlayer();
                 p.getCase().getController().changeTexte("");
                 p.getCase().removePlayer(p);
-                //current.removePlayer(p);
-                dead[nb] = p;
-                nb++;
             }
         }
-        //for (Player p : dead)
-          //  c.removePlayer(p);
+    }
+
+    public void killArtefact(Case c) {
+        if (c.hasArtefact()) {
+            c.getArtefact().killArtefact();
+            c.removeArtefact();
+        }
     }
 
     public void clicGauche() {
@@ -62,19 +62,7 @@ class ValidationController extends IG.ZoneCliquable {
                 current.getController().setBackground(new Color(95, 158, 160));
             else if (current.getEtat() == Case.Etat.INONDEE) {
                 current.getController().setBackground(new Color(30, 144, 255));
-                /*current.getController().changeTexte("");
-                Player[] dead = new Player[4];
-                int nb = 0;
-                for (Player p:current.getPlayers()) { //pas beau mais sinon ca retournait une exception
-                    p.killPlayer();
-                    //current.removePlayer(p);
-                    dead[nb] = p;
-                    nb++;
-                }
-                for (Player p : dead)
-                    current.removePlayer(p);
-
-                 */
+                this.killArtefact(current);
             }
             this.plateau.InondeOuSubmerge(current);
         }
