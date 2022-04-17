@@ -30,6 +30,7 @@ class ValidationController extends IG.ZoneCliquable {
             do {
                 current = this.plateau.randomSecheOuInonde();
             }while(forFonc.contains(current));
+            forFonc.add(current);
             if (current.getEtat() == Case.Etat.NORMALE)
                 current.getController().setBackground(new Color(95, 158, 160));
             else if (current.getEtat() == Case.Etat.INONDEE) {

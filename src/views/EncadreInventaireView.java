@@ -31,8 +31,8 @@ public class EncadreInventaireView extends JPanel  {
         for(int ci = 0; ci < 4; ci++) {
             if (forFonc[ci] >= 1) {
                 str += Objet.Element.values()[ci].name();
-                if (forFonc[ci] == 2)
-                    str += "x2";
+                if (forFonc[ci] >= 2)
+                    str += "x" + Integer.toString(forFonc[ci]);
             }
             str += " ";
             this.textesClef.setText(str);
