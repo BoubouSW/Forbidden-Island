@@ -30,12 +30,24 @@ public class Plateau {
         this.taille = taille;
         this.plateau = new Case[taille][taille];
         this.players = new HashSet<Player>();
+        int xHeli, yHeli;
+        do{
+            xHeli = 1 + (int) (Math.random() * (this.getTaille() - 2));
+            yHeli = 1 + (int) (Math.random() * (this.getTaille() - 2));
+        }while(Math.abs(xHeli - (taille - 1) / 2.) + Math.abs(yHeli - (taille - 1) / 2.) >= taille / 2.);
         for(int i=0; i<taille; i++) {
             for(int j=0; j<taille; j++) {
-                Case cas = new Case(this, i, j);
-                if (Math.abs(i - (taille - 1) / 2.) + Math.abs(j - (taille - 1) / 2.) >= taille / 2.)
-                    cas.set_submergee();
-                plateau[i][j] = cas;
+                if(xHeli == i && yHeli == j){
+                    Heliport hel = new Heliport(this, i, j);
+                    plateau[i][j] = hel;
+                    System.out.println(i);
+                    System.out.println(j);
+                }else {
+                    Case cas = new Case(this, i, j);
+                    if (Math.abs(i - (taille - 1) / 2.) + Math.abs(j - (taille - 1) / 2.) >= taille / 2.)
+                        cas.set_submergee();
+                    plateau[i][j] = cas;
+                }
             }
         }
     }
