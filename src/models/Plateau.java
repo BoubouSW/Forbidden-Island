@@ -11,6 +11,7 @@ public class Plateau {
     private Case[][] plateau;
     private Set<Player> players;
     private models.PlateauView plateauView;
+    private int nbCaseNonSubmergee;
 
     public Case getCase(int i, int j) {
         return plateau[i][j];
@@ -24,12 +25,14 @@ public class Plateau {
         }
         throw new RuntimeException("Identifiant non valide");
     }
+    public int getNbCaseNonSubmergee(){return this.nbCaseNonSubmergee;}
 
     // Constructeur
     public Plateau(int taille) {
         this.taille = taille;
         this.plateau = new Case[taille][taille];
         this.players = new HashSet<Player>();
+        this.nbCaseNonSubmergee = 24;
         int xHeli, yHeli;
         do{
             xHeli = 1 + (int) (Math.random() * (this.getTaille() - 2));
@@ -78,8 +81,10 @@ public class Plateau {
         Case current = this.getCase(x, y);
         if(current.getEtat() == Case.Etat.NORMALE)
             current.set_inondee();
-        else if(current.getEtat() == Case.Etat.INONDEE)
+        else if(current.getEtat() == Case.Etat.INONDEE) {
             current.set_submergee();
+            this.nbCaseNonSubmergee--;
+        }
         int[] res = {x, y};
         return res;
     }
@@ -87,8 +92,10 @@ public class Plateau {
     void InondeOuSubmerge(Case c) {
         if(c.getEtat() == Case.Etat.NORMALE)
             c.set_inondee();
-        else if(c.getEtat() == Case.Etat.INONDEE)
+        else if(c.getEtat() == Case.Etat.INONDEE) {
             c.set_submergee();
+            this.nbCaseNonSubmergee--;
+        }
     }
 
     public int[] randomSpawn() {

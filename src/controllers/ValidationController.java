@@ -52,7 +52,9 @@ class ValidationController extends IG.ZoneCliquable {
         //this.setBackground(Color.GREEN);
         this.end = true;
         Set<Case> forFonc = new HashSet<Case>();
-        for (int i = 0; i < 3; i++) {
+        int borne;
+        borne = Math.min(3, this.plateau.getNbCaseNonSubmergee());
+        for (int i = 0; i < borne; i++) {
             Case current;
             do {
                 current = this.plateau.randomSecheOuInonde();
