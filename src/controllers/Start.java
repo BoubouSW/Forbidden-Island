@@ -46,6 +46,10 @@ public class Start {
         Artefact[] aTab = { new Artefact(Objet.Element.FEU, null, null),
                             new Artefact(Objet.Element.EAU, null, null),
                             new Artefact(Objet.Element.TERRE, null, null),
+                            new Artefact(Objet.Element.VENT, null, null),
+                            new Artefact(Objet.Element.FEU, null, null),
+                            new Artefact(Objet.Element.EAU, null, null),
+                            new Artefact(Objet.Element.TERRE, null, null),
                             new Artefact(Objet.Element.VENT, null, null)};
 
         for(Artefact a: aTab){

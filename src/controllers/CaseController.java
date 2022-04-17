@@ -56,14 +56,6 @@ public class CaseController extends IG.ZoneCliquable {
     // Ceci utilise [IG.ZoneCliquable].
     public void clicDroit() {}
 
-    public void mouseEntered(MouseEvent e) {
-        if (this.cas.getEtat() != Case.Etat.SUBMERGEE) {
-            this.setBackground(new Color(this.getBackground().getRed(), this.getBackground().getRed(), this.getBackground().getRed(), 30));
-            this.repaint();
-            //this.changeTexte(Integer.toString(this.cas.getX()) + " " + Integer.toString(this.cas.getY()));
-        }
-    }
-
     @Override
     public void repaint() {
         super.repaint();
@@ -157,21 +149,7 @@ public class CaseController extends IG.ZoneCliquable {
     }
 
 
+    public void mouseEntered(MouseEvent e) {}
 
-    public void mouseExited(MouseEvent e) {
-        String name = "";
-        for (Player player : this.cas.getPlayers()) {
-            if (player.isAlive())
-                name = name + " " + player.getName();
-        }
-        this.changeTexte(name);
-        switch(this.cas.getEtat()) {
-            case INONDEE:
-                this.setBackground(new Color(95, 158, 160)); break;
-            case SUBMERGEE:
-                this.setBackground(new Color(30, 144, 255)); break;
-            case NORMALE:
-                this.setBackground(new Color(74, 160, 44)); break;
-        }
-    }
+    public void mouseExited(MouseEvent e) {}
 }
