@@ -88,7 +88,12 @@ public class Start {
             pc[p.getIdentifier()] = new PlayerController(p, views.fenetre);
         }
 
-        
+        //initialisation des paquets de carte
+        PaquetCarte paquetCarte = new PaquetCarte();
+        CarteTresor[] ctArray = new CarteTresor[28];
+        for(int i = 0; i < 5; i++){
+            CarteTresor[i] = new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.ARTEF_EAU);
+        }
 
         //initialisation controller
         models.Controllers cont = new models.Controllers(plateau,views.fenetre, views);
