@@ -88,6 +88,8 @@ public class Start {
             pc[p.getIdentifier()] = new PlayerController(p, views.fenetre);
         }
 
+        
+
         //initialisation controller
         models.Controllers cont = new models.Controllers(plateau,views.fenetre, views);
 
