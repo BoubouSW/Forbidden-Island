@@ -22,3 +22,4 @@ This project is a collaboration between Clément Gilli and [Louis-Alexis Penelou
 - `S` - DOWN
 - `D` - LEFT
 - `A` - DRY
+- `R` - CATCH ARTIFACT
