@@ -19,7 +19,7 @@ public class Views {
         int nbrJoueur = p.getPlayersPlateau().size();
         this.fenetre = new IG.Fenetre("ForbiddenIsland");
         this.plateauView = new models.PlateauView(p);
-        this.validationController = new models.ValidationController(p);
+        this.validationController = new models.ValidationController(p,null);
         this.encadreTour = new EncadreView();
         this.fenetre.ajouteElement(encadreTour);
         this.encadreInventaire = new EncadreInventaireView[nbrJoueur];

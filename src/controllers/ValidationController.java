@@ -9,17 +9,25 @@ import java.util.Set;
 class ValidationController extends IG.ZoneCliquable {
 
     private Plateau plateau;
+    private WaterLevel waterLevel;
     private boolean end;
 
     public boolean getEnd() {return this.end;}
     public void setEndFalse() {this.end = false;}
 
-    public ValidationController(Plateau p) {
+    public ValidationController(Plateau p, WaterLevel w) {
         // Création d'une zone cliquable de dimensions 80*25 pixels,
         // et contenant le texte "Valider".
         super("Fin de tour", 100, 25,15);
         this.plateau = p;
+        this.waterLevel = w;
         this.end = false;
+    }
+
+    public WaterLevel getWaterLevel() { return this.waterLevel; }
+
+    public void setWaterLevel(WaterLevel waterLevel) {
+        this.waterLevel = waterLevel;
     }
 
     public boolean checkAroundSub(Case c) {
@@ -60,7 +68,7 @@ class ValidationController extends IG.ZoneCliquable {
         this.end = true;
         Set<Case> forFonc = new HashSet<Case>();
         int borne;
-        borne = Math.min(3, this.plateau.getNbCaseNonSubmergee());
+        borne = Math.min(this.waterLevel.nbCaseInonde(), this.plateau.getNbCaseNonSubmergee());
         for (int i = 0; i < borne; i++) {
             Case current;
             do {
