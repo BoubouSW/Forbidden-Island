@@ -148,7 +148,7 @@ public class InitView extends JFrame {
         dispose();
     }
 }
-
+/**
 class ImagePanel extends JComponent {
     private Image image;
     public ImagePanel(Image image) {
@@ -160,3 +160,4 @@ class ImagePanel extends JComponent {
         g.drawImage(image, 0, 0, this);
     }
 }
+**/
