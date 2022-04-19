@@ -103,7 +103,7 @@ public class Start {
         paquetCarte.melangePile();
 
         //initialisation controller
-        models.Controllers cont = new models.Controllers(plateau,views.fenetre, views);
+        models.Controllers cont = new models.Controllers(plateau, paquetCarte, views.fenetre, views);
 
         //set niveau de l'eau
         WaterLevel waterLevel = new WaterLevel(startwaterlevel);

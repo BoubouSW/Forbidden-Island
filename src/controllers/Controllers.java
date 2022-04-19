@@ -10,12 +10,14 @@ import java.util.Scanner;
 
 public class Controllers {
     private Plateau plateau;
+    private PaquetCarte<CarteTresor> paquetCarteTresor;
     private IG.Fenetre window;
     private models.Views view;
     private models.ValidationController validationController;
 
-    Controllers(Plateau plat, IG.Fenetre fenetre, models.Views view) {
+    Controllers(Plateau plat, PaquetCarte<CarteTresor> paquetCarte, IG.Fenetre fenetre, models.Views view) {
         this.plateau = plat;
+        this.paquetCarteTresor = paquetCarte;
         this.window = fenetre;
         this.view = view;
         this.validationController = this.view.validationController;
