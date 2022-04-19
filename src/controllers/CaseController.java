@@ -74,6 +74,10 @@ public class CaseController extends IG.ZoneCliquable {
                     //this.setBackground(new Color(30, 144, 255));
                     g.setColor(new Color(30, 144, 255));
                     g.fillRect(0, 0, getWidth(), getHeight());
+                    Image water = new ImageIcon("resources/images/waves2.gif").getImage();
+                    int x = (this.getWidth() - water.getWidth(null)) / 2;
+                    int y = (this.getHeight() - water.getHeight(null)) / 2;
+                    g.drawImage(water,x,y,null);
                     break;
                 case NORMALE:
                     //this.setBackground(new Color(74, 160, 44));
@@ -87,7 +91,7 @@ public class CaseController extends IG.ZoneCliquable {
         }
         if(this.cas.hasPlayer()) {
             Image img;
-            img = new ImageIcon("resources/images/joueur2.png").getImage();
+            img = new ImageIcon("resources/images/cowboy2.png").getImage();
 
             /* SI ON VEUT CHANGER DE COULEUR LE SPRITE
             BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);

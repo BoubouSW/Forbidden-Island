@@ -21,6 +21,10 @@ public class Controllers {
         this.validationController = this.view.validationController;
     }
 
+    public models.ValidationController getValidationController() {
+        return validationController;
+    }
+
     public Set<Player> getPlayersController() { return this.plateau.getPlayersPlateau(); }
 
     public Player getPlayerByIdController(int id) {
@@ -45,6 +49,7 @@ public class Controllers {
     }
 
     public void play(PlayerController[] pcBanque) {
+        System.out.println("Niveau de l'eau : " + this.validationController.getWaterLevel().getCurrentLvl());
         int n = this.getPlayersController().size();
         int c;
         int whoShouldPlay = 0;

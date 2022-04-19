@@ -20,7 +20,7 @@ public class InitStart {
     }
 
     public void run() {
-        Start start = new Start(this.nomsJoueurs);
+        Start start = new Start(this.nomsJoueurs,this.nomsJoueurs.size()-1);
     }
 
 }

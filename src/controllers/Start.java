@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Start {
 
-    Start(ArrayList<String> nomsJoueurs) {
+    Start(ArrayList<String> nomsJoueurs, int startwaterlevel) {
 
         //création plateau taille 8x8
         int nb = 8;
@@ -97,6 +97,10 @@ public class Start {
 
         //initialisation controller
         models.Controllers cont = new models.Controllers(plateau,views.fenetre, views);
+
+        //set niveau de l'eau
+        WaterLevel waterLevel = new WaterLevel(startwaterlevel);
+        cont.getValidationController().setWaterLevel(waterLevel);
 
         //affichage plateau
         views.display();
