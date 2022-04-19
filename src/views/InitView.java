@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /*
 import java.io.File;
@@ -23,11 +24,14 @@ import javax.swing.ImageIcon;
 
 public class InitView extends JFrame {
     private JSlider slider;
+    private JSlider slider2;
 
     private int widthSetup = 800;
     private int heightSetup = 400;
 
     private ArrayList<String> names;
+    private int waterlvl = 2;
+
     private ArrayList<JLabel> labels;
     private ArrayList<JTextField> texts;
     private JPanel namePlayers;
@@ -93,6 +97,32 @@ public class InitView extends JFrame {
         nbPlayers.add(playerNumber);
         nbPlayers.add(slider);
 
+
+        //add difficulty slider
+        slider2 = new JSlider(1, 4);
+        slider2.setMinorTickSpacing(1);
+        slider2.setMajorTickSpacing(5);
+        slider2.setPaintTicks(true);
+
+        Hashtable<Integer, JLabel> labels = new Hashtable<>();
+        labels.put(1, new JLabel("Noob"));
+        labels.put(2, new JLabel("EZ"));
+        labels.put(3, new JLabel("Hard"));
+        labels.put(4, new JLabel("God"));
+        slider2.setLabelTable(labels);
+        slider2.setPaintLabels(true);
+
+        slider2.addChangeListener(l -> {
+            this.waterlvl = slider2.getValue();
+        });
+
+        JLabel difficulty = new JLabel("                 |                 Difficulté : ");
+        difficulty.setLabelFor(slider2);
+
+        nbPlayers.add(difficulty);
+        nbPlayers.add(slider2);
+
+
         // Start button
         JPanel button = new JPanel();
 
@@ -113,6 +143,7 @@ public class InitView extends JFrame {
                     @Override
                     public void run() {
                         initStart.initPlayer(names);
+                        initStart.initWaterLvl(waterlvl);
                         initStart.run();
                     }
                 });

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class InitStart {
 
     private ArrayList<String> nomsJoueurs;
+    private int waterlvl;
 
     public InitStart() {
         InitView startMenu = new InitView();
@@ -19,8 +20,12 @@ public class InitStart {
         this.nomsJoueurs = names;
     }
 
+    public void initWaterLvl(int w) {
+        this.waterlvl = w;
+    }
+
     public void run() {
-        Start start = new Start(this.nomsJoueurs,this.nomsJoueurs.size()-1);
+        Start start = new Start(this.nomsJoueurs,this.waterlvl);
     }
 
 }
