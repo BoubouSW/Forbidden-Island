@@ -3,10 +3,7 @@ import models.InitStart;
 import models.PlayerController;
 import models.Views;
 import java.lang.RuntimeException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Start {
 
@@ -89,11 +86,21 @@ public class Start {
         }
 
         //initialisation des paquets de carte
-        PaquetCarte paquetCarte = new PaquetCarte();
-        CarteTresor[] ctArray = new CarteTresor[28];
+        PaquetCarte<CarteTresor> paquetCarte = new PaquetCarte<CarteTresor>();
         for(int i = 0; i < 5; i++){
-            CarteTresor[i] = new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.ARTEF_EAU);
+            paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.ARTEF_EAU));
+            paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.ARTEF_TERRE));
+            paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.ARTEF_FEU));
+            paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.ARTEF_VENT));
         }
+        for(int i = 0; i < 3; i++) {
+            paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX));
+            paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.HELICOPTERE));
+        }
+
+        paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE));
+        paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE));
+        paquetCarte.melangePile();
 
         //initialisation controller
         models.Controllers cont = new models.Controllers(plateau,views.fenetre, views);
