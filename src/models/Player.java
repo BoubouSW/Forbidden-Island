@@ -1,4 +1,5 @@
 package models;
+import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -6,6 +7,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Player {
+
+    public enum ROLE {EXPLORATEUR,INGENIEUR,MESSAGER,NAVIGATEUR,PILOTE,PLONGEUR};
+
     private Plateau plateau;
     private int identifier;
     private String name;
@@ -14,7 +18,8 @@ public class Player {
     protected static Set<Artefact> artefactRamasse;
     private Set<CarteTresor> carteTresors;
     private boolean alive = true;
-    // skin ??
+    private ROLE role;
+    private Image image;
 
     // Constructeur
     public Player(Plateau p, int identifier, String name, Case spawn){
@@ -35,13 +40,24 @@ public class Player {
         this.carteTresors = new HashSet<CarteTresor>();
     }
 
-    public Player(Plateau p, int identifier, String name, int x, int y){
+    public Player(Plateau p, int identifier, String name, int x, int y, ROLE r){
         this.plateau = p;
         this.identifier = identifier;
         this.name = name;
         this.position = this.plateau.getCase(x, y);
         //this.listeClef = new HashSet<Clef>();
         this.carteTresors = new HashSet<CarteTresor>();
+        this.role = r;
+        Image img = new ImageIcon("resources/images/cowboy2.png").getImage();
+        switch (r) {
+            case EXPLORATEUR: img = new ImageIcon("resources/images/explorateur2.png").getImage(); break;
+            case PLONGEUR: img = new ImageIcon("resources/images/plongeur2.png").getImage(); break;
+            case INGENIEUR: img = new ImageIcon("resources/images/ingenieur2.png").getImage(); break;
+            case PILOTE: img = new ImageIcon("resources/images/gruau.png").getImage(); break;
+            case NAVIGATEUR: img = new ImageIcon("resources/images/navigateur2.png").getImage(); break;
+            case MESSAGER: img = new ImageIcon("resources/images/messager2.png").getImage(); break;
+        }
+        this.image = img;
     }
 
 
@@ -65,6 +81,8 @@ public class Player {
     public static Set<Artefact> getArtefact(){return artefactRamasse;}
     public boolean isAlive() {return this.alive;}
     public Set<CarteTresor> getCarteTresors() {return this.carteTresors;}
+    public ROLE getRole() {return this.role;}
+    public Image getImage() { return this.image;}
 
     //Setters
     public static void setEmptyArtefactList(){artefactRamasse = new HashSet<Artefact>();}

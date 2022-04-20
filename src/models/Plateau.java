@@ -74,8 +74,8 @@ public class Plateau {
     }
 
     // methodes
-    public void addPlayerPlateau(int id,String name, int x, int y) {
-        Player p1 = new Player(this,id,name,x,y);
+    public void addPlayerPlateau(int id,String name, int x, int y, Player.ROLE r) {
+        Player p1 = new Player(this,id,name,x,y,r);
         this.players.add(p1);
         p1.getCase().addPlayer(p1);
     }

@@ -64,12 +64,10 @@ class ValidationController extends IG.ZoneCliquable {
         }
     }
 
-    public void clicGauche() {
-        //this.setBackground(Color.GREEN);
-        this.end = true;
+    public void drowning(int n) {
         Set<Case> forFonc = new HashSet<Case>();
         int borne;
-        borne = Math.min(this.waterLevel.nbCaseInonde(), this.plateau.getNbCaseNonSubmergee());
+        borne = Math.min(n, this.plateau.getNbCaseNonSubmergee());
         for (int i = 0; i < borne; i++) {
             Case current;
             do {
@@ -92,6 +90,12 @@ class ValidationController extends IG.ZoneCliquable {
             this.plateau.InondeOuSubmerge(current);
         }
         killPlayers();
+    }
+
+    public void clicGauche() {
+        //this.setBackground(Color.GREEN);
+        this.end = true;
+        drowning(this.waterLevel.nbCaseInonde());
     }
 
     public void clicDroit() {}
