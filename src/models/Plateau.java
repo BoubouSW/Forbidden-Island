@@ -10,12 +10,14 @@ public class Plateau {
 
     private Case[][] plateau;
     private Set<Player> players;
+    private PaquetCarte<CarteTresor> paquetCarteTresor;
     private models.PlateauView plateauView;
     private int nbCaseNonSubmergee;
     private int[] coordHeliport;
 
     // Constructeur
     public Plateau(int taille) {
+        this.paquetCarteTresor = new PaquetCarte<CarteTresor>();
         this.taille = taille;
         this.plateau = new Case[taille][taille];
         this.players = new HashSet<Player>();
@@ -64,6 +66,11 @@ public class Plateau {
     }
     public Case getHeliport(){
         return this.getCase(coordHeliport[0], coordHeliport[1]);
+    }
+    public PaquetCarte<CarteTresor> getPaquetCarteTresor(){ return this.paquetCarteTresor; }
+
+    public void setPaquetCarteTresor(PaquetCarte<CarteTresor> p){
+        this.paquetCarteTresor = p;
     }
 
     // methodes

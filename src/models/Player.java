@@ -108,11 +108,33 @@ public class Player {
         return this.nombreCarteElement(type) >= 4;
     }
 
+    public CarteTresor[] removed4CardsOfElement(Objet.Element elem){
+        // suppose qu'il y a eu moins 4 cartes de l'element elem
+        // renvoi un array de 4 cartes tresor du bon type et les enleve
+        CarteTresor.TYPE_CARTE_TRESOR typeCarte = CarteTresor.TYPE_CARTE_TRESOR.values()[elem.ordinal()];
+        CarteTresor[] res = new CarteTresor[4];
+        int i = 0;
+        for(CarteTresor c: this.carteTresors){
+            if(c.getValeurCarte() == typeCarte){
+                carteTresors.remove(c);
+                res[i] = c;
+                i++;
+            }
+        }
+        return res;
+    }
+
     public boolean ramasseArtefact() {
         Case cas = this.getCase();
         if(cas.hasArtefact() && this.has4KeyOfElement(cas.getArtefact().getElement())){
+            Objet.Element elem = cas.getArtefact().getElement();
+            CarteTresor.TYPE_CARTE_TRESOR typeCarte = CarteTresor.TYPE_CARTE_TRESOR.values()[elem.ordinal()];
             Player.artefactRamasse.add(cas.getArtefact());
             cas.removeArtefact();
+            CarteTresor[] carteArray = this.removed4CardsOfElement(elem);
+            for(CarteTresor c: carteArray){
+                this.plateau.getPaquetCarteTresor().Defausse(c);
+            }
             return true;
         }
         return false;

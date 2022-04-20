@@ -102,8 +102,10 @@ public class Start {
         paquetCarte.addPile(new CarteTresor(CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE));
         paquetCarte.melangePile();
 
+        plateau.setPaquetCarteTresor(paquetCarte);
+
         //initialisation controller
-        models.Controllers cont = new models.Controllers(plateau, paquetCarte, views.fenetre, views);
+        models.Controllers cont = new models.Controllers(plateau, views.fenetre, views);
 
         //set niveau de l'eau
         WaterLevel waterLevel = new WaterLevel(startwaterlevel);

@@ -10,14 +10,12 @@ import java.util.Scanner;
 
 public class Controllers {
     private Plateau plateau;
-    private PaquetCarte<CarteTresor> paquetCarteTresor;
     private IG.Fenetre window;
     private models.Views view;
     private models.ValidationController validationController;
 
-    Controllers(Plateau plat, PaquetCarte<CarteTresor> paquetCarte, IG.Fenetre fenetre, models.Views view) {
+    Controllers(Plateau plat, IG.Fenetre fenetre, models.Views view) {
         this.plateau = plat;
-        this.paquetCarteTresor = paquetCarte;
         this.window = fenetre;
         this.view = view;
         this.validationController = this.view.validationController;
@@ -56,6 +54,7 @@ public class Controllers {
         int c;
         int whoShouldPlay = 0;
         boolean gameOver = false;
+        PaquetCarte<CarteTresor> paquetCarteTresor = this.plateau.getPaquetCarteTresor();
         PlayerController pc;
         while(! gameOver) {
             if(this.allDead() || this.heliportDead()) {
@@ -77,14 +76,14 @@ public class Controllers {
                 // pioche des cartes tresors
                 CarteTresor carte;
                 for(int i = 0; i < 3; i++){
-                    carte = this.paquetCarteTresor.pioche();
+                    carte = paquetCarteTresor.pioche();
 
                     if(carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
                         this.validationController.getWaterLevel().augmenteLvl();
                         System.out.println(carte.getValeurCarte().name());
-                        this.paquetCarteTresor.Defausse(carte);
-                        this.paquetCarteTresor.melangeDefausse();
-                        this.paquetCarteTresor.retourneDefausse();
+                        paquetCarteTresor.Defausse(carte);
+                        paquetCarteTresor.melangeDefausse();
+                        paquetCarteTresor.retourneDefausse();
                     }else{
                         pc.getPlayer().addCarteTresor(carte);
                         System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
