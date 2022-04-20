@@ -74,10 +74,26 @@ public class Controllers {
                     this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
                     this.view.encadreTour.setNbrCoup(c);
                 }
+                // pioche des cartes tresors
+                CarteTresor carte;
+                for(int i = 0; i < 3; i++){
+                    carte = this.paquetCarteTresor.pioche();
+
+                    if(carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
+                        this.validationController.getWaterLevel().augmenteLvl();
+                        System.out.println(carte.getValeurCarte().name());
+                        this.paquetCarteTresor.Defausse(carte);
+                        this.paquetCarteTresor.melangeDefausse();
+                        this.paquetCarteTresor.retourneDefausse();
+                    }else{
+                        pc.getPlayer().addCarteTresor(carte);
+                        System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
+                    }
+                }
                 for (int p = 0; p < n; p++) {
                     this.view.encadreInventaire[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
                 }
-                this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getKeyInventory());
+                this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
                 pc.StopReply();
                 //System.out.println(pc.getPlayer().inventory());
                 synchronized (this) {
@@ -93,6 +109,7 @@ public class Controllers {
                 // System.out.println(""); // trouver comment attendre ?!
                 //}
             }
+
             whoShouldPlay = (whoShouldPlay + 1) % n;
             int taille = this.plateau.getTaille();
             for (int i = 0; i < taille; i++) {

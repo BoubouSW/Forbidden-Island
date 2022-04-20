@@ -21,11 +21,12 @@ public class EncadreInventaireView extends JPanel  {
         this.textesArtefact.setText(str);
     }
 
-    public void setTexteKey(Set<Clef> C){
+    public void setTexteKey(Set<CarteTresor> C){
         int[] forFonc = {0, 0, 0, 0};
         // eau : 0, terre : 1, feu : 2, vent : 3
-        for(Clef c: C){
-            forFonc[c.getElement().ordinal()]++;
+        for(CarteTresor c: C){
+            if(c.getValeurCarte().ordinal() <= 3)
+                forFonc[c.getValeurCarte().ordinal()]++;
         }
         String str = "Clefs :  ";
         for(int ci = 0; ci < 4; ci++) {

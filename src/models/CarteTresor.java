@@ -15,5 +15,5 @@ public class CarteTresor extends Carte{
 
     public void setValeurCarte(TYPE_CARTE_TRESOR t){ this.valeurDeLaCarte = t; }
 
-    public TYPE_CARTE_TRESOR getValeurCarte(TYPE_CARTE_TRESOR t){ return this.valeurDeLaCarte; }
+    public TYPE_CARTE_TRESOR getValeurCarte(){ return this.valeurDeLaCarte; }
 }

@@ -6,20 +6,20 @@ import java.util.Set;
 public class PaquetCarte<T extends I> {
     private LinkedList<T> Pile;
     private LinkedList<T> Default;
-    private int nbCarte;
+    private int nbCartePioche;
 
     public PaquetCarte(){
         // creer un paquet de carte vide
         this.Pile = new LinkedList<T>();
         this.Default = new LinkedList<T>();
-        this.nbCarte = 0;
+        this.nbCartePioche = 0;
     }
 
     public PaquetCarte(Set<T> s){
         this.Pile = new LinkedList<T>();
-        this.nbCarte = 0;
+        this.nbCartePioche = 0;
         for(T c: s){
-            this.nbCarte++;
+            this.nbCartePioche++;
             this.Pile.add(c);
         }
         this.Default = new LinkedList<T>();
@@ -28,16 +28,20 @@ public class PaquetCarte<T extends I> {
     public void addPile(T c){
         // ajoute une carte a la pile
         this.Pile.add(c);
+        this.nbCartePioche++;
     }
 
     public T pioche(){
         // pioche la premiere carte de la pile
+        if(this.nbCartePioche == 0)
+            throw new RuntimeException("Plus de carte dans la pioche");
         T res = this.Pile.getFirst();
         this.Pile.removeFirst();
+        this.nbCartePioche--;
         return res;
     }
 
-    public void Deffausse(T c){
+    public void Defausse(T c){
         // defausse la carte c dans le default
         this.Default.add(c);
     }
@@ -62,6 +66,26 @@ public class PaquetCarte<T extends I> {
         }
     }
 
+    public void melangeDefausse(){
+        // complexite pas ouf
+        int size = this.Default.size();
+        Object[] cArray = new Object[size];
+        for(int i = 0; i < size; i++) {
+            cArray[i] = this.Default.getFirst();
+            this.Default.removeFirst();
+        }
+        for(int k = 0; k < 100; k++){
+            int i = (int) (Math.random()*size);
+            int j = (int) (Math.random()*size);
+            Object tmp = cArray[i];
+            cArray[i] = cArray[j];
+            cArray[j] = tmp;
+        }
+        for(Object c: cArray){
+            this.Default.addFirst((T) c);
+        }
+    }
+
     public void retourneDefausse(){
         // retourne la defausse et la place au dos de la pile
         int pos = this.Pile.size();
@@ -69,6 +93,7 @@ public class PaquetCarte<T extends I> {
             this.Pile.addLast(this.Default.getLast());
             this.Default.removeLast();
         }
+        this.nbCartePioche = this.Pile.size();
     }
 
     public String Str(){
@@ -81,6 +106,10 @@ public class PaquetCarte<T extends I> {
             s += c.Str() + " ";
         }
         return s + "\n";
+    }
+
+    public Boolean pileVide(){
+        return this.nbCartePioche == 0;
     }
 }
 
