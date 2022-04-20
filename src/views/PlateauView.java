@@ -2,7 +2,7 @@ package models;
 
 import models.CaseController;
 
-import java.awt.Color;
+import java.awt.*;
 
 class PlateauView extends IG.Grille {
 
@@ -12,6 +12,7 @@ class PlateauView extends IG.Grille {
 
     public PlateauView(Plateau plat) {
         super(plat.getTaille(), plat.getTaille());
+        this.setSize(700, 700);
         this.setBackground(new Color(30,144,255));
         this.p = plat;
         int taille = p.getTaille();

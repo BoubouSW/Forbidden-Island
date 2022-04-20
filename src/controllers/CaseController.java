@@ -12,7 +12,7 @@ public class CaseController extends IG.ZoneCliquable {
     Case cas;
 
     CaseController(Case c) {
-        super("",100,100,15);
+        super("",80,80,15);
         //super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
         c.set_controller(this);

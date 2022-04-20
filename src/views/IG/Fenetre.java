@@ -1,6 +1,6 @@
 package IG;
 import javax.swing.*;
-import java.awt.GridLayout;
+import java.awt.*;
 
 /**
  * Classe des fenetres graphiques.

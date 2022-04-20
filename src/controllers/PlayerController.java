@@ -1,8 +1,9 @@
 package models;
-import java.awt.Frame;
+import java.awt.*;
 
 import models.Player;
-import java.awt.FlowLayout;
+
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class PlayerController extends IG.Touche{
     private boolean shouldReply;
     private int count;
 
-    public PlayerController(Player p, IG.Fenetre fenetre){
+    public PlayerController(Player p, JFrame fenetre){
         fenetre.addKeyListener(this);
         this.player = p;
         shouldReply = false;

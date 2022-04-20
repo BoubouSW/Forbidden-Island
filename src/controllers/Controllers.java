@@ -1,6 +1,7 @@
 package models;
 import models.PlayerController;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -10,11 +11,11 @@ import java.util.Scanner;
 
 public class Controllers {
     private Plateau plateau;
-    private IG.Fenetre window;
+    private JFrame window;
     private models.Views view;
     private models.ValidationController validationController;
 
-    Controllers(Plateau plat, IG.Fenetre fenetre, models.Views view) {
+    Controllers(Plateau plat, JFrame fenetre, models.Views view) {
         this.plateau = plat;
         this.window = fenetre;
         this.view = view;
@@ -75,7 +76,7 @@ public class Controllers {
                 }
                 // pioche des cartes tresors
                 CarteTresor carte;
-                for(int i = 0; i < 3; i++){
+                for(int i = 0; i < 2; i++){
                     carte = paquetCarteTresor.pioche();
 
                     if(carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
@@ -84,15 +85,16 @@ public class Controllers {
                         paquetCarteTresor.Defausse(carte);
                         paquetCarteTresor.melangeDefausse();
                         paquetCarteTresor.retourneDefausse();
+                        System.out.println(paquetCarteTresor.Str());
                     }else{
                         pc.getPlayer().addCarteTresor(carte);
                         System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
                     }
                 }
                 for (int p = 0; p < n; p++) {
-                    this.view.encadreInventaire[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
+                    this.view.allInventoryView.inventoriesViews[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
                 }
-                this.view.encadreInventaire[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
+                this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
                 pc.StopReply();
                 //System.out.println(pc.getPlayer().inventory());
                 synchronized (this) {

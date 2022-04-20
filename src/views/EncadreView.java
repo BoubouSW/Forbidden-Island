@@ -19,16 +19,17 @@ public class EncadreView extends JPanel {
 
     public EncadreView() {
         super(new GridBagLayout());
+        this.setSize(180, 50);
         this.setBackground(new Color(240,128,128));
-        this.texteJoueur = new Texte("Tour de : ", 16);
-        this.texteNbrCoup = new Texte("Nombre de coup restant : ", 13);
+        this.texteJoueur = new Texte("Tour de : ", 15);
+        this.texteNbrCoup = new Texte("Nombre de coup restant : ", 12);
 
 
         //newPanel.setLayout(null);
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.insets = new Insets(3, 3, 3, 3);
 
         // add components to the panel
         constraints.gridx = 0;
@@ -41,6 +42,5 @@ public class EncadreView extends JPanel {
 
         // set border for the panel
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setBounds(0,0,0,0);
     }
 }
