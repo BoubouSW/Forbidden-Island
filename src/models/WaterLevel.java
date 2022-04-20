@@ -15,7 +15,7 @@ public class WaterLevel {
 
     public void augmenteLvl() {
         if (this.currentLvl >= this.maxLvl)
-            throw new RuntimeException("niveau max atteint");
+            return; //throw new RuntimeException("niveau max atteint");
         this.currentLvl += 1;
     }
 
