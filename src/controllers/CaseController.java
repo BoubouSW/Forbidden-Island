@@ -92,10 +92,19 @@ public class CaseController extends IG.ZoneCliquable {
             g.drawImage(img, x, y, null);
         }
         if(this.cas.hasPlayer()) {
+            int nb = this.cas.getPlayers().size();
+            int k = 0;
             Image img = new ImageIcon("resources/images/cowboy2.png").getImage();
             //Player pi = this.cas.getPlayers().get
             for (Player pi : this.cas.getPlayers()) {
                 img = pi.getImage();
+                switch (nb) {
+                    case 1: g.drawImage(img,0,0,null); break;
+                    case 2: if (k == 0) g.drawImage(img,0,0,null); else g.drawImage(img,50,0,null); break;
+                    case 3: if (k == 0) g.drawImage(img,0,0,null); if (k==1) g.drawImage(img,50,0,null); else g.drawImage(img,0,50,null); break;
+                    case 4: if (k == 0) g.drawImage(img,0,0,null); if (k==1) g.drawImage(img,50,0,null); if (k==2) g.drawImage(img,0,50,null); else g.drawImage(img,50,50,null); break;
+                }
+                k++;
             }
             /* SI ON VEUT CHANGER DE COULEUR LE SPRITE
             BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -115,7 +124,7 @@ public class CaseController extends IG.ZoneCliquable {
             //int x = (this.getWidth() - img.getWidth(null)) / 2;
             //int y = (this.getHeight() - img.getHeight(null)) / 2;
             //g.drawImage(img,0,0,null);  //remplacer img par bimage
-
+            /*
             int nombreJoueur = this.cas.getPlayers().size();
             switch (nombreJoueur) {
                 case 4:
@@ -127,6 +136,8 @@ public class CaseController extends IG.ZoneCliquable {
                 case 1:
                     g.drawImage(img,0,0,null);
             }
+
+             */
         }
         Image img;
         img = new ImageIcon("resources/images/feu2.png").getImage();

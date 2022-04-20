@@ -53,10 +53,12 @@ public class Player {
             case EXPLORATEUR: img = new ImageIcon("resources/images/explorateur2.png").getImage(); break;
             case PLONGEUR: img = new ImageIcon("resources/images/plongeur2.png").getImage(); break;
             case INGENIEUR: img = new ImageIcon("resources/images/ingenieur2.png").getImage(); break;
-            case PILOTE: img = new ImageIcon("resources/images/gruau.png").getImage(); break;
+            case PILOTE: img = new ImageIcon("resources/images/pilote2.png").getImage(); break;
             case NAVIGATEUR: img = new ImageIcon("resources/images/navigateur2.png").getImage(); break;
             case MESSAGER: img = new ImageIcon("resources/images/messager2.png").getImage(); break;
         }
+        if (this.getName().equals("fred"))
+            img = new ImageIcon("resources/images/gruau2.png").getImage();
         this.image = img;
     }
 
