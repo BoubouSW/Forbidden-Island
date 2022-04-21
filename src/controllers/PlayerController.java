@@ -68,8 +68,8 @@ public class PlayerController extends IG.Touche{
                 Objet a = moi.getCase().getArtefact();
                 name = name + " " + a.getElement().name();
             }
-            moi.getCase().getController().changeTexte(name);
-             */
+            */
+            moi.getCase().getController().changeTexte(" ");
             boolean b = false;
             switch (e.getKeyChar()) {
                 case 'd':
@@ -151,8 +151,10 @@ public class PlayerController extends IG.Touche{
                 Objet a = moi.getCase().getArtefact();
                 name = name + " " + a.getElement().name();
             }
-            moi.getCase().getController().changeTexte(name);
+
              */
+            moi.getCase().getController().changeTexte(" ");
+
             moi.getCase().getController().repaint();
             this.count--;
         }
