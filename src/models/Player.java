@@ -135,11 +135,13 @@ public class Player {
         CarteTresor[] res = new CarteTresor[4];
         int i = 0;
         for(CarteTresor c: this.carteTresors){
-            if(c.getValeurCarte() == typeCarte){
-                carteTresors.remove(c);
+            if(c.getValeurCarte() == typeCarte && i < 4){
                 res[i] = c;
                 i++;
             }
+        }
+        for(CarteTresor c: res){
+            this.carteTresors.remove(c);
         }
         return res;
     }
@@ -152,6 +154,7 @@ public class Player {
             Player.artefactRamasse.add(cas.getArtefact());
             cas.removeArtefact();
             CarteTresor[] carteArray = this.removed4CardsOfElement(elem);
+            System.out.println("coucou");
             this.plateau.getTheController().getView().allInventoryView.playerHasPickedArtefact(Player.getArtefact());
             for(CarteTresor c: carteArray){
                 this.plateau.getPaquetCarteTresor().Defausse(c);

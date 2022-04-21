@@ -52,10 +52,11 @@ public class AllInventoryView extends JPanel {
     }
 
     public void playerHasPickedArtefact(Set<Artefact> A){
-        String str = "Artefact Ramasse : ";
+        String str = "";
         for(Artefact a: A){
             str += a.getElement().name() + " ";
         }
+        System.out.println(str);
         this.textArt.setText(str);
     }
 }

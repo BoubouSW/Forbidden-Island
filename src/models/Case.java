@@ -33,6 +33,7 @@ class Case {
     public Etat getEtat() { return this.etat;}
     public boolean isSubmergee(){return this.etat == Etat.SUBMERGEE;}
     public models.CaseController getController(){return this.controller;}
+    public Plateau getPlateau(){return this.plateau;}
 
     public int getX() {return this.x;}
     public int getY() {return this.y;}

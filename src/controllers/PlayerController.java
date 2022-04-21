@@ -1,6 +1,7 @@
 package models;
 import java.awt.*;
 
+import models.Controllers;
 import models.Player;
 
 import javax.swing.*;
@@ -84,6 +85,8 @@ public class PlayerController extends IG.Touche{
                     break;
                 case 'r':
                     b = moi.ramasseArtefact();
+                    Controllers theController = moi.getCase().getPlateau().getTheController();
+                    theController.getView().allInventoryView.inventoriesViews[getPlayer().getIdentifier()].setTexteKey(getPlayer().getCarteTresors());
                     break;
                 case 'i':
                     System.out.println(this.getPlayer().inventory());
