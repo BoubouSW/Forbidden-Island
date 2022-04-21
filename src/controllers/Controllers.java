@@ -63,10 +63,6 @@ public class Controllers {
         PaquetCarte<CarteTresor> paquetCarteTresor = this.plateau.getPaquetCarteTresor();
         PlayerController pc;
         while(! gameOver) {
-            if(this.allDead() || this.heliportDead()) {
-                System.out.println("Perdu !");
-                gameOver = true;
-            }
             c = 3;
             this.validationController.setEndFalse();
             pc = pcBanque[whoShouldPlay];
@@ -122,6 +118,11 @@ public class Controllers {
                 for (int j = 0; j < taille; j++) {
                     this.plateau.getCase(i,j).getController().repaint();
                 }
+            }
+            if(this.allDead() || this.heliportDead()) {
+                System.out.println("Perdu !");
+                gameOver = true;
+                break;
             }
             if(Player.hasAllArtefact() && this.plateau.allPlayersOnHeliport()){
                 System.out.println("Gagne !");
