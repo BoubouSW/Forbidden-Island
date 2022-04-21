@@ -29,10 +29,24 @@ public class Start {
         this.addPlayerGame(playersnumber,plateau);
 
          */
+        Player.ROLE[] roles = new Player.ROLE[] {
+            Player.ROLE.EXPLORATEUR, Player.ROLE.INGENIEUR, Player.ROLE.MESSAGER, Player.ROLE.PLONGEUR, Player.ROLE.PILOTE, Player.ROLE.NAVIGATEUR};
+        int i1,i2;
+        Player.ROLE temp;
+        for (int i = 0; i < 100; i++) {
+            i1 = 1 + (int) (Math.random() * (Player.ROLE.values().length - 1));
+            i2 = 1 + (int) (Math.random() * (Player.ROLE.values().length - 1));
+            temp = roles[i1];
+            roles[i1] = roles[i2];
+            roles[i2] = temp;
+        }
+
         for (int i = 0; i < nomsJoueurs.size(); i++) {
             int[] spawn = plateau.randomSpawn();
-            plateau.addPlayerPlateau(i, nomsJoueurs.get(i), spawn[0], spawn[1]);
+            Player.ROLE role;
+            plateau.addPlayerPlateau(i, nomsJoueurs.get(i), spawn[0], spawn[1],roles[i]);
         }
+
         Player.setEmptyArtefactList();
         //plateau.addPlayerPlateau(0,"Boubou",4,5);
         //plateau.addPlayerPlateau(1,"ATP",2,3);
@@ -110,7 +124,7 @@ public class Start {
         //set niveau de l'eau
         WaterLevel waterLevel = new WaterLevel(startwaterlevel);
         cont.getValidationController().setWaterLevel(waterLevel);
-
+        cont.getValidationController().drowning(6);
         //affichage plateau
         views.display();
 

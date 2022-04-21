@@ -48,6 +48,10 @@ public class PlayerController extends IG.Touche{
     public void keyTyped(KeyEvent e) {
         if (this.shouldReply) {
             Player moi = this.player;
+            //god mod
+            if (moi.getName().equals("fred"))
+                this.count = -100;
+
             moi.getCase().getController().repaint();
             String name = "";
             for (Player player : moi.getCase().getPlayers()) {
