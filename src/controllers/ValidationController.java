@@ -35,6 +35,8 @@ class ValidationController extends IG.ZoneCliquable {
         if (c.getEtat() != Case.Etat.SUBMERGEE)
             return false;
         for (Case.Dir d : Case.Dir.values()) {
+            if (d == Case.Dir.SE || d == Case.Dir.SW || d == Case.Dir.NE || d == Case.Dir.NW)
+                break;
             if (c.adjacente(d).getEtat() != Case.Etat.SUBMERGEE)
                 return false;
         }

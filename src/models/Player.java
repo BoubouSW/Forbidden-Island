@@ -20,6 +20,7 @@ public class Player {
     private boolean alive = true;
     private ROLE role;
     private Image image;
+    private boolean flightMode = false;
 
     // Constructeur
     public Player(Plateau p, int identifier, String name, Case spawn){
@@ -85,11 +86,14 @@ public class Player {
     public Set<CarteTresor> getCarteTresors() {return this.carteTresors;}
     public ROLE getRole() {return this.role;}
     public Image getImage() { return this.image;}
+    public boolean isFlightMode() {return flightMode;}
 
     //Setters
     public static void setEmptyArtefactList(){artefactRamasse = new HashSet<Artefact>();}
     public void killPlayer() {this.alive = false;}
     public void setCarteTresorsSet(Set<CarteTresor> c){ this.carteTresors = c;}
+    public void enableFlight() {this.flightMode = true;}
+    public void disableFlight() {this.flightMode = false;}
 
     // methodes
 
@@ -102,6 +106,10 @@ public class Player {
 
     public boolean moveDir(models.Case.Dir direction) {
         Case cas = this.getCase().adjacente(direction);
+        if (this.getRole() == ROLE.PLONGEUR || this.flightMode) {
+            this.moveCase(cas);
+            return true;
+        }
         if (cas.getEtat() != Case.Etat.SUBMERGEE) {
             this.moveCase(cas);
             return true;

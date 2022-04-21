@@ -8,7 +8,7 @@ import java.lang.RuntimeException;
 class Case {
 
     public enum Etat {NORMALE,INONDEE,SUBMERGEE}
-    public enum Dir {HAUT, BAS, GAUCHE, DROITE};
+    public enum Dir {HAUT, BAS, GAUCHE, DROITE,NW,NE,SE,SW};
 
     // Attributs
     private Plateau plateau;
@@ -126,6 +126,14 @@ class Case {
                 return this.plateau.getCase(x - 1, y);
             case BAS:
                 return this.plateau.getCase(x + 1, y);
+            case NW:
+                return this.plateau.getCase(x-1,y-1);
+            case NE:
+                return this.plateau.getCase(x-1,y+1);
+            case SE:
+                return this.plateau.getCase(x+1,y+1);
+            case SW:
+                return this.plateau.getCase(x+1,y-1);
         }
         throw new RuntimeException("On ne devrait pas arriver ici");
     }

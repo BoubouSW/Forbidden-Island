@@ -97,6 +97,8 @@ public class CaseController extends IG.ZoneCliquable {
             //Player pi = this.cas.getPlayers().get
             for (Player pi : this.cas.getPlayers()) {
                 img = pi.getImage();
+                if (pi.isFlightMode())
+                    img = new ImageIcon("resources/images/helicopter.png").getImage();
                 switch (nb) {
                     case 1: g.drawImage(img,0,0,null); break;
                     case 2: if (k == 0) g.drawImage(img,0,0,null); else g.drawImage(img,50,0,null); break;

@@ -13,11 +13,14 @@ public class PlayerController extends IG.Touche{
     private Player player;
     private boolean shouldReply;
     private int count;
+    private int flyCount;
+    private boolean ingenieurDry;
 
     public PlayerController(Player p, JFrame fenetre){
         fenetre.addKeyListener(this);
         this.player = p;
-        shouldReply = false;
+        this.shouldReply = false;
+        this.ingenieurDry = false;
     }
 
     //getters
@@ -35,6 +38,8 @@ public class PlayerController extends IG.Touche{
     public void StartReply(){
         this.shouldReply = true;
         this.count = 3;
+        if (this.player.getRole() == Player.ROLE.INGENIEUR)
+            this.ingenieurDry = true;
     }
 
     public void StopReply(){
@@ -77,21 +82,61 @@ public class PlayerController extends IG.Touche{
                 case 'z':
                     b = moi.moveDir(Case.Dir.HAUT);
                     break;
-                case 's':
+                case 'x':
                     b = moi.moveDir(Case.Dir.BAS);
                     break;
                 case 'a':
-                    b = moi.assecheCase();
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                        b = moi.moveDir(Case.Dir.NW);
+                    break;
+                case 'e':
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                        b = moi.moveDir(Case.Dir.NE);
+                    break;
+                case 'w':
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                        b = moi.moveDir(Case.Dir.SW);
+                    break;
+                case 'c':
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                        b = moi.moveDir(Case.Dir.SE);
+                    break;
+                case 'f':
+                    if (! moi.isFlightMode())
+                        b = moi.assecheCase();
+                    if(b) {
+                        if(this.ingenieurDry) {
+                            this.ingenieurDry = false;
+                            this.count++;
+                        }
+                    }
                     break;
                 case 'r':
-                    b = moi.ramasseArtefact();
-                    Controllers theController = moi.getCase().getPlateau().getTheController();
-                    theController.getView().allInventoryView.inventoriesViews[getPlayer().getIdentifier()].setTexteKey(getPlayer().getCarteTresors());
+                    if (! moi.isFlightMode()) {
+                        b = moi.ramasseArtefact();
+                        Controllers theController = moi.getCase().getPlateau().getTheController();
+                        theController.getView().allInventoryView.inventoriesViews[getPlayer().getIdentifier()].setTexteKey(getPlayer().getCarteTresors());
+                    }
                     break;
                 case 'i':
                     System.out.println(this.getPlayer().inventory());
                     break;
+                case 'v':
+                    if (moi.getRole() == Player.ROLE.PILOTE && !moi.isFlightMode()) {
+                        moi.enableFlight();
+                        this.flyCount = this.count;
+                        this.count = 100;
+                    }
+                    else {
+                        if (moi.getRole() == Player.ROLE.PILOTE && moi.isFlightMode()) {
+                            moi.disableFlight();
+                            this.count = this.flyCount;
+                            b = true;
+                        }
+                    }
+                    break;
             }
+            //System.out.println(moi.isFlightMode());
             if(! b)
                 this.count++;
             name = "";

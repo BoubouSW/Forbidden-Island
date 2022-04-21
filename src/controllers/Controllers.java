@@ -91,7 +91,7 @@ public class Controllers {
                         System.out.println(paquetCarteTresor.Str());
                     }else{
                         pc.getPlayer().addCarteTresor(carte);
-                        System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
+                        //System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
                     }
                 }
                 this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
@@ -109,6 +109,9 @@ public class Controllers {
                 // while(!this.validationController.getEnd()) {
                 // System.out.println(""); // trouver comment attendre ?!
                 //}
+            }
+            for (Player p: this.getPlayersController()) {
+                p.disableFlight();
             }
 
             whoShouldPlay = (whoShouldPlay + 1) % n;
