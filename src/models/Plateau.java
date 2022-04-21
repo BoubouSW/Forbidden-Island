@@ -10,6 +10,7 @@ public class Plateau {
 
     private Case[][] plateau;
     private Set<Player> players;
+    private models.Controllers theController;
     private PaquetCarte<CarteTresor> paquetCarteTresor;
     private models.PlateauView plateauView;
     private int nbCaseNonSubmergee;
@@ -22,6 +23,7 @@ public class Plateau {
         this.plateau = new Case[taille][taille];
         this.players = new HashSet<Player>();
         this.nbCaseNonSubmergee = 24;
+        this.theController = null;
         int xHeli, yHeli;
         do{
             xHeli = 1 + (int) (Math.random() * (this.getTaille() - 2));
@@ -68,12 +70,16 @@ public class Plateau {
         return this.getCase(coordHeliport[0], coordHeliport[1]);
     }
     public PaquetCarte<CarteTresor> getPaquetCarteTresor(){ return this.paquetCarteTresor; }
+    public models.PlateauView getPlateauView(){return this.plateauView;}
+    public models.Controllers getTheController() { return theController; }
 
     public void setPaquetCarteTresor(PaquetCarte<CarteTresor> p){
         this.paquetCarteTresor = p;
     }
+    public void setTheController(models.Controllers c){ this.theController = c;}
 
     // methodes
+
     public void addPlayerPlateau(int id,String name, int x, int y) {
         Player p1 = new Player(this,id,name,x,y);
         this.players.add(p1);

@@ -34,7 +34,7 @@ public class Views {
             encadreInventaire[i] = new EncadreInventaireView(p, i);
         }
         this.allInventoryView = new AllInventoryView(encadreInventaire);
-        this.allInventoryView.setLocation(100, 100);
+        this.allInventoryView.setLocation(50, 100);
         this.fenetre.add(this.allInventoryView);
         this.plateauView.setLocation((this.fenetre.getWidth() - plateauView.getWidth())/2, 70);
         this.fenetre.add(plateauView);

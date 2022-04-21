@@ -16,11 +16,14 @@ public class Controllers {
     private models.ValidationController validationController;
 
     Controllers(Plateau plat, JFrame fenetre, models.Views view) {
+        plat.setTheController(this);
         this.plateau = plat;
         this.window = fenetre;
         this.view = view;
         this.validationController = this.view.validationController;
     }
+
+    public models.Views getView(){return this.view;}
 
     public models.ValidationController getValidationController() {
         return validationController;
@@ -90,9 +93,6 @@ public class Controllers {
                         pc.getPlayer().addCarteTresor(carte);
                         System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
                     }
-                }
-                for (int p = 0; p < n; p++) {
-                    this.view.allInventoryView.inventoriesViews[pcBanque[p].getPlayer().getIdentifier()].setTexteArtefact(Player.getArtefact());
                 }
                 this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
                 pc.StopReply();

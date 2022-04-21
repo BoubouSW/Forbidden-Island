@@ -132,6 +132,7 @@ public class Player {
             Player.artefactRamasse.add(cas.getArtefact());
             cas.removeArtefact();
             CarteTresor[] carteArray = this.removed4CardsOfElement(elem);
+            this.plateau.getTheController().getView().allInventoryView.playerHasPickedArtefact(Player.getArtefact());
             for(CarteTresor c: carteArray){
                 this.plateau.getPaquetCarteTresor().Defausse(c);
             }

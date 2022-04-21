@@ -10,15 +10,12 @@ import java.util.Set;
 // un encadre par joueur
 public class EncadreInventaireView extends JPanel  {
     private IG.Texte PlayersName;
-    private IG.Texte textesArtefact;
+    private IG.Texte textesSkin;
     private IG.Texte textesClef;
 
-    public void setTexteArtefact(Set<Artefact> A){
-        String str = "Artefact :  ";
-        for(Artefact a: A){
-            str += a.getElement().name() + " ";
-        }
-        this.textesArtefact.setText(str);
+    public void setTexteSkin(/** type enum skin **/){
+        String str = "Role :  ";
+        this.textesSkin.setText(str);
     }
 
     public void setTexteKey(Set<CarteTresor> C){
@@ -28,7 +25,7 @@ public class EncadreInventaireView extends JPanel  {
             if(c.getValeurCarte().ordinal() <= 3)
                 forFonc[c.getValeurCarte().ordinal()]++;
         }
-        String str = "Clefs :  ";
+        String str = "Cartes :  ";
         for(int ci = 0; ci < 4; ci++) {
             if (forFonc[ci] >= 1) {
                 str += Objet.Element.values()[ci].name();
@@ -45,7 +42,7 @@ public class EncadreInventaireView extends JPanel  {
         this.setBackground(new Color(240,128,128));
         Player p = plateau.getPlayerById(joueur);
         this.PlayersName = new IG.Texte("Inventaire de " + p.getName(), 16);
-        this.textesArtefact = new IG.Texte("Artefact :  ", 13);
+        this.textesSkin = new IG.Texte("Role :  ", 13);
         this.textesClef = new IG.Texte("Clefs :  ", 13);
 
         //newPanel.setLayout(null);
@@ -62,7 +59,7 @@ public class EncadreInventaireView extends JPanel  {
 
         constraints.gridx = 0;
         constraints.gridy = 1;
-        this.add(this.textesArtefact, constraints);
+        this.add(this.textesSkin, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
