@@ -57,20 +57,19 @@ public class PlayerController extends IG.Touche{
             //god mod
             if (moi.getName().equals("fred"))
                 this.count = -100;
-
             moi.getCase().getController().repaint();
+            /*
             String name = "";
             for (Player player : moi.getCase().getPlayers()) {
                 if (player.getIdentifier() != moi.getIdentifier() && player.isAlive())
                     name = name + " " + player.getName();
             }
-            /*
             if(moi.getCase().hasArtefact()){
                 Objet a = moi.getCase().getArtefact();
                 name = name + " " + a.getElement().name();
             }
-             */
             moi.getCase().getController().changeTexte(name);
+             */
             boolean b = false;
             switch (e.getKeyChar()) {
                 case 'd':
@@ -139,19 +138,21 @@ public class PlayerController extends IG.Touche{
             //System.out.println(moi.isFlightMode());
             if(! b)
                 this.count++;
+            /*
             name = "";
             moi.getCase().getController().add(new IG.Texte("",24));
+
             for (Player player : moi.getCase().getPlayers()) {
                 if(player.isAlive())
                     name = name + " " + player.getName();
             }
-            /*
+
             if(moi.getCase().hasArtefact()){
                 Objet a = moi.getCase().getArtefact();
                 name = name + " " + a.getElement().name();
             }
-             */
             moi.getCase().getController().changeTexte(name);
+             */
             moi.getCase().getController().repaint();
             this.count--;
         }

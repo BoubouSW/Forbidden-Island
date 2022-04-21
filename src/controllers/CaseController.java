@@ -16,6 +16,7 @@ public class CaseController extends IG.ZoneCliquable {
         //super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
         c.set_controller(this);
+        /*
         if (this.cas.hasPlayer()) {
             String name = "";
             for (Player player : this.cas.getPlayers()) {
@@ -25,6 +26,8 @@ public class CaseController extends IG.ZoneCliquable {
             super.changeTexte(name);
             //this.setBackground(new Color(177,21,38));
         }
+
+         */
         switch(this.cas.getEtat()) {
             case INONDEE:
                 this.setBackground(new Color(95, 158, 160)); break;

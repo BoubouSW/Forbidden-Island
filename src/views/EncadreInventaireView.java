@@ -42,7 +42,7 @@ public class EncadreInventaireView extends JPanel  {
         this.setBackground(new Color(240,128,128));
         Player p = plateau.getPlayerById(joueur);
         this.PlayersName = new IG.Texte("Inventaire de " + p.getName(), 16);
-        this.textesSkin = new IG.Texte("Role :  ", 13);
+        this.textesSkin = new IG.Texte("Role :  "+p.getRole().toString(), 13);
         this.textesClef = new IG.Texte("Clefs :  ", 13);
 
         //newPanel.setLayout(null);
@@ -59,6 +59,7 @@ public class EncadreInventaireView extends JPanel  {
 
         constraints.gridx = 0;
         constraints.gridy = 1;
+        this.add(new JLabel(new ImageIcon(p.getImage())));
         this.add(this.textesSkin, constraints);
 
         constraints.gridx = 0;

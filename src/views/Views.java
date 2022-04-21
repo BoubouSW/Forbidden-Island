@@ -1,9 +1,6 @@
 package models;
 
-import views.AllInventoryView;
-import views.EncadreInventaireView;
-import views.EncadreView;
-import views.InitView;
+import views.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +13,8 @@ public class Views {
     EncadreView encadreTour;
     //EncadreInventaireView[] encadreInventaire;
     AllInventoryView allInventoryView;
+    ControlView controlView;
+    WaterLevelView waterLevelView;
 
     public Views(Plateau p) {
         int nbrJoueur = p.getPlayersPlateau().size();
@@ -29,6 +28,16 @@ public class Views {
         this.encadreTour = new EncadreView();
         encadreTour.setLocation((this.fenetre.getWidth() - encadreTour.getWidth())/2, 10);
         this.fenetre.add(encadreTour);
+
+        this.controlView = new ControlView();
+        this.controlView.setLocation(this.fenetre.getWidth()-controlView.getWidth() - 180, controlView.getHeight());
+        this.fenetre.add(this.controlView);
+
+        this.waterLevelView = new WaterLevelView();
+        this.waterLevelView.setLocation(this.fenetre.getWidth()-waterLevelView.getWidth() - 180, this.fenetre.getHeight() - waterLevelView.getHeight() - 60);
+        this.fenetre.add(this.waterLevelView);
+
+
         EncadreInventaireView[] encadreInventaire = new EncadreInventaireView[nbrJoueur];
         for(int i = 0; i < nbrJoueur; i++) {
             encadreInventaire[i] = new EncadreInventaireView(p, i);
