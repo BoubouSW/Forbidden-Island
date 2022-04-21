@@ -1,5 +1,6 @@
 package models;
 import models.PlayerController;
+import views.EndView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class Controllers {
     private JFrame window;
     private models.Views view;
     private models.ValidationController validationController;
+    private boolean win = false;
 
     Controllers(Plateau plat, JFrame fenetre, models.Views view) {
         plat.setTheController(this);
@@ -124,8 +126,11 @@ public class Controllers {
             if(Player.hasAllArtefact() && this.plateau.allPlayersOnHeliport()){
                 System.out.println("Gagne !");
                 gameOver = true;
+                this.win = true;
             }
         }
-        //this.window.setVisible(false);
+        this.window.setVisible(false);
+        EndView endWindow = new EndView(!this.win);
+        endWindow.drawWin();
     }
 }
