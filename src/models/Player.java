@@ -1,4 +1,6 @@
 package models;
+import views.BoutonSelection;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
@@ -130,6 +132,48 @@ public class Player {
     public boolean has4KeyOfElement(Objet.Element elem){
         CarteTresor.TYPE_CARTE_TRESOR typeCarte = CarteTresor.TYPE_CARTE_TRESOR.values()[elem.ordinal()];
         return this.nombreCarteElement(typeCarte) >= 4;
+    }
+
+    public Set<Player> choosePlayers(Set<Player> players, int n){
+        Set<Player> res = new HashSet<Player>();
+        JFrame fenetre = new JFrame("");
+        fenetre.setSize(80,(players.size())*50 + 30);
+        fenetre.setLocationRelativeTo(null);
+        fenetre.setVisible(true);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        //fenetre.setLayout(new BoxLayout(fenetre, BoxLayout.PAGE_AXIS));
+        //fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        int size = players.size();
+        BoutonSelection.isSelectionned = new boolean[size];
+        int i = 0;
+        Player[] pArray = new Player[size];
+        for(Player p: players){
+            panel.add(new BoutonSelection(p.getName(), 80, 50, p.getIdentifier()));
+        }
+        JButton button = new JButton("Valider");
+        panel.add(button);
+        fenetre.add(panel);
+        boolean b = false;
+        synchronized (fenetre) {
+            while (!b) {
+                try {
+                    b = button.getModel().isPressed();
+                    button.wait();
+                } catch (Exception e) {
+                    //System.out.println("Exception in wait " + e); // bizarre
+                }
+            }
+        }
+        fenetre.setVisible(false); //you can't see me!
+        fenetre.dispose(); //Destroy the JFrame object
+        for(Player p: players){
+            if(BoutonSelection.isSelectionned[p.getIdentifier()]){
+                res.add(p);
+            }
+        }
+        System.out.println(res);
+        return res;
     }
 
     public boolean has4KeyOfElement(CarteTresor.TYPE_CARTE_TRESOR type){
