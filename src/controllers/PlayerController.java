@@ -197,6 +197,10 @@ public class PlayerController extends IG.Touche{
                 b = false;
             if(! b)
                 this.count++;
+
+            if(haveToChoose){
+                Set<Player> p = player.choosePlayers(otherPlayers);
+            }
             /*
             name = "";
             moi.getCase().getController().add(new IG.Texte("",24));

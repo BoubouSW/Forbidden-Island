@@ -1,4 +1,5 @@
 package models;
+import controllers.BoutonValiderController;
 import views.BoutonSelection;
 
 import javax.swing.*;
@@ -179,11 +180,18 @@ public class Player {
             System.out.println(p.getName());
             panel.add(new BoutonSelection(p.getName(), 80, 50, p.getIdentifier()));
         }
-        JButton button = new JButton("Valider");
-        panel.add(button);
-        fenetre.add(panel);
         boolean b = false;
+        BoutonValiderController bvc = new BoutonValiderController("Valider",50, 20, 13);
+        JPanel sub = new JPanel();
+        sub.add(bvc);
+        panel.add(sub);
+        fenetre.add(panel);
 
+        do{
+            b = bvc.hasBeenClicked();
+            System.out.print("");
+        }while(!b);
+/**
         synchronized (this) {
             while (!b) {
                 try {
@@ -193,7 +201,7 @@ public class Player {
                     //System.out.println("Exception in wait " + e); // bizarre
                 }
             }
-        }
+        }**/
 
         fenetre.setVisible(false); //you can't see me!
         fenetre.dispose(); //Destroy the JFrame object
