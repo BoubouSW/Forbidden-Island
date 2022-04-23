@@ -23,7 +23,7 @@ public class CaseController extends IG.ZoneCliquable {
         }
         switch(this.cas.getEtat()) {
             case INONDEE:
-                this.setBackground(new Color(95, 158, 160)); break;
+                this.setBackground(Color.white); break;
             case SUBMERGEE:
                 this.setBackground(new Color(30, 144, 255));
                 try {
@@ -62,7 +62,7 @@ public class CaseController extends IG.ZoneCliquable {
             switch (this.cas.getEtat()) {
                 case INONDEE:
                     //this.setBackground(new Color(95, 158, 160));
-                    g.setColor(new Color(95, 158, 160));
+                    g.setColor(new Color(61, 136, 200,100));
                     g.fillRect(0, 0, getWidth(), getHeight());
                     break;
                 case SUBMERGEE:
@@ -94,7 +94,9 @@ public class CaseController extends IG.ZoneCliquable {
             for (Player pi : this.cas.getPlayers()) {
                 img = pi.getImage();
                 if (pi.isFlightMode())
-                    img = new ImageIcon("resources/images/helicopter.png").getImage();
+                    img = new ImageIcon("resources/images/helicopter2.png").getImage();
+                if (pi.isDryMode())
+                    img = new ImageIcon("resources/images/bucket.png").getImage();
                 switch (nb) {
                     case 1: g.drawImage(img,0,0,null); break;
                     case 2: if (k == 0) g.drawImage(img,0,0,null); else g.drawImage(img,50,0,null); break;

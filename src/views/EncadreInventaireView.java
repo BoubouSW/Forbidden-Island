@@ -43,7 +43,7 @@ public class EncadreInventaireView extends JPanel  {
         Player p = plateau.getPlayerById(joueur);
         this.PlayersName = new IG.Texte("Inventaire de " + p.getName(), 16);
         this.textesSkin = new IG.Texte("Role :  "+p.getRole().toString(), 13);
-        this.textesClef = new IG.Texte("Clefs :  ", 13);
+        this.textesClef = new IG.Texte("Cartes :  ", 13);
 
         //newPanel.setLayout(null);
 

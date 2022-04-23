@@ -23,6 +23,7 @@ public class Player {
     private ROLE role;
     private Image image;
     private boolean flightMode = false;
+    private boolean dryMode = false;
 
     // Constructeur
     public Player(Plateau p, int identifier, String name, Case spawn){
@@ -89,6 +90,7 @@ public class Player {
     public ROLE getRole() {return this.role;}
     public Image getImage() { return this.image;}
     public boolean isFlightMode() {return flightMode;}
+    public boolean isDryMode() {return dryMode;}
 
     //Setters
     public static void setEmptyArtefactList(){artefactRamasse = new HashSet<Artefact>();}
@@ -96,6 +98,8 @@ public class Player {
     public void setCarteTresorsSet(Set<CarteTresor> c){ this.carteTresors = c;}
     public void enableFlight() {this.flightMode = true;}
     public void disableFlight() {this.flightMode = false;}
+    public void enableDry() {this.dryMode = true;}
+    public void disableDry() {this.dryMode = false;}
 
     // methodes
 
@@ -119,12 +123,35 @@ public class Player {
         return false;
     }
 
+    public void moveDirDry(Case.Dir direction) {
+        Case cas = this.getCase().adjacente(direction);
+        if (cas.getEtat() != Case.Etat.SUBMERGEE) {
+            this.moveCase(cas);
+        }
+    }
+
     public boolean assecheCase() {
         Case cas = this.getCase();
-        if(cas.getEtat() == Case.Etat.INONDEE) {
+        if(cas.getEtat() == Case.Etat.INONDEE && this.dryMode) {
             cas.set_normale();
             cas.getController().setBackground(new Color(74, 160, 44));
             return true;
+        }
+        return false;
+    }
+
+    public boolean hasSand() {
+        for (CarteTresor c : this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasHelico() {
+        for (CarteTresor c : this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.HELICOPTERE)
+                return true;
         }
         return false;
     }
@@ -137,7 +164,7 @@ public class Player {
     public Set<Player> choosePlayers(Set<Player> players, int n){
         Set<Player> res = new HashSet<Player>();
         JFrame fenetre = new JFrame("");
-        fenetre.setSize(80,(players.size())*50 + 30);
+        fenetre.setSize(200,(players.size())*50 + 30);
         fenetre.setLocationRelativeTo(null);
         fenetre.setVisible(true);
         JPanel panel = new JPanel();
@@ -155,7 +182,8 @@ public class Player {
         panel.add(button);
         fenetre.add(panel);
         boolean b = false;
-        synchronized (fenetre) {
+
+        synchronized (this) {
             while (!b) {
                 try {
                     b = button.getModel().isPressed();
@@ -165,6 +193,7 @@ public class Player {
                 }
             }
         }
+
         fenetre.setVisible(false); //you can't see me!
         fenetre.dispose(); //Destroy the JFrame object
         for(Player p: players){
@@ -172,6 +201,7 @@ public class Player {
                 res.add(p);
             }
         }
+
         System.out.println(res);
         return res;
     }
@@ -206,7 +236,6 @@ public class Player {
             Player.artefactRamasse.add(cas.getArtefact());
             cas.removeArtefact();
             CarteTresor[] carteArray = this.removed4CardsOfElement(elem);
-            System.out.println("coucou");
             this.plateau.getTheController().getView().allInventoryView.playerHasPickedArtefact(Player.getArtefact());
             for(CarteTresor c: carteArray){
                 this.plateau.getPaquetCarteTresor().Defausse(c);
@@ -225,6 +254,28 @@ public class Player {
                 res++;
         }
         return res;
+    }
+
+    public void useSand() {
+        CarteTresor carte = null;
+        for(CarteTresor c:this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE) {
+                carte = c;
+            }
+
+        }
+        this.removeCarteTresor(carte);
+    }
+
+    public void useHelico() {
+        CarteTresor carte = null;
+        for(CarteTresor c:this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.HELICOPTERE) {
+                carte = c;
+            }
+
+        }
+        this.removeCarteTresor(carte);
     }
 
     /** FONCTIONS QUI MARCHAIENT AVEC LIMPLEMENTATION AVEC LE TYPE CLEF ET NON LES CARTES

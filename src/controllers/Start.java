@@ -34,8 +34,8 @@ public class Start {
         int i1,i2;
         Player.ROLE temp;
         for (int i = 0; i < 100; i++) {
-            i1 = 1 + (int) (Math.random() * (Player.ROLE.values().length - 1));
-            i2 = 1 + (int) (Math.random() * (Player.ROLE.values().length - 1));
+            i1 = (int) (Math.random() * (Player.ROLE.values().length));
+            i2 = (int) (Math.random() * (Player.ROLE.values().length));
             temp = roles[i1];
             roles[i1] = roles[i2];
             roles[i2] = temp;
@@ -96,7 +96,7 @@ public class Start {
         int size = plateau.getPlayersPlateau().size();
         PlayerController[] pc = new PlayerController[size];
         for(Player p:plateau.getPlayersPlateau()){
-            pc[p.getIdentifier()] = new PlayerController(p, views.fenetre);
+            pc[p.getIdentifier()] = new PlayerController(p, views.fenetre,plateau.getPlayersPlateau());
         }
 
         //initialisation des paquets de carte
@@ -118,6 +118,17 @@ public class Start {
 
         plateau.setPaquetCarteTresor(paquetCarte);
 
+        //
+        PaquetCarte<CarteInnonde> innondePaquetCarte = new PaquetCarte<>();
+        for (int i = 0; i < plateau.getTaille(); i++) {
+            for (int j = 0; j < plateau.getTaille(); j++) {
+                if (Math.abs(i - (plateau.getTaille() - 1) / 2.) + Math.abs(j - (plateau.getTaille() - 1) / 2.) < plateau.getTaille() / 2.)
+                    innondePaquetCarte.addPile(new CarteInnonde(i,j));
+            }
+        }
+        innondePaquetCarte.melangePile();
+        plateau.setPaquetCarteInnonde(innondePaquetCarte);
+
         //initialisation controller
         models.Controllers cont = new models.Controllers(plateau, views.fenetre, views);
 
@@ -125,6 +136,8 @@ public class Start {
         WaterLevel waterLevel = new WaterLevel(startwaterlevel);
         cont.getValidationController().setWaterLevel(waterLevel);
         cont.getValidationController().drowning(6);
+
+        cont.getView().waterLevelView.setWaterLevel(waterLevel);
         //affichage plateau
         views.display();
 

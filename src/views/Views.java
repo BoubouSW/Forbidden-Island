@@ -22,7 +22,7 @@ public class Views {
         this.fenetre.setSize(1500,830);
         this.fenetre.setLayout(null);
         this.fenetre.setLocationRelativeTo(null);
-        System.out.println(this.fenetre.getLayout().toString());
+        //System.out.println(this.fenetre.getLayout().toString());
         this.plateauView = new models.PlateauView(p);
         this.validationController = new models.ValidationController(p,null);
         this.encadreTour = new EncadreView();
