@@ -172,6 +172,18 @@ public class PlayerController extends IG.Touche{
                         }
                     }
                     break;
+                case 'h':
+                    if (!moi.isFlightMode() && ! moi.isDryMode() && moi.hasHelico()) {
+                        moi.enableFlight();
+                    }
+                    else {
+                        if (moi.isFlightMode()) {
+                            moi.disableFlight();
+                            moi.useHelico();
+                            b = true;
+                        }
+                    }
+                    break;
                 case 'n':
                     System.out.println(this.otherPlayers);
                     Set<Player> playerSet = moi.choosePlayers(this.otherPlayers,2);

@@ -92,7 +92,7 @@ public class Controllers {
                             //System.out.println(paquetCarteTresor.Str());
                         } else {
                             pc.getPlayer().addCarteTresor(carte);
-                            //System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
+                            System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
                         }
                     }
                 }

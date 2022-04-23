@@ -148,6 +148,14 @@ public class Player {
         return false;
     }
 
+    public boolean hasHelico() {
+        for (CarteTresor c : this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.HELICOPTERE)
+                return true;
+        }
+        return false;
+    }
+
     public boolean has4KeyOfElement(Objet.Element elem){
         CarteTresor.TYPE_CARTE_TRESOR typeCarte = CarteTresor.TYPE_CARTE_TRESOR.values()[elem.ordinal()];
         return this.nombreCarteElement(typeCarte) >= 4;
@@ -253,6 +261,17 @@ public class Player {
         CarteTresor carte = null;
         for(CarteTresor c:this.carteTresors) {
             if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE) {
+                carte = c;
+            }
+
+        }
+        this.removeCarteTresor(carte);
+    }
+
+    public void useHelico() {
+        CarteTresor carte = null;
+        for(CarteTresor c:this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.HELICOPTERE) {
                 carte = c;
             }
 
