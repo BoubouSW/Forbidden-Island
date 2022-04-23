@@ -96,7 +96,7 @@ public class Start {
         int size = plateau.getPlayersPlateau().size();
         PlayerController[] pc = new PlayerController[size];
         for(Player p:plateau.getPlayersPlateau()){
-            pc[p.getIdentifier()] = new PlayerController(p, views.fenetre);
+            pc[p.getIdentifier()] = new PlayerController(p, views.fenetre,plateau.getPlayersPlateau());
         }
 
         //initialisation des paquets de carte
@@ -117,6 +117,17 @@ public class Start {
         paquetCarte.melangePile();
 
         plateau.setPaquetCarteTresor(paquetCarte);
+
+        //
+        PaquetCarte<CarteInnonde> innondePaquetCarte = new PaquetCarte<>();
+        for (int i = 0; i < plateau.getTaille(); i++) {
+            for (int j = 0; j < plateau.getTaille(); j++) {
+                if (Math.abs(i - (plateau.getTaille() - 1) / 2.) + Math.abs(j - (plateau.getTaille() - 1) / 2.) < plateau.getTaille() / 2.)
+                    innondePaquetCarte.addPile(new CarteInnonde(i,j));
+            }
+        }
+        innondePaquetCarte.melangePile();
+        plateau.setPaquetCarteInnonde(innondePaquetCarte);
 
         //initialisation controller
         models.Controllers cont = new models.Controllers(plateau, views.fenetre, views);

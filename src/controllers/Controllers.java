@@ -78,23 +78,26 @@ public class Controllers {
                 // pioche des cartes tresors
                 CarteTresor carte;
                 for(int i = 0; i < 2; i++){
-                    carte = paquetCarteTresor.pioche();
+                    if (pc.getPlayer().numberOfCards() < 4) {
+                        carte = paquetCarteTresor.pioche();
 
-                    if(carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
-                        this.validationController.getWaterLevel().augmenteLvl();
-                        System.out.println(carte.getValeurCarte().name());
-                        paquetCarteTresor.Defausse(carte);
-                        paquetCarteTresor.melangeDefausse();
-                        paquetCarteTresor.retourneDefausse();
-                        System.out.println(paquetCarteTresor.Str());
-                    }else{
-                        pc.getPlayer().addCarteTresor(carte);
-                        //System.out.println("Le joueur pioche : " + carte.getValeurCarte().name());
+                        if (carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
+                            this.validationController.getWaterLevel().augmenteLvl();
+                            System.out.println(carte.getValeurCarte().name());
+                            this.plateau.getPaquetCarteInnonde().melangeDefausse();
+                            this.plateau.getPaquetCarteInnonde().retourneDefausse();
+                            paquetCarteTresor.Defausse(carte);
+                            paquetCarteTresor.melangeDefausse();
+                            paquetCarteTresor.retourneDefausse();
+                            //System.out.println(paquetCarteTresor.Str());
+                        } else {
+                            pc.getPlayer().addCarteTresor(carte);
+                            //System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
+                        }
                     }
                 }
                 this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
                 pc.StopReply();
-                //Set<Player> p = pc.getPlayer().choosePlayers(plateau.getPlayersPlateau(), 2);
                 //System.out.println(pc.getPlayer().inventory());
                 synchronized (this) {
                     while (!this.validationController.getEnd()) {

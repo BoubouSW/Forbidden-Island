@@ -96,6 +96,10 @@ public class PaquetCarte<T extends I> {
         this.nbCartePioche = this.Pile.size();
     }
 
+    public void supprimeDefausse(T c) {
+        this.Default.remove(c);
+    }
+
     public String Str(){
         String s = "Pile : ";
         for(T c: this.Pile){

@@ -8,19 +8,24 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Scanner;
+import java.util.Set;
 
 public class PlayerController extends IG.Touche{
     private Player player;
+    private Set<Player> otherPlayers;
     private boolean shouldReply;
     private int count;
     private int flyCount;
     private boolean ingenieurDry;
+    private boolean piloteFlight;
 
-    public PlayerController(Player p, JFrame fenetre){
+    public PlayerController(Player p, JFrame fenetre, Set<Player> players){
         fenetre.addKeyListener(this);
         this.player = p;
+        this.otherPlayers = players;
         this.shouldReply = false;
         this.ingenieurDry = false;
+        this.piloteFlight = false;
     }
 
     //getters
@@ -40,6 +45,8 @@ public class PlayerController extends IG.Touche{
         this.count = 3;
         if (this.player.getRole() == Player.ROLE.INGENIEUR)
             this.ingenieurDry = true;
+        if (this.player.getRole() == Player.ROLE.PILOTE)
+            this.piloteFlight = true;
     }
 
     public void StopReply(){
@@ -121,10 +128,11 @@ public class PlayerController extends IG.Touche{
                     System.out.println(this.getPlayer().inventory());
                     break;
                 case 'v':
-                    if (moi.getRole() == Player.ROLE.PILOTE && !moi.isFlightMode()) {
+                    if (!moi.isFlightMode() && this.piloteFlight) {
                         moi.enableFlight();
                         this.flyCount = this.count;
                         this.count = 100;
+                        this.piloteFlight = false;
                     }
                     else {
                         if (moi.getRole() == Player.ROLE.PILOTE && moi.isFlightMode()) {
@@ -134,6 +142,9 @@ public class PlayerController extends IG.Touche{
                         }
                     }
                     break;
+                case 'n':
+                    System.out.println(this.otherPlayers);
+                    Set<Player> playerSet = moi.choosePlayers(this.otherPlayers,2);
             }
             //System.out.println(moi.isFlightMode());
             if(! b)

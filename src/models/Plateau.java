@@ -12,6 +12,7 @@ public class Plateau {
     private Set<Player> players;
     private models.Controllers theController;
     private PaquetCarte<CarteTresor> paquetCarteTresor;
+    private PaquetCarte<CarteInnonde> paquetCarteInnonde;
     private models.PlateauView plateauView;
     private int nbCaseNonSubmergee;
     private int[] coordHeliport;
@@ -70,11 +71,15 @@ public class Plateau {
         return this.getCase(coordHeliport[0], coordHeliport[1]);
     }
     public PaquetCarte<CarteTresor> getPaquetCarteTresor(){ return this.paquetCarteTresor; }
+    public PaquetCarte<CarteInnonde> getPaquetCarteInnonde() {return paquetCarteInnonde;}
     public models.PlateauView getPlateauView(){return this.plateauView;}
     public models.Controllers getTheController() { return theController; }
 
     public void setPaquetCarteTresor(PaquetCarte<CarteTresor> p){
         this.paquetCarteTresor = p;
+    }
+    public void setPaquetCarteInnonde(PaquetCarte<CarteInnonde> p){
+        this.paquetCarteInnonde = p;
     }
     public void setTheController(models.Controllers c){ this.theController = c;}
 
@@ -93,6 +98,23 @@ public class Plateau {
             y = 1 + (int) (Math.random() * (this.getTaille() - 2));
         }while(this.getCase(x,y).getEtat() == Case.Etat.SUBMERGEE);
         return this.getCase(x, y);
+    }
+
+    public Case tireSecheouInonde(){
+        CarteInnonde carte;
+        PaquetCarte<CarteInnonde> paquet = this.getPaquetCarteInnonde();
+        if (paquet.pileVide()) {
+            paquet.melangeDefausse();
+            paquet.retourneDefausse();
+        }
+        carte = this.getPaquetCarteInnonde().pioche();
+        int[] coord = carte.getCoord();
+        this.getPaquetCarteInnonde().Defausse(carte);
+        //this.getPaquetCarteInnonde().retourneDefausse();
+        Case c = this.getCase(coord[0], coord[1]);
+        if (c.getEtat() == Case.Etat.INONDEE)
+            paquet.supprimeDefausse(carte);
+        return c;
     }
 
     int[] randomIndondeSubmerge() {

@@ -137,7 +137,7 @@ public class Player {
     public Set<Player> choosePlayers(Set<Player> players, int n){
         Set<Player> res = new HashSet<Player>();
         JFrame fenetre = new JFrame("");
-        fenetre.setSize(80,(players.size())*50 + 30);
+        fenetre.setSize(200,(players.size())*50 + 30);
         fenetre.setLocationRelativeTo(null);
         fenetre.setVisible(true);
         JPanel panel = new JPanel();
@@ -155,7 +155,8 @@ public class Player {
         panel.add(button);
         fenetre.add(panel);
         boolean b = false;
-        synchronized (fenetre) {
+
+        synchronized (this) {
             while (!b) {
                 try {
                     b = button.getModel().isPressed();
@@ -165,6 +166,7 @@ public class Player {
                 }
             }
         }
+
         fenetre.setVisible(false); //you can't see me!
         fenetre.dispose(); //Destroy the JFrame object
         for(Player p: players){
@@ -172,6 +174,7 @@ public class Player {
                 res.add(p);
             }
         }
+
         System.out.println(res);
         return res;
     }
