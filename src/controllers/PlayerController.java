@@ -6,7 +6,6 @@ import models.Player;
 import views.BoutonSelection;
 
 import javax.swing.*;
-import java.awt.desktop.SystemEventListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
@@ -155,6 +154,7 @@ public class PlayerController extends IG.Touche{
                             b = moi.assecheCase();
                             if(b) {
                                 moi.useSand();
+                                b = false;
                             }
                             moi.disableDry();
                             moi.moveCase(this.saveCase);
@@ -192,7 +192,6 @@ public class PlayerController extends IG.Touche{
                         if (moi.isFlightMode()) {
                             moi.disableFlight();
                             moi.useHelico();
-                            b = true;
                         }
                     }
                     break;

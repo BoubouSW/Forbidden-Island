@@ -275,6 +275,7 @@ public class Player {
             }
 
         }
+        this.plateau.getPaquetCarteTresor().Defausse(carte);
         this.removeCarteTresor(carte);
     }
 
@@ -286,6 +287,7 @@ public class Player {
             }
 
         }
+        this.plateau.getPaquetCarteTresor().Defausse(carte);
         this.removeCarteTresor(carte);
     }
 

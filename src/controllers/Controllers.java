@@ -50,6 +50,19 @@ public class Controllers {
         return false;
     }
 
+    public boolean twoArtefactDead() {
+        int[] count = {0,0,0,0};
+        for (Artefact a: this.plateau.getArtefacts()) {
+            if (!a.alive)
+                count[a.getElement().ordinal()] += 1;
+        }
+        for (int i :count) {
+            if (i == 2)
+                return true;
+        }
+        return false;
+    }
+
     public boolean heliportDead(){
         return this.plateau.getHeliport().isSubmergee();
     }
@@ -129,7 +142,7 @@ public class Controllers {
                 }
             }
             WaterLevel wl = this.validationController.getWaterLevel();
-            if(this.oneDead() || this.heliportDead() || wl.getCurrentLvl() == wl.getMaxLvl()) {
+            if(this.oneDead() || this.heliportDead() || wl.getCurrentLvl() == wl.getMaxLvl() || this.twoArtefactDead()) {
                 System.out.println("Perdu !");
                 gameOver = true;
                 break;

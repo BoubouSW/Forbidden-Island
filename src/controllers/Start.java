@@ -71,6 +71,7 @@ public class Start {
             c.addObject(a);
             //c.getController().changeTexte(a.getElement().name());
         }
+        plateau.setArtefacts(aTab);
 
         Clef[] cTab = { new Clef(Objet.Element.FEU, null, null),
                         new Clef(Objet.Element.EAU, null, null),
