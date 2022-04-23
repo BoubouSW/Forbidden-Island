@@ -3,10 +3,13 @@ import java.awt.*;
 
 import models.Controllers;
 import models.Player;
+import views.BoutonSelection;
 
 import javax.swing.*;
+import java.awt.desktop.SystemEventListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -76,6 +79,7 @@ public class PlayerController extends IG.Touche{
                 name = name + " " + a.getElement().name();
             }
             */
+            boolean haveToChoose = false;
             moi.getCase().getController().changeTexte(" ");
             boolean b = false;
             switch (e.getKeyChar()) {
@@ -186,8 +190,7 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
                 case 'n':
-                    System.out.println(this.otherPlayers);
-                    Set<Player> playerSet = moi.choosePlayers(this.otherPlayers,2);
+                    haveToChoose = true;
             }
             //System.out.println(moi.isFlightMode());
             if (moi.isFlightMode())

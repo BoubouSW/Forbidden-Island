@@ -161,7 +161,7 @@ public class Player {
         return this.nombreCarteElement(typeCarte) >= 4;
     }
 
-    public Set<Player> choosePlayers(Set<Player> players, int n){
+    public Set<Player> choosePlayers(Set<Player> players){
         Set<Player> res = new HashSet<Player>();
         JFrame fenetre = new JFrame("");
         fenetre.setSize(200,(players.size())*50 + 30);
@@ -176,6 +176,7 @@ public class Player {
         int i = 0;
         Player[] pArray = new Player[size];
         for(Player p: players){
+            System.out.println(p.getName());
             panel.add(new BoutonSelection(p.getName(), 80, 50, p.getIdentifier()));
         }
         JButton button = new JButton("Valider");
