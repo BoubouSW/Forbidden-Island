@@ -87,6 +87,7 @@ public class Controllers {
                     c = pc.getCount();
                     this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
                     this.view.encadreTour.setNbrCoup(c);
+                    this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setBackground(new Color(255,100,100));
                 }
                 // pioche des cartes tresors
                 CarteTresor carte;
@@ -133,7 +134,7 @@ public class Controllers {
                 p.disableFlight();
                 p.disableDry();
             }
-
+            this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setBackground(new Color(30,144,255));
             whoShouldPlay = (whoShouldPlay + 1) % n;
             int taille = this.plateau.getTaille();
             for (int i = 0; i < taille; i++) {

@@ -117,25 +117,28 @@ class Case {
     public Case adjacente(Dir d){
         int x = this.getX();
         int y = this.getY();
-        switch(d) {
-            case GAUCHE:
-                return this.plateau.getCase(x, y - 1);
-            case DROITE:
-                return this.plateau.getCase(x, y + 1);
-            case HAUT:
-                return this.plateau.getCase(x - 1, y);
-            case BAS:
-                return this.plateau.getCase(x + 1, y);
-            case NW:
-                return this.plateau.getCase(x-1,y-1);
-            case NE:
-                return this.plateau.getCase(x-1,y+1);
-            case SE:
-                return this.plateau.getCase(x+1,y+1);
-            case SW:
-                return this.plateau.getCase(x+1,y-1);
-        }
-        throw new RuntimeException("On ne devrait pas arriver ici");
+        try {
+            switch (d) {
+                case GAUCHE:
+                    return this.plateau.getCase(x, y - 1);
+                case DROITE:
+                    return this.plateau.getCase(x, y + 1);
+                case HAUT:
+                    return this.plateau.getCase(x - 1, y);
+                case BAS:
+                    return this.plateau.getCase(x + 1, y);
+                case NW:
+                    return this.plateau.getCase(x - 1, y - 1);
+                case NE:
+                    return this.plateau.getCase(x - 1, y + 1);
+                case SE:
+                    return this.plateau.getCase(x + 1, y + 1);
+                case SW:
+                    return this.plateau.getCase(x + 1, y - 1);
+            }
+        }catch (ArrayIndexOutOfBoundsException e) {}
+        //throw new RuntimeException("On ne devrait pas arriver ici");
+        return this;
     }
 
     public void addPlayer(Player p){

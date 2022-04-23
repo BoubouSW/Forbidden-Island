@@ -1,7 +1,7 @@
 package models;
 
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +19,7 @@ class ValidationController extends IG.ZoneCliquable {
         // Création d'une zone cliquable de dimensions 80*25 pixels,
         // et contenant le texte "Valider".
         super("Fin de tour", 100, 25,15);
+        this.setLayout(new GridBagLayout());
         this.setSize(100, 25);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(new Color(30,144,255));

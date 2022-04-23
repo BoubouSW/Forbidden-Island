@@ -23,7 +23,7 @@ public abstract class ZoneCliquable extends JPanel implements MouseListener {
      */
     public ZoneCliquable(String texte, int x, int y, int texteSize) {
 	    this(x, y);
-        setLayout(new GridBagLayout());
+        //setLayout(new GridBagLayout());
 	    this.texte = new IG.Texte(texte,texteSize);
 	    this.add(this.texte);
     }
