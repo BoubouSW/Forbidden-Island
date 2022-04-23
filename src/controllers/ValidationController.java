@@ -20,6 +20,8 @@ class ValidationController extends IG.ZoneCliquable {
         // et contenant le texte "Valider".
         super("Fin de tour", 100, 25,15);
         this.setSize(100, 25);
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.setBackground(new Color(30,144,255));
         this.plateau = p;
         this.waterLevel = w;
         this.end = false;
@@ -103,9 +105,9 @@ class ValidationController extends IG.ZoneCliquable {
 
     public void clicDroit() {}
     public void mouseEntered(MouseEvent e) {
-        this.setBackground(new Color(0,128,255,75));
+        this.setBackground(new Color(0,128,200,75));
     }
     public void mouseExited(MouseEvent e) {
-        this.setBackground(Color.WHITE);
+        this.setBackground(new Color(30,144,255));
     }
 }

@@ -19,8 +19,7 @@ public class Views {
     public Views(Plateau p) {
         int nbrJoueur = p.getPlayersPlateau().size();
         this.fenetre = new JFrame("ForbiddenIsland");
-        //this.fenetre.setUndecorated(true);
-        //this.fenetre.setBackground(new Color(0,0,0,0));
+        this.fenetre.getContentPane().setBackground(new Color(100,149,237));
         this.fenetre.setSize(1500,830);
         this.fenetre.setLayout(null);
         this.fenetre.setLocationRelativeTo(null);

@@ -67,7 +67,7 @@ public class EncadreInventaireView extends JPanel  {
         this.add(this.textesClef, constraints);
 
         // set border for the panel
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1,Color.BLACK));
         this.setBounds(0,0,0,0);
     }
 }

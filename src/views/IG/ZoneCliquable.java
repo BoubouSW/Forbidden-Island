@@ -2,8 +2,7 @@ package IG;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import java.awt.Dimension;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -23,10 +22,10 @@ public abstract class ZoneCliquable extends JPanel implements MouseListener {
      * @param y Deuxième dimention de la case
      */
     public ZoneCliquable(String texte, int x, int y, int texteSize) {
-	this(x, y);
-	this.texte = new Texte(texte,texteSize);
-	this.add(this.texte);
-
+	    this(x, y);
+        setLayout(new GridBagLayout());
+	    this.texte = new IG.Texte(texte,texteSize);
+	    this.add(this.texte);
     }
 
     public ZoneCliquable(int x, int y) {

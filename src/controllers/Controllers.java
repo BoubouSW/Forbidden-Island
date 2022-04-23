@@ -101,6 +101,7 @@ public class Controllers {
                 this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
                 pc.StopReply();
                 Set<Player> p = pc.getPlayer().choosePlayers(plateau.getPlayersPlateau());
+                //Set<Player> p = pc.getPlayer().choosePlayers(plateau.getPlayersPlateau(), 2);
                 //System.out.println(pc.getPlayer().inventory());
                 synchronized (this) {
                     while (!this.validationController.getEnd()) {
