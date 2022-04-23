@@ -34,8 +34,8 @@ public class Start {
         int i1,i2;
         Player.ROLE temp;
         for (int i = 0; i < 100; i++) {
-            i1 = 1 + (int) (Math.random() * (Player.ROLE.values().length - 1));
-            i2 = 1 + (int) (Math.random() * (Player.ROLE.values().length - 1));
+            i1 = (int) (Math.random() * (Player.ROLE.values().length));
+            i2 = (int) (Math.random() * (Player.ROLE.values().length));
             temp = roles[i1];
             roles[i1] = roles[i2];
             roles[i2] = temp;

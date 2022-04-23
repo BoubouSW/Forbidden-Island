@@ -23,6 +23,7 @@ public class Player {
     private ROLE role;
     private Image image;
     private boolean flightMode = false;
+    private boolean dryMode = false;
 
     // Constructeur
     public Player(Plateau p, int identifier, String name, Case spawn){
@@ -89,6 +90,7 @@ public class Player {
     public ROLE getRole() {return this.role;}
     public Image getImage() { return this.image;}
     public boolean isFlightMode() {return flightMode;}
+    public boolean isDryMode() {return dryMode;}
 
     //Setters
     public static void setEmptyArtefactList(){artefactRamasse = new HashSet<Artefact>();}
@@ -96,6 +98,8 @@ public class Player {
     public void setCarteTresorsSet(Set<CarteTresor> c){ this.carteTresors = c;}
     public void enableFlight() {this.flightMode = true;}
     public void disableFlight() {this.flightMode = false;}
+    public void enableDry() {this.dryMode = true;}
+    public void disableDry() {this.dryMode = false;}
 
     // methodes
 
@@ -119,12 +123,27 @@ public class Player {
         return false;
     }
 
+    public void moveDirDry(Case.Dir direction) {
+        Case cas = this.getCase().adjacente(direction);
+        if (cas.getEtat() != Case.Etat.SUBMERGEE) {
+            this.moveCase(cas);
+        }
+    }
+
     public boolean assecheCase() {
         Case cas = this.getCase();
-        if(cas.getEtat() == Case.Etat.INONDEE) {
+        if(cas.getEtat() == Case.Etat.INONDEE && this.dryMode) {
             cas.set_normale();
             cas.getController().setBackground(new Color(74, 160, 44));
             return true;
+        }
+        return false;
+    }
+
+    public boolean hasSand() {
+        for (CarteTresor c : this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE)
+                return true;
         }
         return false;
     }
@@ -228,6 +247,17 @@ public class Player {
                 res++;
         }
         return res;
+    }
+
+    public void useSand() {
+        CarteTresor carte = null;
+        for(CarteTresor c:this.carteTresors) {
+            if (c.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.CARTE_DE_SABLE) {
+                carte = c;
+            }
+
+        }
+        this.removeCarteTresor(carte);
     }
 
     /** FONCTIONS QUI MARCHAIENT AVEC LIMPLEMENTATION AVEC LE TYPE CLEF ET NON LES CARTES

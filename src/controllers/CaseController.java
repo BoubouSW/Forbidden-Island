@@ -95,6 +95,8 @@ public class CaseController extends IG.ZoneCliquable {
                 img = pi.getImage();
                 if (pi.isFlightMode())
                     img = new ImageIcon("resources/images/helicopter.png").getImage();
+                if (pi.isDryMode())
+                    img = new ImageIcon("resources/images/bucket.png").getImage();
                 switch (nb) {
                     case 1: g.drawImage(img,0,0,null); break;
                     case 2: if (k == 0) g.drawImage(img,0,0,null); else g.drawImage(img,50,0,null); break;
