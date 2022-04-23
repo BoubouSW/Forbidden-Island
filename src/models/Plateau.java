@@ -16,6 +16,7 @@ public class Plateau {
     private models.PlateauView plateauView;
     private int nbCaseNonSubmergee;
     private int[] coordHeliport;
+    private Artefact[] artefacts;
 
     // Constructeur
     public Plateau(int taille) {
@@ -74,7 +75,9 @@ public class Plateau {
     public PaquetCarte<CarteInnonde> getPaquetCarteInnonde() {return paquetCarteInnonde;}
     public models.PlateauView getPlateauView(){return this.plateauView;}
     public models.Controllers getTheController() { return theController; }
+    public Artefact[] getArtefacts() {return artefacts;}
 
+    //setters
     public void setPaquetCarteTresor(PaquetCarte<CarteTresor> p){
         this.paquetCarteTresor = p;
     }
@@ -82,6 +85,7 @@ public class Plateau {
         this.paquetCarteInnonde = p;
     }
     public void setTheController(models.Controllers c){ this.theController = c;}
+    public void setArtefacts(Artefact[] art){ this.artefacts = art;}
 
     // methodes
     public void addPlayerPlateau(int id,String name, int x, int y, Player.ROLE r) {
