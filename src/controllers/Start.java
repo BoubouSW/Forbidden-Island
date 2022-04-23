@@ -136,6 +136,8 @@ public class Start {
         WaterLevel waterLevel = new WaterLevel(startwaterlevel);
         cont.getValidationController().setWaterLevel(waterLevel);
         cont.getValidationController().drowning(6);
+
+        cont.getView().waterLevelView.setWaterLevel(waterLevel);
         //affichage plateau
         views.display();
 

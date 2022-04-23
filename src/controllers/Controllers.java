@@ -86,6 +86,7 @@ public class Controllers {
                             System.out.println(carte.getValeurCarte().name());
                             this.plateau.getPaquetCarteInnonde().melangeDefausse();
                             this.plateau.getPaquetCarteInnonde().retourneDefausse();
+                            this.getView().waterLevelView.repaint();
                             paquetCarteTresor.Defausse(carte);
                             paquetCarteTresor.melangeDefausse();
                             paquetCarteTresor.retourneDefausse();
