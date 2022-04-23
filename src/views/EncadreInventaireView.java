@@ -19,7 +19,7 @@ public class EncadreInventaireView extends JPanel  {
     }
 
     // methode privee pour les affichages
-    private String stringForInventory(CarteTresor.TYPE_CARTE_TRESOR tc){
+    public static String stringForInventory(CarteTresor.TYPE_CARTE_TRESOR tc){
         if(tc.ordinal() <= 3){
             return Objet.Element.values()[tc.ordinal()].name();
         }else{

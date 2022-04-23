@@ -4,6 +4,7 @@ import java.awt.*;
 import models.Controllers;
 import models.Player;
 import views.BoutonSelection;
+import views.EncadreSelection;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -20,6 +21,7 @@ public class PlayerController extends IG.Touche{
     private boolean ingenieurDry;
     private boolean piloteFlight;
     private Case saveCase;
+    private boolean echangeDeClef = false;
 
     public PlayerController(Player p, JFrame fenetre, Set<Player> players){
         fenetre.addKeyListener(this);
@@ -41,6 +43,8 @@ public class PlayerController extends IG.Touche{
 
     public Player getPlayer(){return this.player;}
 
+    public boolean getEchangeDeClef() { return this.echangeDeClef; }
+
     //setters
     public void StartReply(){
         this.shouldReply = true;
@@ -55,10 +59,14 @@ public class PlayerController extends IG.Touche{
         this.shouldReply = false;
     }
 
+    public void setEchangeDeClef(boolean b){ this.echangeDeClef = b; }
+
     public void keyPressed(KeyEvent e){
     };
     public void keyReleased(KeyEvent e){
     };
+
+    public void setCount(int c){this.count = c;}
 
     public void keyTyped(KeyEvent e) {
         if (this.shouldReply) {
@@ -195,18 +203,15 @@ public class PlayerController extends IG.Touche{
                         }
                     }
                     break;
-                case 'n':
-                    haveToChoose = true;
+                case 'p':
+                    // echangeDeClef
+                    this.echangeDeClef = true; break;
             }
             //System.out.println(moi.isFlightMode());
             if (moi.isFlightMode())
                 b = false;
             if(! b)
                 this.count++;
-
-            if(haveToChoose){
-                Set<Player> p = player.choosePlayers(otherPlayers);
-            }
             /*
             name = "";
             moi.getCase().getController().add(new IG.Texte("",24));

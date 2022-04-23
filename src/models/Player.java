@@ -163,7 +163,7 @@ public class Player {
         CarteTresor.TYPE_CARTE_TRESOR typeCarte = CarteTresor.TYPE_CARTE_TRESOR.values()[elem.ordinal()];
         return this.nombreCarteElement(typeCarte) >= 4;
     }
-
+/**
     public Set<Player> choosePlayers(Set<Player> players){
         Set<Player> res = new HashSet<Player>();
         JFrame fenetre = new JFrame("");
@@ -183,7 +183,7 @@ public class Player {
             panel.add(new BoutonSelection(p.getName(), 80, 50, p.getIdentifier()));
         }
         boolean b = false;
-        BoutonValiderController bvc = new BoutonValiderController("Valider",50, 20, 13);
+        BoutonValiderController bvc = new BoutonValiderController("Valider",50, 20, 13, );
         JPanel sub = new JPanel();
         sub.add(bvc);
         panel.add(sub);
@@ -193,7 +193,7 @@ public class Player {
             b = bvc.hasBeenClicked();
             System.out.print("");
         }while(!b);
-/**
+
         synchronized (this) {
             while (!b) {
                 try {
@@ -203,7 +203,7 @@ public class Player {
                     //System.out.println("Exception in wait " + e); // bizarre
                 }
             }
-        }**/
+        }
 
         fenetre.setVisible(false); //you can't see me!
         fenetre.dispose(); //Destroy the JFrame object
@@ -215,7 +215,7 @@ public class Player {
 
         System.out.println(res);
         return res;
-    }
+    }**/
 
     public boolean has4KeyOfElement(CarteTresor.TYPE_CARTE_TRESOR type){
         return this.nombreCarteElement(type) >= 4;
