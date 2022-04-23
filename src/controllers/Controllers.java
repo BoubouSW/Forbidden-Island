@@ -84,7 +84,8 @@ public class Controllers {
                         if (carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
                             this.validationController.getWaterLevel().augmenteLvl();
                             System.out.println("Niveau de l'eau : " + validationController.getWaterLevel().getCurrentLvl());
-                            this.plateau.getPaquetCarteInnonde().melangeDefausse();
+                            if (this.plateau.getPaquetCarteInnonde().sizeDefausse() > 1)
+                                this.plateau.getPaquetCarteInnonde().melangeDefausse();
                             this.plateau.getPaquetCarteInnonde().retourneDefausse();
                             this.getView().waterLevelView.repaint();
                             paquetCarteTresor.Defausse(carte);
@@ -93,7 +94,7 @@ public class Controllers {
                             //System.out.println(paquetCarteTresor.Str());
                         } else {
                             pc.getPlayer().addCarteTresor(carte);
-                            //System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
+                            System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
                         }
                     }
                 }
@@ -116,6 +117,7 @@ public class Controllers {
             }
             for (Player p: this.getPlayersController()) {
                 p.disableFlight();
+                p.disableDry();
             }
 
             whoShouldPlay = (whoShouldPlay + 1) % n;
@@ -137,7 +139,8 @@ public class Controllers {
                 this.win = true;
             }
         }
-        this.window.setVisible(false);
+        //this.window.setVisible(false);
+        this.window.setEnabled(false);
         EndView endWindow = new EndView(!this.win);
         endWindow.drawWin();
     }

@@ -100,6 +100,8 @@ public class PaquetCarte<T extends I> {
         this.Default.remove(c);
     }
 
+    public int sizeDefausse() {return this.Default.size();}
+
     public String Str(){
         String s = "Pile : ";
         for(T c: this.Pile){

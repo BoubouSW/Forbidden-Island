@@ -10,6 +10,8 @@ public class EndView extends JFrame {
 
     public EndView(boolean b) {
         super("End");
+        this.setUndecorated(true);
+        this.setBackground(new Color(0.0f,0.0f,0.0f,0.0f));
         this.pack();
         this.setLayout(null);
         this.setSize(this.widthSetup,this.heightSetup);

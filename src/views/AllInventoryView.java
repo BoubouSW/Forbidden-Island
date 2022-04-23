@@ -25,7 +25,7 @@ public class AllInventoryView extends JPanel {
         //inventaireArtefact.setLayout(null);
 
         JPanel sub = new JPanel(new GridBagLayout());
-        sub.setBackground(new Color(240,128,128));
+        sub.setBackground(new Color(30,144,255));
         this.textTitreArt = new IG.Texte("Artefact Ramasses : ", 16);
         this.textArt = new IG.Texte("", 13);
 

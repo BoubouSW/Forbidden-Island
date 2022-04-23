@@ -20,7 +20,7 @@ public class EncadreView extends JPanel {
     public EncadreView() {
         super(new GridBagLayout());
         this.setSize(180, 50);
-        this.setBackground(new Color(240,128,128));
+        this.setBackground(new Color(30,144,255));
         this.texteJoueur = new Texte("Tour de : ", 15);
         this.texteNbrCoup = new Texte("Nombre de coup restant : ", 12);
 
