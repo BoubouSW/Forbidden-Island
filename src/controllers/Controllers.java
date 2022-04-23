@@ -41,13 +41,13 @@ public class Controllers {
         throw new RuntimeException("Identifiant non valide");
     }
 
-    public boolean allDead() {
+    public boolean oneDead() {
         Set<Player> pc = this.getPlayersController();
         for (Player p : pc)
-            if (p.isAlive()) {
-                return false;
+            if (!p.isAlive()) {
+                return true;
             }
-        return true;
+        return false;
     }
 
     public boolean heliportDead(){
@@ -83,7 +83,7 @@ public class Controllers {
 
                         if (carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
                             this.validationController.getWaterLevel().augmenteLvl();
-                            System.out.println(carte.getValeurCarte().name());
+                            System.out.println("Niveau de l'eau : " + validationController.getWaterLevel().getCurrentLvl());
                             this.plateau.getPaquetCarteInnonde().melangeDefausse();
                             this.plateau.getPaquetCarteInnonde().retourneDefausse();
                             this.getView().waterLevelView.repaint();
@@ -93,7 +93,7 @@ public class Controllers {
                             //System.out.println(paquetCarteTresor.Str());
                         } else {
                             pc.getPlayer().addCarteTresor(carte);
-                            System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
+                            //System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
                         }
                     }
                 }
@@ -124,7 +124,8 @@ public class Controllers {
                     this.plateau.getCase(i,j).getController().repaint();
                 }
             }
-            if(this.allDead() || this.heliportDead()) {
+            WaterLevel wl = this.validationController.getWaterLevel();
+            if(this.oneDead() || this.heliportDead() || wl.getCurrentLvl() == wl.getMaxLvl()) {
                 System.out.println("Perdu !");
                 gameOver = true;
                 break;

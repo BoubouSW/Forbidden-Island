@@ -80,25 +80,25 @@ public class PlayerController extends IG.Touche{
             boolean b = false;
             switch (e.getKeyChar()) {
                 case 'd':
-                    if (moi.isDryMode() || moi.isFlightMode())
+                    if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.DROITE);
                     else
                         b = moi.moveDir(Case.Dir.DROITE);
                     break;
                 case 'q':
-                    if (moi.isDryMode() || moi.isFlightMode())
+                    if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.GAUCHE);
                     else
                         b = moi.moveDir(Case.Dir.GAUCHE);
                     break;
                 case 'z':
-                    if (moi.isDryMode() || moi.isFlightMode())
+                    if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.HAUT);
                     else
                         b = moi.moveDir(Case.Dir.HAUT);
                     break;
-                case 'x':
-                    if (moi.isDryMode() || moi.isFlightMode())
+                case 's':
+                    if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.BAS);
                     else
                         b = moi.moveDir(Case.Dir.BAS);
@@ -164,6 +164,7 @@ public class PlayerController extends IG.Touche{
                     if (!moi.isFlightMode() && this.piloteFlight && ! moi.isDryMode()) {
                         moi.enableFlight();
                         this.piloteFlight = false;
+                        System.out.println(moi.isFlightMode());
                     }
                     else {
                         if (moi.getRole() == Player.ROLE.PILOTE && moi.isFlightMode()) {
@@ -189,6 +190,8 @@ public class PlayerController extends IG.Touche{
                     Set<Player> playerSet = moi.choosePlayers(this.otherPlayers,2);
             }
             //System.out.println(moi.isFlightMode());
+            if (moi.isFlightMode())
+                b = false;
             if(! b)
                 this.count++;
             /*
