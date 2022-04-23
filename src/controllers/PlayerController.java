@@ -81,46 +81,53 @@ public class PlayerController extends IG.Touche{
             */
             boolean haveToChoose = false;
             moi.getCase().getController().changeTexte(" ");
+            int xRef = -1;
+            int yRef = -1;
+            if(moi.isDryMode()){
+                // this.saveCase not null
+                xRef = this.saveCase.getX();
+                yRef = this.saveCase.getY();
+            }
             boolean b = false;
             switch (e.getKeyChar()) {
                 case 'd':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.DROITE);
+                        moi.moveDirDry(Case.Dir.DROITE, xRef, yRef);
                     else
                         b = moi.moveDir(Case.Dir.DROITE);
                     break;
                 case 'q':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.GAUCHE);
+                        moi.moveDirDry(Case.Dir.GAUCHE, xRef, yRef);
                     else
                         b = moi.moveDir(Case.Dir.GAUCHE);
                     break;
                 case 'z':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.HAUT);
+                        moi.moveDirDry(Case.Dir.HAUT, xRef, yRef);
                     else
                         b = moi.moveDir(Case.Dir.HAUT);
                     break;
                 case 's':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.BAS);
+                        moi.moveDirDry(Case.Dir.BAS, xRef, yRef);
                     else
                         b = moi.moveDir(Case.Dir.BAS);
                     break;
                 case 'a':
-                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.NW);
                     break;
                 case 'e':
-                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.NE);
                     break;
                 case 'w':
-                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.SW);
                     break;
                 case 'c':
-                    if (moi.getRole() == Player.ROLE.EXPLORATEUR)
+                    if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.SE);
                     break;
                 case 'f':

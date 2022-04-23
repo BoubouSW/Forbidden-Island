@@ -146,4 +146,23 @@ class Case {
 
     public void addObject(Objet objet){ this.objets.add(objet); }
 
+    public boolean isAdjacenteOrEqual(Case other, boolean diag){
+        // return true if and only if other has the same
+        // coordonate than this, or if this is adjacente
+        int x = this.getX();
+        int y = this.getY();
+        int xOther = other.getX();
+        int yOther = other.getY();
+        if(xOther == x)
+            return yOther == y || yOther == y-1 || yOther == y+1;
+        if(yOther == y)
+            return xOther == x-1 || xOther == x+1;
+        if(diag){
+            if(xOther == x + 1 || xOther == x - 1)
+                return yOther == y+1 || yOther == y-1;
+            if(yOther == y + 1 || yOther == y - 1)
+                return xOther == x+1 || xOther == x-1;
+        }
+        return false;
+    }
 };

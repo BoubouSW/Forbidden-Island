@@ -124,9 +124,11 @@ public class Player {
         return false;
     }
 
-    public void moveDirDry(Case.Dir direction) {
+    public void moveDirDry(Case.Dir direction, int xRef, int yRef) {
+        Case ref = this.plateau.getCase(xRef, yRef);
         Case cas = this.getCase().adjacente(direction);
-        if (cas.getEtat() != Case.Etat.SUBMERGEE) {
+        boolean diag = (this.role == ROLE.EXPLORATEUR);
+        if (cas.getEtat() != Case.Etat.SUBMERGEE && ref.isAdjacenteOrEqual(cas, diag)) {
             this.moveCase(cas);
         }
     }
