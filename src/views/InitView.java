@@ -38,6 +38,7 @@ public class InitView extends JFrame {
 //resources/images/islandSetup.jpg
     public InitView() {
         super("Start");
+        this.getContentPane().setBackground(new Color(100,149,237));
         // SI ON VEUT AJOUTER UN FOND
         /**
         JLabel background=new JLabel(new ImageIcon("resources/images/islandSetup.jpg"));
@@ -60,6 +61,7 @@ public class InitView extends JFrame {
 
         // Add the elements for number of players
         JPanel nbPlayers = new JPanel();
+        nbPlayers.setBackground(new Color(100,149,237));
         add(nbPlayers, BorderLayout.NORTH);
 
         slider = new JSlider(2, 4);
@@ -73,6 +75,7 @@ public class InitView extends JFrame {
 
         // Add the name input for players
         namePlayers = new JPanel(new GridBagLayout());
+        namePlayers.setBackground(new Color(100,149,237));
         texts = new ArrayList<JTextField>();
         labels = new ArrayList<JLabel>();
         for (int i = 0; i < 4; i++) {
@@ -125,6 +128,7 @@ public class InitView extends JFrame {
 
         // Start button
         JPanel button = new JPanel();
+        button.setBackground(new Color(100,149,237));
 
         add(button, BorderLayout.SOUTH);
         JButton start = new JButton("Jouer");
@@ -150,6 +154,7 @@ public class InitView extends JFrame {
                 run.start();
             }
         });
+        start.setBackground(new Color(30,144,255));
         button.add(start);
         /**
         try {

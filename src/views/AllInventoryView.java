@@ -16,6 +16,7 @@ public class AllInventoryView extends JPanel {
         super();
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setSize(300, 600);
+        this.setBackground(new Color(100,149,237));
         this.inventoriesViews = invArray;
         for(EncadreInventaireView EIV: invArray){
             this.add(EIV);
@@ -46,7 +47,7 @@ public class AllInventoryView extends JPanel {
         sub.add(textArt, constraints);
 
         // set border for the panel
-        sub.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        sub.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1,Color.BLACK));
         sub.setBounds(0,0,0,0);
         this.add(sub);
     }

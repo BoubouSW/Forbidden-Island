@@ -13,4 +13,10 @@ public class ControlView extends JPanel {
         JLabel label = new JLabel(image);
         this.add(label);
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        g.setColor(new Color(100,149,237));
+        g.fillRect(0, 0, getWidth(), getHeight());
+    }
 }
