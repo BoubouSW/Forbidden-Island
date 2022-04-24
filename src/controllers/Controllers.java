@@ -82,6 +82,7 @@ public class Controllers {
                     this.view.encadreTour.setNbrCoup(c);
                     this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setBackground(new Color(255,100,100));
                 }
+                pc.resetDemiCount();
                 // pioche des cartes tresors
                 CarteTresor carte;
                 for(int i = 0; i < 2; i++){

@@ -18,6 +18,7 @@ public class PlayerController extends IG.Touche{
     private Player navChoice;
     private boolean navMode;
     private int navCount;
+    private boolean demiCount = false;
 
     public PlayerController(Player p, JFrame fenetre, Set<Player> players){
         fenetre.addKeyListener(this);
@@ -54,6 +55,8 @@ public class PlayerController extends IG.Touche{
         if (this.player.getRole() == Player.ROLE.PILOTE)
             this.piloteFlight = true;
     }
+
+    public void resetDemiCount(){this.demiCount = false;}
 
     public void StopReply(){
         this.shouldReply = false;
@@ -181,9 +184,13 @@ public class PlayerController extends IG.Touche{
                             b = moi.assecheCase();
                             moi.disableDry();
                             moi.moveCase(this.saveCase);
-                            if (b && this.ingenieurDry) {
-                                this.ingenieurDry = false;
-                                this.count++;
+                            if (b) {
+                                if(!demiCount) {
+                                    this.count++;
+                                    demiCount = true;
+                                }else{
+                                    demiCount = false;
+                                }
                             }
                         }
                     }
