@@ -1,16 +1,7 @@
 package models;
-import java.awt.*;
-
-import models.Controllers;
-import models.Player;
-import views.BoutonSelection;
-import views.EncadreSelection;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class PlayerController extends IG.Touche{
@@ -21,7 +12,6 @@ public class PlayerController extends IG.Touche{
     private boolean ingenieurDry;
     private boolean piloteFlight;
     private Case saveCase;
-    private boolean echangeDeClef = false;
 
     public PlayerController(Player p, JFrame fenetre, Set<Player> players){
         fenetre.addKeyListener(this);
@@ -43,8 +33,6 @@ public class PlayerController extends IG.Touche{
 
     public Player getPlayer(){return this.player;}
 
-    public boolean getEchangeDeClef() { return this.echangeDeClef; }
-
     //setters
     public void StartReply(){
         this.shouldReply = true;
@@ -58,8 +46,6 @@ public class PlayerController extends IG.Touche{
     public void StopReply(){
         this.shouldReply = false;
     }
-
-    public void setEchangeDeClef(boolean b){ this.echangeDeClef = b; }
 
     public void keyPressed(KeyEvent e){
     };
@@ -177,7 +163,7 @@ public class PlayerController extends IG.Touche{
                 case 'r':
                     if (! moi.isFlightMode() && ! moi.isDryMode()) {
                         b = moi.ramasseArtefact();
-                        Controllers theController = moi.getCase().getPlateau().getTheController();
+                        models.Controllers theController = moi.getCase().getPlateau().getTheController();
                         theController.getView().allInventoryView.inventoriesViews[getPlayer().getIdentifier()].setTexteKey(getPlayer().getCarteTresors());
                     }
                     break;

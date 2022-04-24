@@ -1,13 +1,9 @@
 package models;
-import controllers.BoutonValiderController;
-import views.BoutonSelection;
 import views.EncadreInventaireView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class Player {
@@ -164,59 +160,6 @@ public class Player {
         CarteTresor.TYPE_CARTE_TRESOR typeCarte = CarteTresor.TYPE_CARTE_TRESOR.values()[elem.ordinal()];
         return this.nombreCarteElement(typeCarte) >= 4;
     }
-/**
-    public Set<Player> choosePlayers(Set<Player> players){
-        Set<Player> res = new HashSet<Player>();
-        JFrame fenetre = new JFrame("");
-        fenetre.setSize(200,(players.size())*50 + 30);
-        fenetre.setLocationRelativeTo(null);
-        fenetre.setVisible(true);
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        //fenetre.setLayout(new BoxLayout(fenetre, BoxLayout.PAGE_AXIS));
-        //fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        int size = players.size();
-        BoutonSelection.isSelectionned = new boolean[size];
-        int i = 0;
-        Player[] pArray = new Player[size];
-        for(Player p: players){
-            System.out.println(p.getName());
-            panel.add(new BoutonSelection(p.getName(), 80, 50, p.getIdentifier()));
-        }
-        boolean b = false;
-        BoutonValiderController bvc = new BoutonValiderController("Valider",50, 20, 13, );
-        JPanel sub = new JPanel();
-        sub.add(bvc);
-        panel.add(sub);
-        fenetre.add(panel);
-
-        do{
-            b = bvc.hasBeenClicked();
-            System.out.print("");
-        }while(!b);
-
-        synchronized (this) {
-            while (!b) {
-                try {
-                    b = button.getModel().isPressed();
-                    button.wait();
-                } catch (Exception e) {
-                    //System.out.println("Exception in wait " + e); // bizarre
-                }
-            }
-        }
-
-        fenetre.setVisible(false); //you can't see me!
-        fenetre.dispose(); //Destroy the JFrame object
-        for(Player p: players){
-            if(BoutonSelection.isSelectionned[p.getIdentifier()]){
-                res.add(p);
-            }
-        }
-
-        System.out.println(res);
-        return res;
-    }**/
 
 public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
     // choisi une carte parmi son inventaire
@@ -235,7 +178,7 @@ public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
 
     int result = JOptionPane.showOptionDialog(null, panel2, "",
             JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-            new ImageIcon("resources/images/navigateur2.png"),
+            new ImageIcon(this.image),
             options2, null);
     if (result >= 0 && fenetreConfirmation){
         //il faut changer ici fqojgqjdfhpj
@@ -290,7 +233,7 @@ public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
 
         int result = JOptionPane.showOptionDialog(null, panel2, "",
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-                new ImageIcon("resources/images/navigateur2.png"),
+                new ImageIcon("resources/images/gruau2.png"),
                 options2, null);
         if (result >= 0 && fenetreConfirmation){
             //il faut changer ici fqojgqjdfhpj

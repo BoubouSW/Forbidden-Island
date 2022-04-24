@@ -133,7 +133,7 @@ public class Start {
         plateau.setPaquetCarteInnonde(innondePaquetCarte);
 
         //initialisation controller
-        models.Controllers cont = new models.Controllers(plateau, views.fenetre, views, views.encadreSelection);
+        models.Controllers cont = new models.Controllers(plateau, views.fenetre, views);
 
         //set niveau de l'eau
         WaterLevel waterLevel = new WaterLevel(startwaterlevel);

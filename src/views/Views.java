@@ -16,7 +16,6 @@ public class Views {
     AllInventoryView allInventoryView;
     ControlView controlView;
     WaterLevelView waterLevelView;
-    EncadreSelection encadreSelection;
 
     public Views(Plateau p) {
         int nbrJoueur = p.getPlayersPlateau().size();
@@ -37,10 +36,6 @@ public class Views {
         this.controlView.setLocation(this.fenetre.getWidth()-controlView.getWidth() - 180, controlView.getHeight());
         this.fenetre.add(this.controlView);
          **/
-
-        this.encadreSelection = new EncadreSelection();
-        this.encadreSelection.setLocation(this.fenetre.getWidth()-encadreSelection.getWidth() - 150, 30);
-        this.fenetre.add(this.encadreSelection);
 
         this.waterLevelView = new WaterLevelView();
         this.waterLevelView.setLocation(this.fenetre.getWidth()-waterLevelView.getWidth() - 180, this.fenetre.getHeight() - waterLevelView.getHeight() - 60);

@@ -1,14 +1,9 @@
 package models;
-import models.PlayerController;
-import views.EncadreSelection;
 import views.EndView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.Scanner;
 
 
 public class Controllers {
@@ -17,15 +12,13 @@ public class Controllers {
     private models.Views view;
     private models.ValidationController validationController;
     private boolean win = false;
-    private EncadreSelection encadreSelection;
 
-    Controllers(Plateau plat, JFrame fenetre, models.Views view, EncadreSelection encadreSelection) {
+    Controllers(Plateau plat, JFrame fenetre, models.Views view) {
         plat.setTheController(this);
         this.plateau = plat;
         this.window = fenetre;
         this.view = view;
         this.validationController = this.view.validationController;
-        this.encadreSelection = encadreSelection;
     }
 
     public models.Views getView(){return this.view;}
@@ -70,14 +63,14 @@ public class Controllers {
         return this.plateau.getHeliport().isSubmergee();
     }
 
-    public void play(PlayerController[] pcBanque) {
+    public void play(models.PlayerController[] pcBanque) {
         System.out.println("Niveau de l'eau : " + this.validationController.getWaterLevel().getCurrentLvl());
         int n = this.getPlayersController().size();
         int c;
         int whoShouldPlay = 0;
         boolean gameOver = false;
         PaquetCarte<CarteTresor> paquetCarteTresor = this.plateau.getPaquetCarteTresor();
-        PlayerController pc;
+        models.PlayerController pc;
         while(! gameOver) {
             c = 3;
             this.validationController.setEndFalse();
@@ -91,22 +84,6 @@ public class Controllers {
                     c = pc.getCount();
                     this.view.encadreTour.setNbrCoup(c);
                     this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setBackground(new Color(255,100,100));
-                    // ATTENTION : ON GERE LE CAS DU MESSAGE ICI CAR LA SELECTION
-                    // DE CARTE ET DE JOUEUR NE MARCHE PAS DANS LE KEYTYPED
-                    if(pc.getEchangeDeClef()){
-                        int saveCount = c;
-                        pc.StopReply();
-                        //validationController.freeze(); A FAIRE
-                        this.encadreSelection.setForPlayers(plateau.getPlayersPlateau());
-                        boolean flag = false;
-                        do{
-                            flag = this.encadreSelection.hasButtonBeenPressed();
-                            System.out.print("");
-                        }while(!flag);
-                        pc.setEchangeDeClef(false);
-                        pc.StartReply();
-                        pc.setCount(saveCount);
-                    }
                 }
                 // pioche des cartes tresors
                 CarteTresor carte;
