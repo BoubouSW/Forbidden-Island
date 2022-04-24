@@ -19,6 +19,10 @@ This project is a collaboration between Clément Gilli and [Louis-Alexis Penelou
 
 <br>
 We have implemented the whole game, including the extensions. So we managed to implement everything. However, we had a hard time implementing the key exchange and the "navigator" role which were complex, as well as the startup screen with the sliders, but we finally succeeded. Apart from that, the rest was pretty simple but quite long.
+<br> <br>
+Clément was in charge of the board model, the display of the board and the players, the different roles and the special actions.
+Louis-Alexis was in charge of the implementation of the card deck, the key exchange and the display of the players' inventories.
+We did the biggest parts together, like the player model and controllers.
 
 ## <br> **Rules**
 
