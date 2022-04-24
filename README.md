@@ -24,6 +24,10 @@ Clément was in charge of the board model, the display of the board and the play
 Louis-Alexis was in charge of the implementation of the card deck, the key exchange and the display of the players' inventories.
 We did the biggest parts together, like the player model and controllers.
 
+<br>
+
+We have made an [uml](uml.pdf) diagram divided into 3 parts: model, view and controller.
+
 ## <br> **Rules**
 
 <br>
