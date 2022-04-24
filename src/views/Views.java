@@ -30,7 +30,7 @@ public class Views {
         this.fenetre.add(encadreTour);
 
         this.controlView = new ControlView();
-        this.controlView.setLocation(this.fenetre.getWidth()-controlView.getWidth() - 180, controlView.getHeight());
+        this.controlView.setLocation(this.fenetre.getWidth()-controlView.getWidth()-70, controlView.getHeight()-150);
         this.fenetre.add(this.controlView);
 
         this.waterLevelView = new WaterLevelView();
