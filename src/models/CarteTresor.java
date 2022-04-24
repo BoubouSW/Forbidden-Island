@@ -1,5 +1,10 @@
 package models;
 
+import views.EncadreInventaireView;
+
+import javax.swing.*;
+import java.util.Set;
+
 public class CarteTresor extends Carte{
     private static int lastNewId = -1;
     private TYPE_CARTE_TRESOR valeurDeLaCarte;

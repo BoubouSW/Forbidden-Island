@@ -65,6 +65,11 @@ public class PlayerController extends IG.Touche{
     };
     public void keyReleased(KeyEvent e){
     };
+    private void updateCardInventory(Player p){
+        // actualise l'inventaire du joueur pc
+        models.Views theViews = p.getCase().getPlateau().getTheController().getView();
+        theViews.allInventoryView.inventoriesViews[p.getIdentifier()].setTexteKey(p.getCarteTresors());;
+    }
 
     public void setCount(int c){this.count = c;}
 
@@ -206,16 +211,43 @@ public class PlayerController extends IG.Touche{
                 case 'n':
                     if (moi.getRole() == Player.ROLE.NAVIGATEUR) {
                         //TP le joueur choisi sur le navigateur
-                        Player autre = moi.choosePlayer(otherPlayers);
+                        Player autre = moi.choosePlayer(otherPlayers, true);
                         Case old = autre.getCase();
                         autre.moveCase(moi.getCase());
                         old.getController().repaint();
                         b = true;
                     }
                     break;
+
+                case 'm':
+                    // messager
+                    Player pm = moi.choosePlayerAllPlateau(false);
+                    if(pm != moi) {
+                        CarteTresor c = moi.chooseCarte(false);
+                        if(c != null) {
+                            moi.getCarteTresors().remove(c);
+                            pm.getCarteTresors().add(c);
+                            updateCardInventory(moi);
+                            updateCardInventory(pm);
+                            b = true;
+                        }
+                    }
+                    break;
+
                 case 'p':
                     // echangeDeClef
-                    this.echangeDeClef = true; break;
+                    Player p = moi.choosePlayerOnMyCaseWithLessThan4Cards(false);
+                    if(p != moi) {
+                        CarteTresor c = moi.chooseCarte(false);
+                        if(c != null) {
+                            moi.getCarteTresors().remove(c);
+                            p.getCarteTresors().add(c);
+                            updateCardInventory(moi);
+                            updateCardInventory(p);
+                            b = true;
+                        }
+                    }
+                    break;
             }
             //System.out.println(moi.isFlightMode());
             if (moi.isFlightMode())

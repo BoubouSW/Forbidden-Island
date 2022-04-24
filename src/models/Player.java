@@ -1,6 +1,7 @@
 package models;
 import controllers.BoutonValiderController;
 import views.BoutonSelection;
+import views.EncadreInventaireView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -217,36 +218,87 @@ public class Player {
         return res;
     }**/
 
-    public Player choosePlayer(Set<Player> players){
-        int[] id = new int[] {0,0,0};
+public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
+    // choisi une carte parmi son inventaire
+    int nbjoueur = players.size();
+    Player[] id = new Player[nbjoueur];
+    String[] options2 = new String[nbjoueur];
+    int k = 0;
+    for (Player p: players) {
+        id[k] = p;
+        options2[k] = id[k].getName();
+        k++;
+    }
+
+    JPanel panel2 = new JPanel();
+    panel2.add(new JLabel("Choisissez un joueur pour l'echange :"));
+
+    int result = JOptionPane.showOptionDialog(null, panel2, "",
+            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+            new ImageIcon("resources/images/navigateur2.png"),
+            options2, null);
+    if (result >= 0 && fenetreConfirmation){
+        //il faut changer ici fqojgqjdfhpj
+        JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur " + options2[result]);
+    }
+    if (result < 0)
+        return this;
+    return id[result];
+}
+
+    public Player choosePlayerOnMyCaseWithLessThan4Cards(boolean fenetreConfirmation){
+        Set<Player> set = new HashSet<Player>();
+        for(Player p: this.getCase().getPlayers()){
+            if(p != this && p.getCarteTresors().size() < 4)
+                set.add(p);
+        }
+        if(set.size() == 0)
+            return this;
+        return choosePlayer(set, fenetreConfirmation);
+    }
+
+    public Player choosePlayerAllPlateau(boolean fenetreConfirmation){
+        Set<Player> set = new HashSet<Player>();
+        for(Player p: this.getCase().getPlateau().getPlayersPlateau()){
+            if(p != this && p.getCarteTresors().size() < 4)
+                set.add(p);
+        }
+        if(set.size() == 0)
+            return this;
+        return choosePlayer(set, fenetreConfirmation);
+    }
+
+    public CarteTresor chooseCarte(boolean fenetreConfirmation){
+        // choisi une carte parmi son inventaire
+        Set<CarteTresor> cartesTresor = this.getCarteTresors();
+        CarteTresor[] id = new CarteTresor[4];
         int k = 0;
-        for (Player p: players) {
-            id[k] = p.getIdentifier();
+        for (CarteTresor c: cartesTresor) {
+            id[k] = c;
             k++;
         }
         System.out.println(id[2] + " " + id[1] + " " + id[0]);
-        Object[] options2 = { "Joueur 4", "Joueur 3", "Joueur 2", "Joueur 1"};
-        int nbjoueur = players.size();
-        switch (nbjoueur) {
-            case 1: options2 = new Object[] { this.plateau.getPlayerById(id[0]).getName()}; break;
-            case 2: options2 = new Object[] { this.plateau.getPlayerById(id[1]).getName(), this.plateau.getPlayerById(id[2]).getName()}; break;
-            case 3: options2 = new Object[] { this.plateau.getPlayerById(id[2]).getName(), this.plateau.getPlayerById(id[1]).getName(),this.plateau.getPlayerById(id[0]).getName()}; break;
+        //Object[] options2 = { "Joueur 4", "Joueur 3", "Joueur 2", "Joueur 1"};
+        int nbjoueur = cartesTresor.size();
+        String[] options2 = new String[nbjoueur];
+        for(int i = 0; i < nbjoueur; i++){
+            options2[i] = EncadreInventaireView.stringForInventory(id[i].getValeurCarte());
         }
 
         JPanel panel2 = new JPanel();
-        panel2.add(new JLabel("Choisissez un joueur :"));
+        panel2.add(new JLabel("Choisissez une carte :"));
 
         int result = JOptionPane.showOptionDialog(null, panel2, "",
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
                 new ImageIcon("resources/images/navigateur2.png"),
                 options2, null);
-        if (result >= 0){
+        if (result >= 0 && fenetreConfirmation){
             //il faut changer ici fqojgqjdfhpj
-            JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur" + this.plateau.getPlayerById((result)).getName());
+            JOptionPane.showMessageDialog(null,"Vous avez choisi la carte " + options2[result]);
         }
         if (result < 0)
-            result = this.getIdentifier();
-        return this.plateau.getPlayerById(nbjoueur - result - 1);
+            return null;
+        return id[result];
     }
 
     public boolean has4KeyOfElement(CarteTresor.TYPE_CARTE_TRESOR type){

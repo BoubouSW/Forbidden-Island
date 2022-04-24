@@ -23,6 +23,8 @@ This project is a collaboration between Clément Gilli and [Louis-Alexis Penelou
 - `D` - LEFT
 - `F` - DRY MODE
 - `R` - CATCH ARTIFACT
+- `P` - CARDS TRADE
+- `M` - CARDS TRADE WITH EVERYBODY (MESSENGER ONLY)
 - `L` - USE SANDBAG
 - `H` - USE HELICOPTER
 - `V` - FLY MODE (PILOT ONLY)
