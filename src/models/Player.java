@@ -29,7 +29,6 @@ public class Player {
         this.identifier = identifier;
         this.name = name;
         this.position = spawn;
-        //this.listeClef = new HashSet<Clef>();
         this.carteTresors = new HashSet<CarteTresor>();
     }
 
@@ -38,7 +37,6 @@ public class Player {
         this.identifier = identifier;
         this.name = name;
         this.position = this.plateau.getCase(coord[0], coord[1]);
-        //this.listeClef = new HashSet<Clef>();
         this.carteTresors = new HashSet<CarteTresor>();
     }
 
@@ -68,7 +66,6 @@ public class Player {
     // Getters
     public int getIdentifier(){return this.identifier;}
     public String getName(){return this.name;}
-    //public Set<Clef> getKeyInventory(){return this.listeClef;}
     public Case getCase(){return this.position;}
     public String inventory(){
         String str = "Inventaire de " + this.getName() + "\nArtefact (commun a tous) : ";
@@ -185,7 +182,6 @@ public class Player {
                 new ImageIcon(this.image),
                 options2, null);
         if (result >= 0 && fenetreConfirmation){
-            //il faut changer ici fqojgqjdfhpj
             JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur " + options2[result]);
         }
         if (result < 0)
@@ -208,7 +204,6 @@ public class Player {
                 new ImageIcon(this.image),
                 options2, null);
         if (result >= 0 && fenetreConfirmation){
-            //il faut changer ici fqojgqjdfhpj
             JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur " + options2[result]);
         }
         if (result < 0)
@@ -233,8 +228,6 @@ public class Player {
             if(p != this && players.contains(p))
                 set.add(p);
         }
-        //if(set.size() == 0)
-        //    return this;
         return choosePlayer(set, fenetreConfirmation,"Choisissez un joueur à embarquer :");
     }
 
@@ -286,7 +279,6 @@ public class Player {
             k++;
         }
         System.out.println(id[2] + " " + id[1] + " " + id[0]);
-        //Object[] options2 = { "Joueur 4", "Joueur 3", "Joueur 2", "Joueur 1"};
         int nbjoueur = cartesTresor.size();
         String[] options2 = new String[nbjoueur];
         for(int i = 0; i < nbjoueur; i++){
@@ -303,7 +295,6 @@ public class Player {
                 new ImageIcon("resources/images/gruau2.png"),
                 options2, null);
         if (result >= 0 && fenetreConfirmation){
-            //il faut changer ici fqojgqjdfhpj
             JOptionPane.showMessageDialog(null,"Vous avez choisi la carte " + options2[result]);
         }
         if (result < 0)
@@ -385,39 +376,6 @@ public class Player {
         this.removeCarteTresor(carte);
     }
 
-    /** FONCTIONS QUI MARCHAIENT AVEC LIMPLEMENTATION AVEC LE TYPE CLEF ET NON LES CARTES
-    public void ramasseClefDepuisCarte(CarteTresor c){
-        switch (c.getValeurCarte()){
-            case ARTEF_EAU :
-                this.listeClef.add(new Clef(Objet.Element.EAU, this, null)); break;
-            case ARTEF_TERRE:
-                this.listeClef.add(new Clef(Objet.Element.TERRE, this, null)); break;
-            case ARTEF_FEU:
-                this.listeClef.add(new Clef(Objet.Element.FEU, this, null)); break;
-            case ARTEF_VENT:
-                this.listeClef.add(new Clef(Objet.Element.VENT, this, null)); break;
-        }
-    }
-
-    public boolean ramasseRandomClef() {
-        // le player ramasse une clef aleatoire se trouvant sur sa case
-        // renvoi vrai s il a ramasse une clef faux sinon
-        if(Math.random() < 0.5){
-            return false;
-        }
-        double a = Math.random();
-        if(a < 0.25){
-            this.listeClef.add(new Clef(Objet.Element.EAU, this, null));
-        }else if(a < 0.5){
-            this.listeClef.add(new Clef(Objet.Element.TERRE, this, null));
-        }else if(a < 0.75){
-            this.listeClef.add(new Clef(Objet.Element.FEU, this, null));
-        }else{
-            this.listeClef.add(new Clef(Objet.Element.VENT, this, null));
-        }
-        return true;
-    }
-    **/
     public static boolean hasAllArtefact(){
         return Player.artefactRamasse.size() == 4;
     }

@@ -70,16 +70,12 @@ class ValidationController extends IG.ZoneCliquable {
     }
 
     public void drowning(int n) {
-        //Set<Case> forFonc = new HashSet<Case>();
         int borne;
         CarteInnonde carte;
         borne = Math.min(n, this.plateau.getNbCaseNonSubmergee());
         for (int i = 0; i < borne; i++) {
             Case current;
-            //do {
             current = this.plateau.tireSecheouInonde();
-            //}while(forFonc.contains(current));
-            //forFonc.add(current);
             if (current.getEtat() == Case.Etat.NORMALE)
                 current.getController().setBackground(new Color(95, 158, 160));
             else if (current.getEtat() == Case.Etat.INONDEE) {
@@ -99,7 +95,6 @@ class ValidationController extends IG.ZoneCliquable {
     }
 
     public void clicGauche() {
-        //this.setBackground(Color.GREEN);
         this.end = true;
         drowning(this.waterLevel.nbCaseInonde());
     }

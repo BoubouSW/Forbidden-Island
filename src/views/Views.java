@@ -12,7 +12,6 @@ public class Views {
     models.PlateauView plateauView;
     models.ValidationController validationController;
     EncadreView encadreTour;
-    //EncadreInventaireView[] encadreInventaire;
     AllInventoryView allInventoryView;
     ControlView controlView;
     WaterLevelView waterLevelView;
@@ -24,7 +23,6 @@ public class Views {
         this.fenetre.setSize(1500,830);
         this.fenetre.setLayout(null);
         this.fenetre.setLocationRelativeTo(null);
-        //System.out.println(this.fenetre.getLayout().toString());
         this.plateauView = new models.PlateauView(p);
         this.validationController = new models.ValidationController(p,null);
         this.encadreTour = new EncadreView();

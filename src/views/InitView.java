@@ -39,14 +39,6 @@ public class InitView extends JFrame {
     public InitView() {
         super("Start");
         this.getContentPane().setBackground(new Color(100,149,237));
-        // SI ON VEUT AJOUTER UN FOND
-        /**
-        JLabel background=new JLabel(new ImageIcon("resources/images/islandSetup.jpg"));
-
-        add(background);
-        **/
-        //background.setLayout(new FlowLayout());
-
         this.pack();
     }
 
@@ -156,12 +148,6 @@ public class InitView extends JFrame {
         });
         start.setBackground(new Color(30,144,255));
         button.add(start);
-        /**
-        try {
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("resources/images/IslandSetup.jpg")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }**/
     }
 
     private void drawInName(int nb) {
@@ -184,16 +170,3 @@ public class InitView extends JFrame {
         dispose();
     }
 }
-/**
-class ImagePanel extends JComponent {
-    private Image image;
-    public ImagePanel(Image image) {
-        this.image = image;
-    }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-    }
-}
-**/

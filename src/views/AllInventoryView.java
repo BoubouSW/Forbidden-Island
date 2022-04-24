@@ -23,14 +23,11 @@ public class AllInventoryView extends JPanel {
         }
         JPanel inventaireArtefact = new JPanel();
         inventaireArtefact.setLayout(new BoxLayout(inventaireArtefact, BoxLayout.PAGE_AXIS));
-        //inventaireArtefact.setLayout(null);
 
         JPanel sub = new JPanel(new GridBagLayout());
         sub.setBackground(new Color(30,144,255));
         this.textTitreArt = new IG.Texte("Artefact Ramasses : ", 16);
         this.textArt = new IG.Texte("", 13);
-
-        //newPanel.setLayout(null);
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;

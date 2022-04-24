@@ -13,13 +13,11 @@ public class CaseController extends IG.ZoneCliquable {
 
     CaseController(Case c) {
         super("",80,80,15);
-        //super(Integer.toString(c.getX())+" "+Integer.toString(c.getY()),100,100); // pour debugger
         this.cas = c;
         c.set_controller(this);
 
         if (this.cas.hasPlayer()) {
             super.changeTexte(" ");
-            //this.setBackground(new Color(177,21,38));
         }
         switch(this.cas.getEtat()) {
             case INONDEE:
@@ -43,12 +41,8 @@ public class CaseController extends IG.ZoneCliquable {
         this.cas = c;
     }
 
-    // Action à effectuer lors d'un clic gauche.
-    // Ceci utilise [IG.ZoneCliquable].
     public void clicGauche() {}
 
-    // Action à effectuer lors d'un clic droit.
-    // Ceci utilise [IG.ZoneCliquable].
     public void clicDroit() {}
 
     @Override
@@ -61,12 +55,10 @@ public class CaseController extends IG.ZoneCliquable {
             super.paintComponent(g);
             switch (this.cas.getEtat()) {
                 case INONDEE:
-                    //this.setBackground(new Color(95, 158, 160));
                     g.setColor(new Color(61, 136, 200,100));
                     g.fillRect(0, 0, getWidth(), getHeight());
                     break;
                 case SUBMERGEE:
-                    //this.setBackground(new Color(30, 144, 255));
                     g.setColor(new Color(30, 144, 255));
                     g.fillRect(0, 0, getWidth(), getHeight());
                     Image water = new ImageIcon("resources/images/waves2.gif").getImage();
@@ -75,7 +67,6 @@ public class CaseController extends IG.ZoneCliquable {
                     g.drawImage(water,x,y,null);
                     break;
                 case NORMALE:
-                    //this.setBackground(new Color(74, 160, 44));
                     g.setColor(new Color(74, 160, 44));
                     g.fillRect(0, 0, getWidth(), getHeight());
                     break;
@@ -89,8 +80,7 @@ public class CaseController extends IG.ZoneCliquable {
         if(this.cas.hasPlayer()) {
             int nb = this.cas.getPlayers().size();
             int k = 0;
-            Image img = new ImageIcon("resources/images/cowboy2.png").getImage();
-            //Player pi = this.cas.getPlayers().get
+            Image img = new ImageIcon("resources/images/sandbag.png").getImage();
             for (Player pi : this.cas.getPlayers()) {
                 img = pi.getImage();
                 if (pi.isFlightMode())
@@ -105,38 +95,6 @@ public class CaseController extends IG.ZoneCliquable {
                 }
                 k++;
             }
-            /* SI ON VEUT CHANGER DE COULEUR LE SPRITE
-            BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-            Graphics2D bGr = bimage.createGraphics();
-            bGr.drawImage(img, 0, 0, null);
-            bGr.dispose();
-            final int oldRGB = new Color(0,0,0).getRGB();
-            final int newRGB = new Color(0,255,255).getRGB();
-            for (int x = 0; x < bimage.getWidth(); x++) {
-                for (int y = 0; y < bimage.getHeight(); y++) {
-                    if (bimage.getRGB(x, y) == oldRGB)
-                        bimage.setRGB(x, y, newRGB);
-                    //else bimage.setRGB(x,y,this.getBackground().getRGB());
-                }
-            }
-             */
-            //int x = (this.getWidth() - img.getWidth(null)) / 2;
-            //int y = (this.getHeight() - img.getHeight(null)) / 2;
-            //g.drawImage(img,0,0,null);  //remplacer img par bimage
-            /*
-            int nombreJoueur = this.cas.getPlayers().size();
-            switch (nombreJoueur) {
-                case 4:
-                    g.drawImage(img,50,50,null);
-                case 3:
-                    g.drawImage(img,0,50,null);
-                case 2:
-                    g.drawImage(img,50,0,null);
-                case 1:
-                    g.drawImage(img,0,0,null);
-            }
-
-             */
         }
         Image img;
         img = new ImageIcon("resources/images/feu2.png").getImage();
@@ -151,11 +109,9 @@ public class CaseController extends IG.ZoneCliquable {
                 case TERRE:
                     img = new ImageIcon("resources/images/terre3.png").getImage();break;
             }
-            //g.setColor(Color.BLACK);
             int x = (this.getWidth() - img.getWidth(null)) / 2;
             int y = (this.getHeight() - img.getHeight(null)) / 2;
             g.drawImage(img,x,y,null);
-            //g.fillRect(getWidth() / 6, getWidth() / 6, getWidth() / 6, getWidth() / 6);
         }
 
     }

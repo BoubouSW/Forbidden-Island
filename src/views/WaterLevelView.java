@@ -13,12 +13,6 @@ public class WaterLevelView extends JPanel {
     public WaterLevelView() {
         super();
         this.setSize(140, 300);
-        //this.setBackground(Color.BLACK);
-        //JLabel label = new JLabel(this.image);
-        //JLabel curseur = new JLabel(this.cursor);
-
-        //this.add(curseur);
-        //this.add(label);
     }
 
     public void setWaterLevel(WaterLevel waterLevel) {this.waterLevel = waterLevel;}

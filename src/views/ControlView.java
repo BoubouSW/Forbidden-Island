@@ -9,7 +9,6 @@ public class ControlView extends JPanel {
     public ControlView() {
         super();
         this.setSize(140, 140);
-        //this.setBackground(Color.BLACK);
         JLabel label = new JLabel(image);
         this.add(label);
     }

@@ -64,7 +64,6 @@ public class Controllers {
     }
 
     public void play(models.PlayerController[] pcBanque) {
-        System.out.println("Niveau de l'eau : " + this.validationController.getWaterLevel().getCurrentLvl());
         int n = this.getPlayersController().size();
         int c;
         int whoShouldPlay = 0;
@@ -75,8 +74,6 @@ public class Controllers {
             c = 3;
             this.validationController.setEndFalse();
             pc = pcBanque[whoShouldPlay];
-            //for (Player player : this.getPlayersController())
-             //   System.out.println(player.getName() + player.isAlive());
             if (pc.getPlayer().isAlive()) {
                 pc.StartReply();
                 this.view.encadreTour.setPlayerName(pc.getPlayer().getName());
@@ -93,7 +90,6 @@ public class Controllers {
 
                         if (carte.getValeurCarte() == CarteTresor.TYPE_CARTE_TRESOR.MONTEE_DES_EAUX) {
                             this.validationController.getWaterLevel().augmenteLvl();
-                            System.out.println("Niveau de l'eau : " + validationController.getWaterLevel().getCurrentLvl());
                             if (this.plateau.getPaquetCarteInnonde().sizeDefausse() > 1)
                                 this.plateau.getPaquetCarteInnonde().melangeDefausse();
                             this.plateau.getPaquetCarteInnonde().retourneDefausse();
@@ -101,18 +97,14 @@ public class Controllers {
                             paquetCarteTresor.Defausse(carte);
                             paquetCarteTresor.melangeDefausse();
                             paquetCarteTresor.retourneDefausse();
-                            //System.out.println(paquetCarteTresor.Str());
                         } else {
                             pc.getPlayer().addCarteTresor(carte);
-                            System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
+                            //System.out.println("Le joueur "+ (pc.getPlayer().getIdentifier()+1) + "  pioche : " + carte.getValeurCarte().name());
                         }
                     }
                 }
                 this.view.allInventoryView.inventoriesViews[pc.getPlayer().getIdentifier()].setTexteKey(pc.getPlayer().getCarteTresors());
                 pc.StopReply();
-                //Set<Player> p = pc.getPlayer().choosePlayers(plateau.getPlayersPlateau());
-                //Set<Player> p = pc.getPlayer().choosePlayers(plateau.getPlayersPlateau(), 2);
-                //System.out.println(pc.getPlayer().inventory());
                 synchronized (this) {
                     while (!this.validationController.getEnd()) {
                         try {
@@ -122,9 +114,6 @@ public class Controllers {
                         }
                     }
                 }
-                // while(!this.validationController.getEnd()) {
-                // System.out.println(""); // trouver comment attendre ?!
-                //}
             }
             for (Player p: this.getPlayersController()) {
                 p.disableFlight();
@@ -140,12 +129,12 @@ public class Controllers {
             }
             WaterLevel wl = this.validationController.getWaterLevel();
             if(this.oneDead() || this.heliportDead() || wl.getCurrentLvl() == wl.getMaxLvl() || this.twoArtefactDead()) {
-                System.out.println("Perdu !");
+                //System.out.println("Perdu !");
                 gameOver = true;
                 break;
             }
             if(Player.hasAllArtefact() && this.plateau.allPlayersOnHeliport()){
-                System.out.println("Gagne !");
+                //System.out.println("Gagne !");
                 gameOver = true;
                 this.win = true;
             }

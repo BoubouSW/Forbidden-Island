@@ -71,17 +71,6 @@ public class PlayerController extends IG.Touche{
             if (moi.getName().equals("fred"))
                 this.count = -100;
             moi.getCase().getController().repaint();
-            /*
-            String name = "";
-            for (Player player : moi.getCase().getPlayers()) {
-                if (player.getIdentifier() != moi.getIdentifier() && player.isAlive())
-                    name = name + " " + player.getName();
-            }
-            if(moi.getCase().hasArtefact()){
-                Objet a = moi.getCase().getArtefact();
-                name = name + " " + a.getElement().name();
-            }
-            */
             boolean haveToChoose = false;
             moi.getCase().getController().changeTexte(" ");
             int xRef = -1;
@@ -94,46 +83,55 @@ public class PlayerController extends IG.Touche{
             boolean b = false;
             switch (e.getKeyChar()) {
                 case 'd':
+                case 'D':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.DROITE, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.DROITE);
                     break;
                 case 'q':
+                case 'Q':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.GAUCHE, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.GAUCHE);
                     break;
                 case 'z':
+                case 'Z':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.HAUT, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.HAUT);
                     break;
                 case 's':
+                case 'S':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.BAS, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.BAS);
                     break;
                 case 'a':
+                case 'A':
                     if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.NW);
                     break;
                 case 'e':
+                case 'E':
                     if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.NE);
                     break;
                 case 'w':
+                case 'W':
                     if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.SW);
                     break;
                 case 'c':
+                case 'C':
                     if (moi.getRole() == Player.ROLE.EXPLORATEUR && !moi.isDryMode())
                         b = moi.moveDir(Case.Dir.SE);
                     break;
                 case 'f':
+                case 'F':
                     if (! moi.isFlightMode() && ! moi.isDryMode()) {
                         moi.enableDry();
                         this.saveCase = moi.getCase();
@@ -150,6 +148,7 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
                 case 'l':
+                case 'L':
                     if (! moi.isFlightMode() && ! moi.isDryMode() && moi.hasSand()) {
                         moi.enableDry();
                         this.useSand = true;
@@ -167,16 +166,20 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
                 case 'r':
+                case 'R':
                     if (! moi.isFlightMode() && ! moi.isDryMode()) {
                         b = moi.ramasseArtefact();
                         models.Controllers theController = moi.getCase().getPlateau().getTheController();
                         theController.getView().allInventoryView.inventoriesViews[getPlayer().getIdentifier()].setTexteKey(getPlayer().getCarteTresors());
                     }
                     break;
+                    /*
                 case 'i':
                     System.out.println(this.getPlayer().inventory());
                     break;
-                case 'v':
+                     */
+                case 'p':
+                case 'P':
                     if (!moi.isFlightMode() && this.piloteFlight && ! moi.isDryMode()) {
                         moi.enableFlight();
                         this.piloteFlight = false;
@@ -190,6 +193,7 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
                 case 'h':
+                case 'H':
                     if (!moi.isFlightMode() && ! moi.isDryMode() && moi.hasHelico()) {
                         this.helico = moi.chooseHelico(this.otherPlayers);
                         for (Player h : this.helico)
@@ -209,6 +213,7 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
                 case 'n':
+                case 'N':
                     if (moi.getRole() == Player.ROLE.NAVIGATEUR) {
                         //TP le joueur choisi sur le navigateur
                         Player autre = moi.choosePlayer(otherPlayers, true,"Choisissez un joueur à déplacer :");
@@ -220,6 +225,7 @@ public class PlayerController extends IG.Touche{
                     break;
 
                 case 'm':
+                case 'M':
                     // messager
                     Player pm = moi.choosePlayerAllPlateau(false);
                     if(pm != moi) {
@@ -234,7 +240,8 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
 
-                case 'p':
+                case 'o':
+                case 'O':
                     // echangeDeClef
                     Player p = moi.choosePlayerOnMyCaseWithLessThan4Cards(false);
                     if(p != moi) {
@@ -249,6 +256,7 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
                 case 't':
+                case 'T':
                     // defausse d'une carte
                     CarteTresor c = moi.chooseCarte("Defausse d'une carte",false);
                     if(c != null){
@@ -257,28 +265,13 @@ public class PlayerController extends IG.Touche{
                         updateCardInventory(moi);
                     }
             }
-            //System.out.println(moi.isFlightMode());
+
             if (moi.isFlightMode())
                 b = false;
             if(! b)
                 this.count++;
-            /*
-            name = "";
-            moi.getCase().getController().add(new IG.Texte("",24));
 
-            for (Player player : moi.getCase().getPlayers()) {
-                if(player.isAlive())
-                    name = name + " " + player.getName();
-            }
-
-            if(moi.getCase().hasArtefact()){
-                Objet a = moi.getCase().getArtefact();
-                name = name + " " + a.getElement().name();
-            }
-
-             */
             moi.getCase().getController().changeTexte(" ");
-
             moi.getCase().getController().repaint();
             this.count--;
         }

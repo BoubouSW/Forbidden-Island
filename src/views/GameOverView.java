@@ -13,8 +13,6 @@ public class GameOverView extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(Color.RED);
-        //g.fillRect(0, 0, getWidth(), getHeight());
         int x = (this.getWidth() - this.image.getWidth(null)) / 2;
         int y = (this.getHeight() - this.image.getHeight(null)) / 2;
         g.drawImage(this.image,x,y,null);
