@@ -203,6 +203,16 @@ public class PlayerController extends IG.Touche{
                         }
                     }
                     break;
+                case 'n':
+                    if (moi.getRole() == Player.ROLE.NAVIGATEUR) {
+                        //TP le joueur choisi sur le navigateur
+                        Player autre = moi.choosePlayer(otherPlayers);
+                        Case old = autre.getCase();
+                        autre.moveCase(moi.getCase());
+                        old.getController().repaint();
+                        b = true;
+                    }
+                    break;
                 case 'p':
                     // echangeDeClef
                     this.echangeDeClef = true; break;

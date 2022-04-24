@@ -217,6 +217,38 @@ public class Player {
         return res;
     }**/
 
+    public Player choosePlayer(Set<Player> players){
+        int[] id = new int[] {0,0,0};
+        int k = 0;
+        for (Player p: players) {
+            id[k] = p.getIdentifier();
+            k++;
+        }
+        System.out.println(id[2] + " " + id[1] + " " + id[0]);
+        Object[] options2 = { "Joueur 4", "Joueur 3", "Joueur 2", "Joueur 1"};
+        int nbjoueur = players.size();
+        switch (nbjoueur) {
+            case 1: options2 = new Object[] { this.plateau.getPlayerById(id[0]).getName()}; break;
+            case 2: options2 = new Object[] { this.plateau.getPlayerById(id[1]).getName(), this.plateau.getPlayerById(id[2]).getName()}; break;
+            case 3: options2 = new Object[] { this.plateau.getPlayerById(id[2]).getName(), this.plateau.getPlayerById(id[1]).getName(),this.plateau.getPlayerById(id[0]).getName()}; break;
+        }
+
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel("Choisissez un joueur :"));
+
+        int result = JOptionPane.showOptionDialog(null, panel2, "",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                new ImageIcon("resources/images/navigateur2.png"),
+                options2, null);
+        if (result >= 0){
+            //il faut changer ici fqojgqjdfhpj
+            JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur" + this.plateau.getPlayerById((result)).getName());
+        }
+        if (result < 0)
+            result = this.getIdentifier();
+        return this.plateau.getPlayerById(nbjoueur - result - 1);
+    }
+
     public boolean has4KeyOfElement(CarteTresor.TYPE_CARTE_TRESOR type){
         return this.nombreCarteElement(type) >= 4;
     }

@@ -97,7 +97,9 @@ public class Start {
         int size = plateau.getPlayersPlateau().size();
         PlayerController[] pc = new PlayerController[size];
         for(Player p:plateau.getPlayersPlateau()){
-            pc[p.getIdentifier()] = new PlayerController(p, views.fenetre,plateau.getPlayersPlateau());
+            Set<Player> other = new HashSet<Player>(plateau.getPlayersPlateau());
+            other.remove(p);
+            pc[p.getIdentifier()] = new PlayerController(p, views.fenetre,other);
         }
 
         //initialisation des paquets de carte
