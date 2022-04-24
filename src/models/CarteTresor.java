@@ -12,6 +12,8 @@ public class CarteTresor extends Carte{
     public enum TYPE_CARTE_TRESOR {ARTEF_EAU, ARTEF_TERRE, ARTEF_FEU, ARTEF_VENT,
                                 MONTEE_DES_EAUX, HELICOPTERE, CARTE_DE_SABLE};
 
+    public static int getLastNewId(){ return lastNewId; }
+
     public CarteTresor(TYPE_CARTE_TRESOR t){
         super(CarteTresor.lastNewId + 1);
         CarteTresor.lastNewId++;
