@@ -260,11 +260,14 @@ public class PlayerController extends IG.Touche{
                         if (this.navChoice != this.getPlayer()) {
                             this.navMode = true;
                             this.navCount = 2;
+                        }else{
+                            this.navChoice = null;
                         }
                     }
                     else if (moi.getRole() == Player.ROLE.NAVIGATEUR && this.navChoice != null) {
                         navMode = false;
                         b = true;
+                        this.navChoice = null;
                     }
                     break;
 

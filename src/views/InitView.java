@@ -14,14 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-/*
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
- */
-
 public class InitView extends JFrame {
     private JSlider slider;
     private JSlider slider2;
@@ -88,7 +80,7 @@ public class InitView extends JFrame {
 
         JLabel playerNumber = new JLabel("Nombre de joueurs : ");
         playerNumber.setLabelFor(slider);
-
+        slider.setBackground(new Color(100,149,237));
         nbPlayers.add(playerNumber);
         nbPlayers.add(slider);
 
@@ -98,6 +90,7 @@ public class InitView extends JFrame {
         slider2.setMinorTickSpacing(1);
         slider2.setMajorTickSpacing(5);
         slider2.setPaintTicks(true);
+        slider2.setBackground(new Color(100,149,237));
 
         Hashtable<Integer, JLabel> labels = new Hashtable<>();
         labels.put(1, new JLabel("Noob"));
