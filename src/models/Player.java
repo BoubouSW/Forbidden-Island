@@ -121,12 +121,16 @@ public class Player {
         return false;
     }
 
-    public void moveDirDry(Case.Dir direction, int xRef, int yRef) {
+    public void moveDirDry(Case.Dir direction, int xRef, int yRef, boolean sand) {
         Case ref = this.plateau.getCase(xRef, yRef);
         Case cas = this.getCase().adjacente(direction);
         boolean diag = (this.role == ROLE.EXPLORATEUR);
-        if (cas.getEtat() != Case.Etat.SUBMERGEE && ref.isAdjacenteOrEqual(cas, diag)) {
+        if (cas.getEtat() != Case.Etat.SUBMERGEE && sand)
             this.moveCase(cas);
+        else {
+            if (cas.getEtat() != Case.Etat.SUBMERGEE && ref.isAdjacenteOrEqual(cas, diag)) {
+                this.moveCase(cas);
+            }
         }
     }
 
@@ -161,33 +165,56 @@ public class Player {
         return this.nombreCarteElement(typeCarte) >= 4;
     }
 
-public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
-    // choisi une carte parmi son inventaire
-    int nbjoueur = players.size();
-    Player[] id = new Player[nbjoueur];
-    String[] options2 = new String[nbjoueur];
-    int k = 0;
-    for (Player p: players) {
-        id[k] = p;
-        options2[k] = id[k].getName();
-        k++;
+    public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation, String msg){
+        // choisi une carte parmi son inventaire
+        int nbjoueur = players.size();
+        Player[] id = new Player[nbjoueur];
+        String[] options2 = new String[nbjoueur];
+        int k = 0;
+        for (Player p: players) {
+            id[k] = p;
+            options2[k] = id[k].getName();
+            k++;
+        }
+
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel(msg));
+
+        int result = JOptionPane.showOptionDialog(null, panel2, "",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                new ImageIcon(this.image),
+                options2, null);
+        if (result >= 0 && fenetreConfirmation){
+            //il faut changer ici fqojgqjdfhpj
+            JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur " + options2[result]);
+        }
+        if (result < 0)
+            return this;
+        return id[result];
     }
 
-    JPanel panel2 = new JPanel();
-    panel2.add(new JLabel("Choisissez un joueur pour l'echange :"));
+    public int chooseNumberPlayer(int nb, boolean fenetreConfirmation, String msg){
+        // choisi une carte parmi son inventaire
+        String[] options2 = new String[nb];
+        for (int k = 0; k < nb; k++) {
+            options2[k] = String.valueOf(k);
+        }
 
-    int result = JOptionPane.showOptionDialog(null, panel2, "",
-            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-            new ImageIcon(this.image),
-            options2, null);
-    if (result >= 0 && fenetreConfirmation){
-        //il faut changer ici fqojgqjdfhpj
-        JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur " + options2[result]);
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel(msg));
+
+        int result = JOptionPane.showOptionDialog(null, panel2, "",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                new ImageIcon(this.image),
+                options2, null);
+        if (result >= 0 && fenetreConfirmation){
+            //il faut changer ici fqojgqjdfhpj
+            JOptionPane.showMessageDialog(null,"Vous avez choisi le joueur " + options2[result]);
+        }
+        if (result < 0)
+            return 0;
+        return result;
     }
-    if (result < 0)
-        return this;
-    return id[result];
-}
 
     public Player choosePlayerOnMyCaseWithLessThan4Cards(boolean fenetreConfirmation){
         Set<Player> set = new HashSet<Player>();
@@ -197,7 +224,40 @@ public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
         }
         if(set.size() == 0)
             return this;
-        return choosePlayer(set, fenetreConfirmation);
+        return choosePlayer(set, fenetreConfirmation,"Choisissez un joueur pour l'echange :");
+    }
+
+    public Player choosePlayerOnMyCase(Set<Player> players, boolean fenetreConfirmation){
+        Set<Player> set = new HashSet<Player>();
+        for(Player p: this.getCase().getPlayers()){
+            if(p != this && players.contains(p))
+                set.add(p);
+        }
+        //if(set.size() == 0)
+        //    return this;
+        return choosePlayer(set, fenetreConfirmation,"Choisissez un joueur à embarquer :");
+    }
+
+    public Set<Player> chooseHelico(Set<Player> other) {
+        Set<Player> res = new HashSet<Player>();
+        int players = this.getCase().getPlayers().size();
+        if (players == 1) {
+            res.add(this);
+            return res;
+        }
+        int nb = this.chooseNumberPlayer(players,false,"Choisissez le nombre de joueur :");
+        if (nb == this.plateau.getPlayersPlateau().size() - 1)
+            return this.plateau.getPlayersPlateau();
+        if (nb == this.getCase().getPlayers().size() - 1)
+            return this.getCase().getPlayers();
+        Player p;
+        for (int i = 0; i < nb; i++) {
+            p = this.choosePlayerOnMyCase(other,true);
+            res.add(p);
+            other.remove(p);
+        }
+        res.add(this);
+        return res;
     }
 
     public Player choosePlayerAllPlateau(boolean fenetreConfirmation){
@@ -208,7 +268,7 @@ public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
         }
         if(set.size() == 0)
             return this;
-        return choosePlayer(set, fenetreConfirmation);
+        return choosePlayer(set, fenetreConfirmation,"Choisissez un joueur pour l'echange :");
     }
 
     public CarteTresor chooseCarte(String str, boolean fenetreConfirmation){

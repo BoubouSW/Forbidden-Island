@@ -2,6 +2,7 @@ package models;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
 import java.util.Set;
 
 public class PlayerController extends IG.Touche{
@@ -11,7 +12,9 @@ public class PlayerController extends IG.Touche{
     private int count;
     private boolean ingenieurDry;
     private boolean piloteFlight;
+    private boolean useSand;
     private Case saveCase;
+    private Set<Player> helico;
 
     public PlayerController(Player p, JFrame fenetre, Set<Player> players){
         fenetre.addKeyListener(this);
@@ -20,6 +23,7 @@ public class PlayerController extends IG.Touche{
         this.shouldReply = false;
         this.ingenieurDry = false;
         this.piloteFlight = false;
+        this.useSand = false;
     }
 
     //getters
@@ -36,6 +40,7 @@ public class PlayerController extends IG.Touche{
     //setters
     public void StartReply(){
         this.shouldReply = true;
+        this.helico = new HashSet<Player>();
         this.count = 3;
         if (this.player.getRole() == Player.ROLE.INGENIEUR)
             this.ingenieurDry = true;
@@ -90,25 +95,25 @@ public class PlayerController extends IG.Touche{
             switch (e.getKeyChar()) {
                 case 'd':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.DROITE, xRef, yRef);
+                        moi.moveDirDry(Case.Dir.DROITE, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.DROITE);
                     break;
                 case 'q':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.GAUCHE, xRef, yRef);
+                        moi.moveDirDry(Case.Dir.GAUCHE, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.GAUCHE);
                     break;
                 case 'z':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.HAUT, xRef, yRef);
+                        moi.moveDirDry(Case.Dir.HAUT, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.HAUT);
                     break;
                 case 's':
                     if (moi.isDryMode())
-                        moi.moveDirDry(Case.Dir.BAS, xRef, yRef);
+                        moi.moveDirDry(Case.Dir.BAS, xRef, yRef,this.useSand);
                     else
                         b = moi.moveDir(Case.Dir.BAS);
                     break;
@@ -147,6 +152,7 @@ public class PlayerController extends IG.Touche{
                 case 'l':
                     if (! moi.isFlightMode() && ! moi.isDryMode() && moi.hasSand()) {
                         moi.enableDry();
+                        this.useSand = true;
                         this.saveCase = moi.getCase();
                     }else {
                         if (moi.isDryMode()) {
@@ -185,11 +191,19 @@ public class PlayerController extends IG.Touche{
                     break;
                 case 'h':
                     if (!moi.isFlightMode() && ! moi.isDryMode() && moi.hasHelico()) {
-                        moi.enableFlight();
+                        this.helico = moi.chooseHelico(this.otherPlayers);
+                        for (Player h : this.helico)
+                            h.enableFlight();
                     }
                     else {
                         if (moi.isFlightMode()) {
                             moi.disableFlight();
+                            for (Player h : this.helico) {
+                                Case old = h.getCase();
+                                h.disableFlight();
+                                h.moveCase(moi.getCase());
+                                old.getController().repaint();
+                            }
                             moi.useHelico();
                         }
                     }
@@ -197,7 +211,7 @@ public class PlayerController extends IG.Touche{
                 case 'n':
                     if (moi.getRole() == Player.ROLE.NAVIGATEUR) {
                         //TP le joueur choisi sur le navigateur
-                        Player autre = moi.choosePlayer(otherPlayers, true);
+                        Player autre = moi.choosePlayer(otherPlayers, true,"Choisissez un joueur à déplacer :");
                         Case old = autre.getCase();
                         autre.moveCase(moi.getCase());
                         old.getController().repaint();
