@@ -17,19 +17,20 @@ This project is a collaboration between Clément Gilli and [Louis-Alexis Penelou
 ## <br> **Commands**
 <br>
 
-- `Z` - UP
-- `Q` - RIGHT
-- `S` - DOWN
-- `D` - LEFT
-- `F` - DRY MODE
-- `R` - CATCH ARTIFACT
-- `P` - CARDS TRADE
-- `M` - CARDS TRADE WITH EVERYBODY (MESSENGER ONLY)
-- `T` - THROW AWAY A CARD
-- `L` - USE SANDBAG
-- `H` - USE HELICOPTER
-- `V` - FLY MODE (PILOT ONLY)
-- `A` - UP LEFT (EXPLORER ONLY)
-- `E` - UP RIGHT (EXPLORER ONLY)
-- `W` - DOWN LEFT (EXPLORER ONLY)
-- `C` - DOWN RIGHT (EXPLORER ONLY)
+- `Z` - Up
+- `Q` - Right
+- `S` - Down
+- `D` - Left
+- `F` - Dry Mode
+- `R` - Catch Artifact
+- `V` - Cards Trade
+- `M` - Cards Trade with everybody (Messenger only)
+- `T` - Throw away a card
+- `L` - Use Sandbag
+- `H` - Use Helicopter
+- `P` - Fly Mode (Pilot Only)
+- `N` - Navigate mode (Navigator only)
+- `A` - Up Left (Explorer only)
+- `E` - Up Right (Explorer only)
+- `W` - Down Left (Explorer only)
+- `C` - Down Right (Explorer only)

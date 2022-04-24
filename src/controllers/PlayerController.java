@@ -15,6 +15,9 @@ public class PlayerController extends IG.Touche{
     private boolean useSand;
     private Case saveCase;
     private Set<Player> helico;
+    private Player navChoice;
+    private boolean navMode;
+    private int navCount;
 
     public PlayerController(Player p, JFrame fenetre, Set<Player> players){
         fenetre.addKeyListener(this);
@@ -24,6 +27,7 @@ public class PlayerController extends IG.Touche{
         this.ingenieurDry = false;
         this.piloteFlight = false;
         this.useSand = false;
+        this.navChoice = null;
     }
 
     //getters
@@ -40,8 +44,11 @@ public class PlayerController extends IG.Touche{
     //setters
     public void StartReply(){
         this.shouldReply = true;
+        this.navChoice = null;
         this.helico = new HashSet<Player>();
         this.count = 3;
+        this.navCount = 0;
+        this.navMode = false;
         if (this.player.getRole() == Player.ROLE.INGENIEUR)
             this.ingenieurDry = true;
         if (this.player.getRole() == Player.ROLE.PILOTE)
@@ -51,6 +58,7 @@ public class PlayerController extends IG.Touche{
     public void StopReply(){
         this.shouldReply = false;
     }
+    public void navPauseReply() { this.shouldReply = !this.shouldReply;}
 
     public void keyPressed(KeyEvent e){
     };
@@ -81,34 +89,67 @@ public class PlayerController extends IG.Touche{
                 yRef = this.saveCase.getY();
             }
             boolean b = false;
+            boolean mov = false;
             switch (e.getKeyChar()) {
                 case 'd':
                 case 'D':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.DROITE, xRef, yRef,this.useSand);
-                    else
-                        b = moi.moveDir(Case.Dir.DROITE);
+                    else {
+                        if (this.navMode) {
+                            if (this.navCount > 0) {
+                                models.CaseController old = this.navChoice.getCase().getController();
+                                mov = this.navChoice.moveDir(Case.Dir.DROITE);
+                                old.repaint();
+                            }
+                        }else
+                            b = moi.moveDir(Case.Dir.DROITE);
+                    }
                     break;
                 case 'q':
                 case 'Q':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.GAUCHE, xRef, yRef,this.useSand);
-                    else
-                        b = moi.moveDir(Case.Dir.GAUCHE);
+                    else {
+                        if (this.navMode) {
+                            if (this.navCount > 0) {
+                                models.CaseController old = this.navChoice.getCase().getController();
+                                mov = this.navChoice.moveDir(Case.Dir.GAUCHE);
+                                old.repaint();
+                            }
+                        }else
+                            b = moi.moveDir(Case.Dir.GAUCHE);
+                    }
                     break;
                 case 'z':
                 case 'Z':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.HAUT, xRef, yRef,this.useSand);
-                    else
-                        b = moi.moveDir(Case.Dir.HAUT);
+                    else {
+                        if (this.navMode) {
+                            if (this.navCount > 0) {
+                                models.CaseController old = this.navChoice.getCase().getController();
+                                mov = this.navChoice.moveDir(Case.Dir.HAUT);
+                                old.repaint();
+                            }
+                        }else
+                            b = moi.moveDir(Case.Dir.HAUT);
+                    }
                     break;
                 case 's':
                 case 'S':
                     if (moi.isDryMode())
                         moi.moveDirDry(Case.Dir.BAS, xRef, yRef,this.useSand);
-                    else
-                        b = moi.moveDir(Case.Dir.BAS);
+                    else {
+                        if (this.navMode) {
+                            if (this.navCount > 0) {
+                                models.CaseController old = this.navChoice.getCase().getController();
+                                mov = this.navChoice.moveDir(Case.Dir.BAS);
+                                old.repaint();
+                            }
+                        }else
+                            b = moi.moveDir(Case.Dir.BAS);
+                    }
                     break;
                 case 'a':
                 case 'A':
@@ -214,12 +255,15 @@ public class PlayerController extends IG.Touche{
                     break;
                 case 'n':
                 case 'N':
-                    if (moi.getRole() == Player.ROLE.NAVIGATEUR) {
-                        //TP le joueur choisi sur le navigateur
-                        Player autre = moi.choosePlayer(otherPlayers, true,"Choisissez un joueur à déplacer :");
-                        Case old = autre.getCase();
-                        autre.moveCase(moi.getCase());
-                        old.getController().repaint();
+                    if (moi.getRole() == Player.ROLE.NAVIGATEUR && this.navChoice == null) {
+                        this.navChoice = moi.choosePlayer(otherPlayers, true,"Choisissez un joueur à déplacer :");
+                        if (this.navChoice != this.getPlayer()) {
+                            this.navMode = true;
+                            this.navCount = 2;
+                        }
+                    }
+                    else if (moi.getRole() == Player.ROLE.NAVIGATEUR && this.navChoice != null) {
+                        navMode = false;
                         b = true;
                     }
                     break;
@@ -270,9 +314,14 @@ public class PlayerController extends IG.Touche{
                 b = false;
             if(! b)
                 this.count++;
+            if(! mov)
+                this.navCount++;
+            if(this.navChoice != null)
+                this.navChoice.getCase().getController().repaint();
 
             moi.getCase().getController().changeTexte(" ");
             moi.getCase().getController().repaint();
+            this.navCount--;
             this.count--;
         }
     }
