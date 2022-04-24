@@ -25,6 +25,7 @@ This project is a collaboration between Clément Gilli and [Louis-Alexis Penelou
 - `R` - CATCH ARTIFACT
 - `P` - CARDS TRADE
 - `M` - CARDS TRADE WITH EVERYBODY (MESSENGER ONLY)
+- `T` - THROW AWAY A CARD
 - `L` - USE SANDBAG
 - `H` - USE HELICOPTER
 - `V` - FLY MODE (PILOT ONLY)

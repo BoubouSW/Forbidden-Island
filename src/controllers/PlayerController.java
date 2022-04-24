@@ -209,7 +209,7 @@ public class PlayerController extends IG.Touche{
                     // messager
                     Player pm = moi.choosePlayerAllPlateau(false);
                     if(pm != moi) {
-                        CarteTresor c = moi.chooseCarte(false);
+                        CarteTresor c = moi.chooseCarte("", false);
                         if(c != null) {
                             moi.getCarteTresors().remove(c);
                             pm.getCarteTresors().add(c);
@@ -224,7 +224,7 @@ public class PlayerController extends IG.Touche{
                     // echangeDeClef
                     Player p = moi.choosePlayerOnMyCaseWithLessThan4Cards(false);
                     if(p != moi) {
-                        CarteTresor c = moi.chooseCarte(false);
+                        CarteTresor c = moi.chooseCarte("", false);
                         if(c != null) {
                             moi.getCarteTresors().remove(c);
                             p.getCarteTresors().add(c);
@@ -234,6 +234,14 @@ public class PlayerController extends IG.Touche{
                         }
                     }
                     break;
+                case 't':
+                    // defausse d'une carte
+                    CarteTresor c = moi.chooseCarte("Defausse d'une carte",false);
+                    if(c != null){
+                        moi.getCarteTresors().remove(c);
+                        moi.getCase().getPlateau().getPaquetCarteTresor().Defausse(c);
+                        updateCardInventory(moi);
+                    }
             }
             //System.out.println(moi.isFlightMode());
             if (moi.isFlightMode())

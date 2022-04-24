@@ -211,9 +211,14 @@ public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
         return choosePlayer(set, fenetreConfirmation);
     }
 
-    public CarteTresor chooseCarte(boolean fenetreConfirmation){
+    public CarteTresor chooseCarte(String str, boolean fenetreConfirmation){
         // choisi une carte parmi son inventaire
-        Set<CarteTresor> cartesTresor = this.getCarteTresors();
+        Set<CarteTresor> cartesTresor = new HashSet<CarteTresor>();
+        for(CarteTresor c: this.carteTresors){
+            if(c.getValeurCarte().ordinal() <= 4)
+                cartesTresor.add(c);
+        }
+
         CarteTresor[] id = new CarteTresor[4];
         int k = 0;
         for (CarteTresor c: cartesTresor) {
@@ -229,7 +234,9 @@ public Player choosePlayer(Set<Player> players, boolean fenetreConfirmation){
         }
 
         JPanel panel2 = new JPanel();
-        panel2.add(new JLabel("Choisissez une carte :"));
+        if(str == "")
+            str = "Choisissez une carte :";
+        panel2.add(new JLabel(str));
 
         int result = JOptionPane.showOptionDialog(null, panel2, "",
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
