@@ -184,7 +184,7 @@ public class PlayerController extends IG.Touche{
                             b = moi.assecheCase();
                             moi.disableDry();
                             moi.moveCase(this.saveCase);
-                            if (b) {
+                            if (b && moi.getRole() == Player.ROLE.INGENIEUR) {
                                 if(!demiCount) {
                                     this.count++;
                                     demiCount = true;
@@ -294,8 +294,8 @@ public class PlayerController extends IG.Touche{
                     }
                     break;
 
-                case 'o':
-                case 'O':
+                case 'v':
+                case 'V':
                     // echangeDeClef
                     Player p = moi.choosePlayerOnMyCaseWithLessThan4Cards(false);
                     if(p != moi) {
